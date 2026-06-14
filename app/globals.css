@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* Single, intentional LIGHT theme. We deliberately do NOT honour
+   prefers-color-scheme: every surface uses explicit Tailwind colors
+   (bg-slate-50, white cards, text-slate-900); a dark body background would sit
+   behind light-theme text and make the page unreadable. */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Print / Save-as-PDF: drop the chrome and the input form, keep a clean results
+   sheet. Elements tagged `print:hidden` are hidden; header/footer stripped. */
+@media print {
+  header,
+  footer {
+    display: none !important;
+  }
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .print\:hidden {
+    display: none !important;
+  }
+  * {
+    box-shadow: none !important;
+  }
+}
