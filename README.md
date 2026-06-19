@@ -16,6 +16,11 @@ permit. Built on **real engineering**, not guesswork.
   checks; a solver finds the minimum base width that passes all three.
 - **Reinforcement** — flags when a gravity wall can't pass and estimates geogrid
   layers/length (NCMA practice).
+- **Footing depth** — minimum base depth below the frost line (IRC R403.1.4 /
+  IBC §1809.5) from a per-state frost table.
+- **Materials & cost** — a full takeoff with the primary material for every wall
+  type (blocks / ready-mix concrete + rebar / timbers / boulders), drainage, and a
+  selectable SRW block size, scaled by a per-state cost index.
 - **Permit** — the 4-ft rule (IRC R404.1 / IBC §1807.2) plus the surcharge exception.
 
 Everything is documented on `/methodology` with the code tables reproduced.
