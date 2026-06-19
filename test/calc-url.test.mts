@@ -40,5 +40,10 @@ check("bad wall type → default", bad.wallTypeId === DEFAULT_INPUTS.wallTypeId)
 check("bad soil → default", bad.backfillSoilId === DEFAULT_INPUTS.backfillSoilId);
 check("negative surcharge clamped to 0", bad.surcharge === 0);
 
+// Out-of-range slope from a hand-edited URL snaps to an allowed select option.
+check("slope 250 snaps to 26 (max option)", decodeInputs("?sl=250").slopeDeg === 26);
+check("slope 20 snaps to nearest option (18)", decodeInputs("?sl=20").slopeDeg === 18);
+check("slope 14 stays 14", decodeInputs("?sl=14").slopeDeg === 14);
+
 console.log(`\n${pass} passed, ${fail} failed`);
 if (fail > 0) process.exit(1);

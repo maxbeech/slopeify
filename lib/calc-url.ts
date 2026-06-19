@@ -23,6 +23,12 @@ function num(v: string | null, min: number, max: number, fallback: number): numb
 function pick<T extends string>(v: string | null, allowed: T[], fallback: T): T {
   return allowed.includes(v as T) ? (v as T) : fallback;
 }
+// Snap a numeric param to the nearest value the matching <select> offers, so a
+// hand-edited / out-of-range URL never leaves a controlled select with no option.
+const SLOPE_OPTIONS = [0, 14, 18, 26];
+function snap(v: number, options: number[]): number {
+  return options.reduce((best, o) => (Math.abs(o - v) < Math.abs(best - v) ? o : best), options[0]);
+}
 function bool(v: string | null, fallback: boolean): boolean {
   if (v === null) return fallback;
   return v === "1" || v === "true";
@@ -53,7 +59,7 @@ export function decodeInputs(search: string, fallbackState = DEFAULT_INPUTS.stat
     backfillSoilId: pick(p.get("b"), SOIL_IDS, DEFAULT_INPUTS.backfillSoilId),
     foundationSoilId: pick(p.get("f"), FOUND_IDS, DEFAULT_INPUTS.foundationSoilId),
     wallTypeId: pick(p.get("w"), WALL_IDS, DEFAULT_INPUTS.wallTypeId),
-    slopeDeg: num(p.get("sl"), 0, 34, DEFAULT_INPUTS.slopeDeg),
+    slopeDeg: snap(num(p.get("sl"), 0, 34, DEFAULT_INPUTS.slopeDeg), SLOPE_OPTIONS),
     surcharge: num(p.get("sc"), 0, 2000, DEFAULT_INPUTS.surcharge),
     restrained: bool(p.get("r"), DEFAULT_INPUTS.restrained),
     saturated: bool(p.get("sat"), DEFAULT_INPUTS.saturated),
