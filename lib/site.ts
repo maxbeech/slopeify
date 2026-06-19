@@ -9,3 +9,17 @@ export const SITE = {
   vercelUrl: "https://retaincalchq.vercel.app",
   contactEmail: "hello@retaincalchq.com",
 };
+
+/** BreadcrumbList JSON-LD from [name, path] pairs (single source of truth). */
+export function breadcrumbLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: `${SITE.url}${it.path}`,
+    })),
+  };
+}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { POSTS, postBySlug } from "@/lib/posts";
-import { SITE } from "@/lib/site";
+import { SITE, breadcrumbLd } from "@/lib/site";
 
 export const revalidate = 604800; // 1 week ISR
 
@@ -76,14 +76,21 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     publisher: { "@type": "Organization", name: SITE.name },
   };
 
+  const crumbs = breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Guides", path: "/blog" },
+    { name: p.title, path: `/blog/${p.slug}` },
+  ]);
+
   return (
     <article className="mx-auto max-w-2xl">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }} />
       <nav className="mb-3 text-sm text-slate-500">
         <Link href="/blog" className="hover:text-slate-900">Guides</Link> / {p.title}
       </nav>
       <h1 className="text-3xl font-extrabold text-slate-900">{p.title}</h1>
-      <div className="mt-2 text-xs text-slate-400">{p.readMins} min read</div>
+      <div className="mt-2 text-xs text-slate-500">{p.readMins} min read</div>
       <div className="mt-4">{render(p.body)}</div>
 
       <div className="mt-8 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center">

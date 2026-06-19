@@ -6,6 +6,8 @@ import { wallTypeById, checkStability, solveBaseWidth, estimateReinforcement } f
 import { computeMaterials } from "../lib/materials.ts";
 import { permitVerdict } from "../lib/permit.ts";
 import { designWall, DEFAULT_INPUTS } from "../lib/design.ts";
+import { footingDepthInches, stateBySlug } from "../lib/states.ts";
+import { blockSizeById, BLOCK_SIZES } from "../lib/materials.ts";
 
 let pass = 0, fail = 0;
 function check(name: string, cond: boolean, detail = "") {
@@ -67,12 +69,34 @@ check("reinforcement recommended", estimateReinforcement(8, solTall.found).neede
 check("geogrid length ≥ 0.6H (≥4.8 ft)", estimateReinforcement(8, false).length >= 4.8 - 0.001);
 
 console.log("\nMaterials takeoff (30 ft × 4 ft segmental)");
-const mat = computeMaterials({ lengthFt: 30, heightFt: 4, baseWidthFt: 2, wallTypeId: "segmental", reinforcement: { needed: false, layers: 0, length: 0, verticalSpacing: 0 }, costIndex: 1 });
+const noRein = { needed: false, layers: 0, length: 0, verticalSpacing: 0 };
+const mat = computeMaterials({ lengthFt: 30, heightFt: 4, baseWidthFt: 2, wallTypeId: "segmental", reinforcement: noRein, costIndex: 1 });
 check("face area = 120 sq ft", mat.faceArea === 120);
 const blocks = mat.lines.find((l) => l.item.includes("blocks"));
 check("block count ≈ 120–135", Boolean(blocks) && blocks!.qty >= 120 && blocks!.qty <= 135);
 check("installed high > low", mat.installedHigh > mat.installedLow);
 check("materials cost > 0", mat.materialsCost > 0);
+
+console.log("\nBlock size affects count (smaller blocks → more blocks)");
+const matBig = computeMaterials({ lengthFt: 30, heightFt: 4, baseWidthFt: 2, wallTypeId: "segmental", reinforcement: noRein, costIndex: 1, blockFaceSqFt: blockSizeById("garden") });
+const garden = matBig.lines.find((l) => l.item.includes("blocks"));
+check("garden blocks (0.33 sqft) > standard count", Boolean(garden) && garden!.qty > blocks!.qty);
+check("all block sizes have positive face area", BLOCK_SIZES.every((b) => b.faceSqFt > 0));
+
+console.log("\nPrimary material present for every wall type");
+for (const wt of ["segmental", "concrete-gravity", "timber", "boulder"]) {
+  const m = computeMaterials({ lengthFt: 30, heightFt: 4, baseWidthFt: 2, wallTypeId: wt, reinforcement: noRein, costIndex: 1 });
+  const primary = wt === "segmental" ? "blocks" : wt === "concrete-gravity" ? "concrete" : wt === "timber" ? "timbers" : "boulders";
+  check(`${wt} lists its primary material (${primary})`, m.lines.some((l) => l.item.toLowerCase().includes(primary)));
+}
+
+console.log("\nFooting depth below frost line (IRC R403.1.4)");
+check("Minnesota footing ≥ frost 60 in", footingDepthInches("minnesota", 4) === 60);
+check("Florida footing = 12 in min (warm)", footingDepthInches("florida", 4) === 12);
+check("tall wall raises embedment over warm frost", footingDepthInches("florida", 20) >= 24);
+check("every state has a frost value", stateBySlug("texas")!.frost > 0);
+const dFrost = designWall({ ...DEFAULT_INPUTS, stateSlug: "minnesota" });
+check("design surfaces footing depth", dFrost.footingDepth === 60 && dFrost.frostDepth === 60);
 
 console.log("\nPermit logic (IRC R404 / IBC 1807, 4-ft rule)");
 check("5 ft → engineering required", permitVerdict({ height: 5, surcharge: 0, slopeDeg: 0 }).engineeringRequired);

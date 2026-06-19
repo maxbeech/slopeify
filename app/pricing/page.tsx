@@ -55,7 +55,7 @@ export default function Pricing() {
         </div>
       </div>
 
-      <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-slate-400">
+      <p className="mx-auto mt-6 max-w-2xl text-center text-xs text-slate-500">
         The Pro report is a planning aid. A wall over 4 ft or with a surcharge still needs a licensed
         engineer’s stamped design and a local permit.
       </p>

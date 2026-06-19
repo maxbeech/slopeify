@@ -44,10 +44,13 @@ export default function Methodology() {
           </tbody>
         </table>
       </div>
-      <p className="mt-2 text-xs text-slate-400">
+      <p className="mt-2 text-xs text-slate-500">
         For a sloped backfill we increase the pressure by the ratio of Rankine active coefficients
         Ka(β)/Ka(0). A uniform surcharge <em>q</em> adds a rectangular pressure Ka·q over the full height
-        (Ka taken as EFP/γ for consistency with the code value).
+        (Ka taken as EFP/γ for consistency with the code value). Where a row combines two USCS classes
+        (ML, CL) we use the more conservative value (60 pcf, the CL figure; ML alone is 45). IBC lists
+        high-plasticity clays (CH/MH) as <em>unsuitable backfill</em> with no tabulated value — if you
+        select one we apply a conservative 100 pcf and warn you to replace it.
       </p>
 
       <h2 className="mt-8 text-xl font-bold text-slate-900">2. Presumptive bearing — IBC Table 1806.2</h2>
@@ -81,7 +84,16 @@ export default function Methodology() {
         roughly every two courses).
       </p>
 
-      <h2 className="mt-8 text-xl font-bold text-slate-900">4. Friction angle &amp; unit weight</h2>
+      <h2 className="mt-8 text-xl font-bold text-slate-900">4. Footing depth below the frost line</h2>
+      <p className="mt-2 text-slate-600">
+        The base must bear below the frost line so frost heave can&apos;t lift it (IRC R403.1.4 /
+        IBC §1809.5). We recommend a minimum depth below grade of the larger of: your state&apos;s
+        typical frost depth, one buried course (≈ 10% of wall height), and a 12-inch practical
+        minimum to reach stable bearing soil. Frost depth varies within a state — the per-state
+        figure is a representative permit value; confirm yours with the local building department.
+      </p>
+
+      <h2 className="mt-8 text-xl font-bold text-slate-900">5. Friction angle &amp; unit weight</h2>
       <p className="mt-2 text-slate-600">
         Representative effective friction angles and moist unit weights are typical design values from
         standard references (NAVFAC DM-7.1; Coduto, <em>Foundation Design</em>). They drive the Rankine

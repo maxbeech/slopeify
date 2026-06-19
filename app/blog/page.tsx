@@ -18,7 +18,7 @@ export default function BlogIndex() {
             className="block rounded-lg border border-slate-200 bg-white p-4 hover:border-emerald-300 hover:shadow-sm">
             <div className="font-semibold text-slate-900">{p.title}</div>
             <div className="mt-1 text-sm text-slate-500">{p.description}</div>
-            <div className="mt-2 text-xs text-slate-400">{p.readMins} min read</div>
+            <div className="mt-2 text-xs text-slate-500">{p.readMins} min read</div>
           </Link>
         ))}
       </div>

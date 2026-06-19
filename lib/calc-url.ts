@@ -6,11 +6,13 @@ import { DEFAULT_INPUTS, type DesignInputs } from "./design";
 import { SOILS, FOUNDATION_SOILS } from "./soil";
 import { WALL_TYPES } from "./wall";
 import { STATES } from "./states";
+import { BLOCK_SIZES } from "./materials";
 
 const SOIL_IDS = SOILS.map((s) => s.id);
 const FOUND_IDS = FOUNDATION_SOILS.map((s) => s.id);
 const WALL_IDS = WALL_TYPES.map((w) => w.id);
 const STATE_SLUGS = STATES.map((s) => s.slug);
+const BLOCK_IDS = BLOCK_SIZES.map((b) => b.id);
 
 function num(v: string | null, min: number, max: number, fallback: number): number {
   if (v === null || v.trim() === "") return fallback;
@@ -38,6 +40,7 @@ export function encodeInputs(i: DesignInputs): string {
     r: i.restrained ? "1" : "0",
     sat: i.saturated ? "1" : "0",
     st: i.stateSlug,
+    bs: i.blockSizeId,
   }).toString();
 }
 
@@ -55,5 +58,6 @@ export function decodeInputs(search: string, fallbackState = DEFAULT_INPUTS.stat
     restrained: bool(p.get("r"), DEFAULT_INPUTS.restrained),
     saturated: bool(p.get("sat"), DEFAULT_INPUTS.saturated),
     stateSlug: pick(p.get("st"), STATE_SLUGS, fallbackState),
+    blockSizeId: pick(p.get("bs"), BLOCK_IDS, DEFAULT_INPUTS.blockSizeId),
   };
 }

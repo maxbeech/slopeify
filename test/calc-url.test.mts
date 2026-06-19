@@ -12,7 +12,7 @@ function check(name: string, cond: boolean, detail = "") {
 const sample: DesignInputs = {
   heightFt: 6, lengthFt: 45, backfillSoilId: "silty-sand", foundationSoilId: "gravel",
   wallTypeId: "concrete-gravity", slopeDeg: 18, surcharge: 250, restrained: true,
-  saturated: false, stateSlug: "texas",
+  saturated: false, stateSlug: "texas", blockSizeId: "jumbo",
 };
 
 const round = decodeInputs(encodeInputs(sample));
@@ -25,6 +25,7 @@ check("slope round-trips", round.slopeDeg === sample.slopeDeg);
 check("surcharge round-trips", round.surcharge === sample.surcharge);
 check("restrained round-trips", round.restrained === sample.restrained);
 check("state round-trips", round.stateSlug === sample.stateSlug);
+check("block size round-trips", round.blockSizeId === sample.blockSizeId);
 
 // Empty / tracking-only URLs → defaults, never NaN.
 const empty = decodeInputs("");

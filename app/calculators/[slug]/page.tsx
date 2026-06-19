@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Calculator from "@/components/Calculator";
 import Faq from "@/components/Faq";
 import { CALCULATORS, calcBySlug } from "@/lib/calculators";
+import { breadcrumbLd } from "@/lib/site";
 
 export const revalidate = 604800; // 1 week ISR
 
@@ -22,8 +23,15 @@ export default async function CalcPage({ params }: { params: Promise<{ slug: str
   const c = calcBySlug(slug);
   if (!c) notFound();
 
+  const crumbs = breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Calculators", path: "/calculators" },
+    { name: c.h1, path: `/calculators/${c.slug}` },
+  ]);
+
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }} />
       <nav className="mb-3 text-sm text-slate-500">
         <Link href="/calculators" className="hover:text-slate-900">Calculators</Link> / {c.h1}
       </nav>

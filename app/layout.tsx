@@ -44,7 +44,7 @@ function Footer() {
           <Link href="/methodology" className="hover:text-slate-900">How it works</Link>
           <Link href="/pricing" className="hover:text-slate-900">Pro / design report</Link>
         </div>
-        <p className="mt-4 max-w-2xl text-xs text-slate-400">
+        <p className="mt-4 max-w-2xl text-xs text-slate-500">
           {SITE.name} gives simplified, code-based planning estimates (IBC Tables 1610.1 &amp; 1806.2,
           Rankine earth pressure). A retaining wall over 4 ft, or any wall with a surcharge, requires an
           engineered, stamped design and a local permit. Always confirm with a licensed engineer and your

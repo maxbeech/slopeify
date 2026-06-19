@@ -1,6 +1,7 @@
-// Results panel — verdict, the three factors of safety, the cross-section, the
-// permit call, and the materials + cost takeoff. Presentation only; all numbers
-// come from designWall().
+// Results panel — verdict, the three factors of safety, footing depth, the
+// cross-section, the permit call, materials + cost, and recommended next steps.
+// Presentation only; all numbers come from designWall().
+import Link from "next/link";
 import type { DesignResult } from "@/lib/design";
 import type { Focus } from "@/lib/calculators";
 import { FS_OVERTURNING_MIN, FS_SLIDING_MIN } from "@/lib/wall";
@@ -27,6 +28,8 @@ export default function CalcResults({ r, focus = "design" }: { r: DesignResult; 
       ? { tone: "amber", title: "Needs geogrid reinforcement", sub: "A plain gravity wall can't pass — reinforce it or use an engineered cantilever." }
       : { tone: "rose", title: "This wall does not pass", sub: "Reduce height, improve soil/drainage, or have it engineered." };
 
+  const nextSteps = buildNextSteps(r);
+
   return (
     <div className="space-y-4">
       <div className={`rounded-xl border p-4 ${verdict.tone === "emerald" ? "border-emerald-200 bg-emerald-50" : verdict.tone === "amber" ? "border-amber-200 bg-amber-50" : "border-rose-200 bg-rose-50"}`}>
@@ -39,11 +42,13 @@ export default function CalcResults({ r, focus = "design" }: { r: DesignResult; 
 
       <div className="grid gap-3 sm:grid-cols-2">
         <Stat label="Minimum base width" value={`${c.baseWidth} ft`} />
+        <Stat label="Bury base below grade (frost line)" value={`${r.footingDepth} in`} />
         <Stat label="Lateral earth pressure (EFP)" value={`${fix(r.pressure.efp, 0)} pcf`} />
+        <Stat label="Total horizontal push" value={`${fix(r.pressure.totalH, 0)} lb/ft`} />
         <Stat label={`Overturning FS (≥ ${FS_OVERTURNING_MIN})`} value={fix(c.fsOverturning)} ok={c.fsOverturning >= FS_OVERTURNING_MIN} />
         <Stat label={`Sliding FS (≥ ${FS_SLIDING_MIN})`} value={fix(c.fsSliding)} ok={c.fsSliding >= FS_SLIDING_MIN} />
-        <Stat label="Total horizontal push" value={`${fix(r.pressure.totalH, 0)} lb/ft`} />
         <Stat label="Bearing: max vs allowable" value={`${fix(c.bearingMax, 0)} / ${fix(c.bearingAllow, 0)} psf`} ok={c.bearingOk} />
+        <Stat label="Resultant in middle third" value={c.middleThird ? "Yes — no heel uplift" : "No — heel lifts"} ok={c.middleThird} />
       </div>
 
       {r.reinforcement.needed && (
@@ -69,6 +74,19 @@ export default function CalcResults({ r, focus = "design" }: { r: DesignResult; 
 
       {focus !== "cost" && <CostBlock r={r} />}
 
+      {/* Recommended next steps */}
+      <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+        <h3 className="font-semibold text-slate-900">Recommended next steps</h3>
+        <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-slate-700">
+          {nextSteps.map((s, i) => <li key={i}>{s}</li>)}
+        </ol>
+        {r.permit.engineeringRequired && (
+          <Link href="/pricing" className="mt-3 inline-block rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-600 print:hidden">
+            Get the permit-ready design report (Pro, $29) →
+          </Link>
+        )}
+      </div>
+
       {/* Warnings */}
       {r.warnings.length > 0 && (
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
@@ -82,6 +100,26 @@ export default function CalcResults({ r, focus = "design" }: { r: DesignResult; 
   );
 }
 
+function buildNextSteps(r: DesignResult): string[] {
+  const steps: string[] = [];
+  steps.push(
+    `Excavate and compact a 6-inch crushed-stone leveling pad, then bury the base at least ${r.footingDepth} in below grade (below the frost line for your state).`,
+  );
+  if (r.base.found) {
+    steps.push(`Build to a ${r.base.check.baseWidth}-ft base width and batter the wall back into the slope.`);
+  } else if (r.reinforcement.needed) {
+    steps.push(`Add ~${r.reinforcement.layers} geogrid layers (${r.reinforcement.length.toFixed(1)} ft long) — or switch to an engineered cantilever wall.`);
+  }
+  steps.push("Install the drainage system: clean drain rock behind the wall, a perforated pipe at the base daylighted to a low point, and filter fabric.");
+  steps.push("Backfill and compact in 6–8 inch lifts; finish grade so surface water runs away from the wall.");
+  if (r.permit.engineeringRequired) {
+    steps.push("Hire a licensed engineer for a stamped design and pull a permit before you build.");
+  } else if (r.permit.permitLikely) {
+    steps.push("Check with your local building department — a permit is likely for a wall this size.");
+  }
+  return steps;
+}
+
 function CostBlock({ r }: { r: DesignResult }) {
   const m = r.materials;
   return (
@@ -90,9 +128,9 @@ function CostBlock({ r }: { r: DesignResult }) {
         <h3 className="font-semibold text-slate-900">Cost &amp; materials</h3>
         <div className="text-xs text-slate-500">{m.faceArea.toLocaleString()} sq ft of face</div>
       </div>
-      <div className="mt-2 rounded-lg bg-sky-50 p-3 text-center">
-        <div className="text-xs text-sky-800">Estimated installed cost</div>
-        <div className="text-2xl font-bold text-sky-900">{money(m.installedLow)} – {money(m.installedHigh)}</div>
+      <div className="mt-2 rounded-lg bg-emerald-50 p-3 text-center">
+        <div className="text-xs text-emerald-800">Estimated installed cost</div>
+        <div className="text-2xl font-bold text-emerald-900">{money(m.installedLow)} – {money(m.installedHigh)}</div>
       </div>
       <table className="mt-3 w-full text-sm">
         <thead>
@@ -114,7 +152,7 @@ function CostBlock({ r }: { r: DesignResult }) {
           </tr>
         </tbody>
       </table>
-      <p className="mt-2 text-xs text-slate-400">
+      <p className="mt-2 text-xs text-slate-500">
         Estimates only. Installed cost = face area × a typical $/sq-ft range for the chosen material × a regional cost index.
         Get exact pricing from a local contractor.
       </p>

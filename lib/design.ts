@@ -2,10 +2,10 @@
 // code-grounded retaining-wall result. This is the single source of truth the UI,
 // the share-URL and the tests all call.
 import { computePressure, type PressureResult } from "./earth-pressure";
-import { computeMaterials, type MaterialsResult } from "./materials";
+import { computeMaterials, blockSizeById, type MaterialsResult } from "./materials";
 import { permitVerdict, type PermitVerdict } from "./permit";
 import { soilById, foundationById, type SoilType } from "./soil";
-import { STATES } from "./states";
+import { STATES, stateBySlug, footingDepthInches } from "./states";
 import {
   estimateReinforcement,
   solveBaseWidth,
@@ -26,6 +26,7 @@ export interface DesignInputs {
   restrained: boolean; // at-rest vs active
   saturated: boolean; // drainage failed?
   stateSlug: string; // for cost index + permit page
+  blockSizeId: string; // SRW unit size (segmental walls only)
 }
 
 export const DEFAULT_INPUTS: DesignInputs = {
@@ -39,6 +40,7 @@ export const DEFAULT_INPUTS: DesignInputs = {
   restrained: false,
   saturated: false,
   stateSlug: "california",
+  blockSizeId: "standard",
 };
 
 export interface DesignResult {
@@ -52,6 +54,8 @@ export interface DesignResult {
   materials: MaterialsResult;
   permit: PermitVerdict;
   costIndex: number;
+  frostDepth: number; // inches
+  footingDepth: number; // inches below grade (max of frost, embedment, 12")
   warnings: string[];
 }
 
@@ -95,12 +99,15 @@ export function designWall(raw: DesignInputs): DesignResult {
     wallTypeId: inputs.wallTypeId,
     reinforcement,
     costIndex,
+    blockFaceSqFt: blockSizeById(inputs.blockSizeId),
   });
   const permit = permitVerdict({
     height: inputs.heightFt,
     surcharge: inputs.surcharge,
     slopeDeg: inputs.slopeDeg,
   });
+  const frostDepth = stateBySlug(inputs.stateSlug)?.frost ?? 36;
+  const footingDepth = footingDepthInches(inputs.stateSlug, inputs.heightFt);
 
   const warnings: string[] = [];
   if (!backfill.suitableBackfill) {
@@ -137,6 +144,8 @@ export function designWall(raw: DesignInputs): DesignResult {
     materials,
     permit,
     costIndex,
+    frostDepth,
+    footingDepth,
     warnings,
   };
 }

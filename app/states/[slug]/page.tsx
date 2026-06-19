@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Calculator from "@/components/Calculator";
 import { STATES, stateBySlug } from "@/lib/states";
 import { ENGINEERING_HEIGHT_FT } from "@/lib/permit";
+import { breadcrumbLd } from "@/lib/site";
 
 export const revalidate = 604800; // 1 week ISR
 
@@ -28,9 +29,15 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
   const pct = Math.round((s.costIndex - 1) * 100);
   const costNote =
     pct === 0 ? "right around the US average" : pct > 0 ? `about ${pct}% above the US average` : `about ${Math.abs(pct)}% below the US average`;
+  const crumbs = breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "By state", path: "/states" },
+    { name: s.name, path: `/states/${s.slug}` },
+  ]);
 
   return (
     <div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }} />
       <nav className="mb-3 text-sm text-slate-500">
         <Link href="/states" className="hover:text-slate-900">By state</Link> / {s.name}
       </nav>
@@ -49,7 +56,7 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
             any height when there is a surcharge (driveway, slope or structure). Most {s.name} building
             departments require a permit at the same point.
           </p>
-          <p className="mt-2 text-xs text-slate-400">
+          <p className="mt-2 text-xs text-slate-500">
             Thresholds are set locally. {s.name} delegates enforcement to city/county building
             departments, so always confirm with yours before you build.
           </p>
@@ -58,10 +65,21 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
           <h2 className="font-semibold text-slate-900">{s.name} retaining wall cost</h2>
           <p className="mt-2">
             With a regional cost index of {s.costIndex.toFixed(2)}, a typical segmental block wall in {s.name}
-            runs roughly {Math.round(30 * s.costIndex)}–{Math.round(60 * s.costIndex)} per square foot of
+            runs roughly ${Math.round(30 * s.costIndex)}–${Math.round(60 * s.costIndex)} per square foot of
             wall face installed. Enter your dimensions for a full estimate and materials list.
           </p>
         </div>
+      </div>
+
+      <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
+        <h2 className="font-semibold text-slate-900">Frost depth &amp; footing in {s.name}</h2>
+        <p className="mt-2">
+          The typical frost depth in {s.name} is about <strong>{s.frost} in</strong>. Per IRC R403.1.4 /
+          IBC §1809.5 the wall&apos;s base must sit below the frost line, so bury the leveling pad at least
+          {" "}{s.frost} in below grade (or one buried course / 12 in minimum, whichever is greater). The
+          calculator works this out for your exact wall height. Frost depth varies with elevation — confirm
+          the local figure with your building department.
+        </p>
       </div>
 
       <div className="mt-6">
