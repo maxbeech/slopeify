@@ -340,6 +340,381 @@ Our [calculator](/) computes all three factors of safety for your wall and solve
   },
 ];
 
+const WEEK2_POSTS: Post[] = [
+  {
+    slug: "retaining-wall-cost-per-linear-foot",
+    title: "Retaining Wall Cost Per Linear Foot: 2026 Guide",
+    description:
+      "The real cost per linear foot for retaining walls by material and height, based on the installed price ranges our calculator uses. Updated for 2026.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `Cost per linear foot is a convenient shorthand, but it hides the most important variable: **wall height**. A 30-ft wall that is 2 ft tall costs far less per foot than the same 30-ft wall at 6 ft.
+
+## Cost per linear foot by material and height
+
+These are installed costs (labour + materials) at a 4-ft wall height, which is the most common residential case:
+
+- **Segmental block (SRW):** $120–$240 / linear ft
+- **Poured concrete:** $160–$300 / linear ft
+- **Timber / sleepers:** $80–$160 / linear ft
+- **Boulder / natural stone:** $100–$220 / linear ft
+
+At 2 ft tall, halve those numbers. At 6 ft (usually engineered), add 40–60%.
+
+## Why height matters more than length
+
+The wall face area — **length × height** — is what drives labour and materials. A 4-ft wall uses roughly twice the blocks, twice the drain rock and twice the labour of a 2-ft wall for the same run. When you're pricing per linear foot, always anchor the number to a specific height.
+
+## What adds cost beyond material and height
+
+- **Drainage:** drain rock, perforated pipe and filter fabric are not optional — budget $15–$30 / linear ft extra.
+- **Engineering and permit:** past 4 ft (or any height with a surcharge) you're looking at $500–$2,000 for stamped drawings and permit fees.
+- **Site access and excavation:** tight lots and heavy machinery time add quickly.
+- **Regional index:** our [calculator](/) applies a per-state labour and material factor.
+
+## The bottom line
+
+For rough budgeting, use $150–$250 per linear foot at 4 ft tall for a block wall. Run the [calculator](/) with your exact length, height and material to get a wall-face cost range and a full materials takeoff.`,
+  },
+  {
+    slug: "retaining-wall-surcharge-explained",
+    title: "Retaining Wall Surcharge Load: What Changes?",
+    description:
+      "A surcharge (driveway, slope, or structure above the wall) adds soil pressure. Here's how engineers account for it and when it changes the design.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `**Surcharge** is any load applied to the soil behind a retaining wall: a driveway, parked cars, a shed, a deck, a road, or the slope of the hill itself. It increases the lateral (horizontal) pressure the wall must resist — sometimes dramatically.
+
+## How it's calculated
+
+Engineers treat a uniform surcharge (like a driveway) as an **equivalent additional soil height**. Using a common surcharge value of 100 psf (dead + live for a driveway) and a soil unit weight of 120 pcf, that works out to roughly **0.83 ft of extra soil height** pressing against the wall.
+
+For Rankine or equivalent-fluid-pressure methods (IBC Table 1610.1), the lateral force from a surcharge = **q × Ka × H**, where q is the surcharge load in psf, Ka is the active earth pressure coefficient (roughly 0.33 for most soils), and H is the wall height.
+
+## Practical impact
+
+A 3-ft gravity wall that comfortably passes stability checks on its own may **fail overturning** when a 100-psf driveway is added behind it — and doing so under what looks like a "short" wall that wouldn't normally need a permit. That's why building codes (IRC R404, IBC §1807) require engineering for **any** wall under a surcharge, regardless of height.
+
+## In the calculator
+
+The [calculator](/) has a dedicated surcharge field. Enter the load (typical values: 100 psf for a driveway, 250 psf for a light structure, 0 for a clean slope) and the result shows how the base width, factor of safety and materials list all shift. If surcharge pushes you past the gravity-wall limit, the calculator flags that you need an engineer and a permit.`,
+  },
+  {
+    slug: "retaining-wall-footing-depth",
+    title: "Retaining Wall Footing Depth: The Right Number",
+    description:
+      "Footing depth for a retaining wall depends on frost depth, soil bearing and wall height. Here's the standard guidance and how our calculator uses it.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `Footing depth affects two things: **frost heave** and **bearing capacity**. Get it wrong and the wall lifts in winter or slowly sinks.
+
+## Frost depth rule
+
+Most building codes require the bottom of the footing to sit **at or below the local frost depth** — the point below which the ground doesn't freeze. In northern states this can be 48 inches or more; in the south it's effectively zero.
+
+Use the [calculator](/) to find the frost depth for your state; it pulls from ASCE 7 ground temperature data. For a quick check: Minnesota is ~60 in, Chicago ~36 in, North Carolina ~12 in, Texas ~4–6 in, Florida ~0.
+
+## Bearing capacity rule
+
+Even in a frost-free zone, the footing should sit on **undisturbed, competent soil**. If the existing grade is fill, topsoil or disturbed material, go down until you hit native ground regardless of the frost rule. Minimum bearing for most residential walls is 1,500 psf.
+
+## Segmental block vs poured walls
+
+Segmental block walls (SRW) don't have a traditional poured footing — instead they use a **compacted crushed-stone leveling pad**, typically 6 inches deep, with the first block course buried. The pad distributes the load; the buried course prevents undermining.
+
+Poured concrete walls (gravity or cantilever) need a real cast-in-place footing: typically **1 ft wide for every 1 ft of wall height**, at frost depth. An engineer specifies this based on bearing tests for anything over 4 ft.
+
+## Bottom line
+
+For SRW block: 6-inch stone pad, first course buried, total excavation depth = pad + one block (≈ 16–18 inches). For poured concrete: match frost depth, minimum 12 inches below grade for warm climates. The [calculator](/) shows which rule applies to your configuration.`,
+  },
+  {
+    slug: "tiered-retaining-wall-spacing",
+    title: "Tiered Retaining Wall Spacing: Getting It Right",
+    description:
+      "Tiered retaining walls only avoid engineering if the terraces are far enough apart. Here is the spacing rule and when tiering beats one tall wall.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `A **tiered** (terraced or stepped) retaining wall breaks a tall slope into two or more shorter walls. Each wall can often stay under the 4-ft engineering trigger — but only if they're spaced far enough apart.
+
+## The key spacing rule
+
+If the horizontal distance between the toes of two walls is **less than twice the height of the lower wall**, the upper wall is treated as a surcharge on the lower one. At that separation, you're essentially building one taller system and an engineer must evaluate the combined load.
+
+A common practical guideline: **space terraces at least 2× the lower wall's height apart**. Some jurisdictions use the sum of both wall heights. When in doubt, call the building department.
+
+## When tiering wins
+
+- The slope is gentle enough to allow wide terraces with planting beds between them.
+- You want a landscaped, stepped look rather than a single tall face.
+- You're DIY-building and want to stay under the permit trigger on each tier.
+
+## When a single tall wall wins
+
+- The lot is tight — there's no room for horizontal separation between terraces.
+- The slope is steep, so tiering would eat the yard.
+- You have a budget for engineering and want a single structure that's easier to waterproof and maintain.
+
+## In the calculator
+
+Design each tier separately. For the **lower** tier, use the upper wall's load as a surcharge (typically 100–250 psf depending on what sits up there). The [calculator](/) will tell you whether that lower wall still stays in gravity-wall territory or crosses into engineered-cantilever/reinforced ground.`,
+  },
+  {
+    slug: "gravity-retaining-wall-sizing",
+    title: "Gravity Retaining Wall Design Explained",
+    description:
+      "A gravity retaining wall relies on its own weight to resist soil pressure. Here's how the design is sized, what the base width means and when gravity fails.",
+    date: "2026-06-20",
+    readMins: 6,
+    body: `A **gravity retaining wall** resists lateral soil pressure using only its own weight — no reinforcement, no steel, no anchors. The categories include segmental block (SRW), stacked stone, mass concrete, and boulders.
+
+## The key principle
+
+Gravity keeps the wall stable in two ways:
+1. **Overturning:** the wall's weight × the distance to the toe creates a righting moment. The soil's horizontal push × the wall height creates a tipping moment. For safety, the righting moment must be at least **2× the tipping moment** (factor of safety ≥ 2.0).
+2. **Sliding:** friction between the base and soil resists forward movement. The friction force (weight × friction coefficient) must be at least **1.5× the horizontal push** (FS ≥ 1.5).
+
+## What drives the base width
+
+To pass both checks, the base must be wide enough that the wall is heavy enough. The rule of thumb is **0.5–0.7 × wall height**, but the actual number depends on:
+- The soil's equivalent-fluid pressure (30–60 pcf depending on soil type)
+- Any surcharge above the wall
+- The wall's own density (concrete block vs stone)
+- The foundation soil's bearing capacity
+
+## When gravity fails
+
+Past roughly **4 ft** (or any height with a surcharge), the base width needed for a pure gravity wall becomes impractically large. That's when you switch to **reinforced segmental walls** (geogrid extending into the backfill) or engineered **cantilever walls** (rebar in a poured-concrete T or L shape). The [calculator](/) flags this crossover and shows the minimum base width at each wall height.`,
+  },
+  {
+    slug: "segmental-retaining-wall-blocks",
+    title: "Segmental Retaining Wall Blocks: Design Guide",
+    description:
+      "Segmental retaining walls (SRW) are the most popular residential choice. Here's how the design works, when geogrid is needed, and what the calculator shows.",
+    date: "2026-06-20",
+    readMins: 6,
+    body: `**Segmental retaining walls (SRW)** use dry-stacked interlocking concrete units — no mortar, no footing pour. They're the dominant residential retaining wall because they're DIY-friendly, flexible and well-documented in published design tables.
+
+## How SRW design works
+
+Each block course steps back **slightly** (the batter), which shifts the wall's weight-line backward to help it resist overturning. Manufacturers publish design tables that show the maximum wall height for a given block and base-width configuration. The NCMA Design Manual (National Concrete Masonry Association) is the industry standard.
+
+## The geogrid threshold
+
+For walls under about **3.5–4 ft** with no surcharge, a gravity SRW (no geogrid) is usually adequate. Above that, or with a surcharge, you add geogrid: a polymer mesh laid between block courses and extending back into the compacted backfill. The geogrid ties the soil mass to the wall, turning the combined unit into what the NCMA calls a **mechanical earth stabilization (MSE)** system.
+
+Our [calculator](/) determines whether gravity alone passes the stability checks or whether the solution requires geogrid, using the NCMA methodology.
+
+## Drainage is always required
+
+Every SRW design assumes free-draining backfill. If water builds up behind the blocks, the actual lateral pressure can far exceed the design value. Install drain rock, a 4-inch perforated pipe to daylight, and filter fabric on every SRW wall — the [calculator](/) includes these in the materials takeoff.
+
+## Past 4 ft
+
+Reinforced SRW walls above 4 ft need an engineer's stamp in most jurisdictions, even though the block system itself is well-documented. The engineer specifies the geogrid type, length and placement for your specific soil.`,
+  },
+  {
+    slug: "retaining-wall-permit-guide",
+    title: "Retaining Wall Permits: A State-by-State Guide",
+    description:
+      "Retaining wall permits are triggered by height, surcharge and location. Here's what the 4-foot rule means and what varies by state and jurisdiction.",
+    date: "2026-06-20",
+    readMins: 6,
+    body: `Almost every jurisdiction uses the **same underlying code** (IRC R404 and IBC §1807) but applies it with local amendments. Here's what's consistent and what varies.
+
+## What's consistent across the US
+
+- Retained heights over **4 ft** (measured from the bottom of the footing to the top of the wall) trigger an engineered design requirement and typically a building permit.
+- Any wall subject to a **surcharge** (driveway, parking, slope, structure) must be engineered regardless of height.
+- **Proximity to property lines, easements or structures** often triggers a permit even for short walls.
+
+## What varies by state and city
+
+Some cities lower the permit threshold to **3 ft**. Some require a permit for any wall visible from the street. HOAs have their own rules on top of building codes. A few states have specific provisions for walls near hillsides or in high-seismic zones.
+
+**Always call your local building department** before starting. This guide covers the code baseline; your municipality may be stricter.
+
+## What the permit process involves
+
+For a permitted wall you'll typically need:
+1. A **site plan** showing the wall location, property lines and setbacks.
+2. **Structural drawings** stamped by a licensed engineer (for anything that needs engineering).
+3. A **permit fee** (usually $200–$1,000 depending on jurisdiction).
+4. An **inspection** — often at base, geogrid layers and final grade.
+
+## Quick reference by wall height
+
+| Height | Typical requirement |
+|--------|---------------------|
+| < 3 ft | No permit in most areas (check locally) |
+| 3–4 ft | Permit often needed; engineering if surcharge |
+| > 4 ft | Permit + engineer's stamp almost universally |
+
+Use the [calculator](/) to check height, surcharge and whether your wall likely needs engineering — then verify with your local building department.`,
+  },
+  {
+    slug: "cmu-retaining-wall-design",
+    title: "CMU Retaining Wall Design: When Blocks Beat SRW",
+    description:
+      "Concrete masonry unit (CMU) retaining walls are strong and affordable but different from SRW block. Here's how they compare and when CMU makes the most sense.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `**CMU (concrete masonry unit) retaining walls** use standard 8×8×16 hollow-core concrete blocks, reinforced with rebar in the cores and grouted in place. They're different from **SRW block** (interlocking segmental retaining wall units): CMU is mortared, grouted and engineered, while SRW is dry-stacked on a stone pad.
+
+## When CMU wins
+
+- You need a **taller wall** (CMU cantilever walls can be designed to 8–10+ ft with proper reinforcement).
+- You want a **flat-face** aesthetic (SRW has a stepped look; CMU can be stucco'd or clad).
+- You're in a **commercial or light-industrial** setting where CMU is the standard.
+- The wall must be **waterproofed** on the back face (SRW breathes through the joints; CMU can be membrane-coated).
+
+## When SRW wins
+
+- **DIY or residential** — no mortar, no rebar, no poured cores.
+- The wall is **under 4 ft** — SRW gravity design is adequate and far simpler.
+- You want a faster, cheaper install with a textured block face.
+
+## Design requirements for CMU
+
+Any CMU retaining wall is **structural masonry** and needs an engineer. The engineer specifies the rebar spacing and size (usually #4 or #5 at 32–48 inches on center), the grout mix, the footing size and depth, and the drainage detail. Expect a permit in every jurisdiction.
+
+## Cost
+
+CMU walls are roughly comparable to poured concrete — **$40–$75 / sq ft** installed — but less than engineered SRW at similar heights. The materials are cheap; the engineering and labour are not.`,
+  },
+  {
+    slug: "retaining-wall-on-slope",
+    title: "Building a Retaining Wall on a Slope: Key Rules",
+    description:
+      "Building a retaining wall on a slope changes the load calculation since the backfill slope adds pressure. Here's what changes and how to account for it correctly.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `A retaining wall with a **sloped backfill** is under more pressure than one with a flat backfill at the same height — and the difference is significant enough to change the base width, geogrid requirement and permit status.
+
+## Why slope adds pressure
+
+When the backfill behind the wall slopes upward, the wedge of soil that could potentially slide outward is larger. The Coulomb or Rankine earth pressure equations add a slope-angle term (β) that increases the active earth pressure coefficient Ka. The steeper the slope, the higher the Ka, and the harder the wall must work.
+
+As a rough guide: a backfill slope of **18° (about 3:1, run:rise)** adds approximately **15–20%** to the lateral force compared to a flat backfill at the same retained height.
+
+## Practical consequences
+
+- A wall that passes stability checks with flat backfill may fail with a moderate slope behind it.
+- The minimum base width increases.
+- Geogrid may be needed at a lower wall height than on flat ground.
+- The engineering-trigger height (usually 4 ft) may effectively drop.
+
+## In the calculator
+
+The [calculator](/) has a backfill slope field. Enter the slope (in degrees or as a ratio) and the design updates automatically — base width, factors of safety and whether the wall crosses into engineered territory. For steep slopes (over 20°), still get an engineer's eyes on it.
+
+## Drainage on a slope
+
+Sloped sites concentrate runoff. Make the drainage detail especially robust: a larger drain-rock column, weep holes at close spacing and a diversion swale above the wall to redirect surface water before it soaks into the backfill.`,
+  },
+  {
+    slug: "retaining-wall-near-foundation",
+    title: "Retaining Wall Near a House Foundation",
+    description:
+      "Placing a retaining wall near a foundation adds load to both structures. Here's when you need a setback, an engineer, and what to watch for on site.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `Building a retaining wall close to a house foundation creates a two-way load problem: the wall transfers load to the soil, and the foundation also transfers load to the same soil. If the wall is too close, one structure can undermine the other.
+
+## The 45-degree rule
+
+A common engineering guideline is the **45-degree pressure zone**: the footing of a new structure (including a retaining wall) should be set back far enough that the **pressure cone from the existing foundation does not intersect the new structure's bearing zone**. In practice, this often means keeping the retaining wall's footing at least as far from the house footing as the depth of the house footing below grade.
+
+If the distance is less than this, an engineer must analyse the combined load effects.
+
+## Lateral load from the wall on the foundation
+
+A retaining wall pushing laterally against soil near a basement or crawl-space wall can transfer that pressure to the foundation wall. This is especially concerning for **unreinforced masonry foundations** (older homes) and for poured concrete foundations not designed for lateral soil load.
+
+## When to always get an engineer
+
+- The retaining wall is within **10 ft of a footing** (rule of thumb).
+- The wall is taller than 3 ft near any structure.
+- The house has a **basement** — below-grade walls are particularly sensitive.
+- The site has **poor soil** (clay, fill, high water table).
+
+## Site tip
+
+Watch for **existing drainage patterns** around the foundation. A retaining wall that interrupts how water flows away from the house can redirect water toward the foundation and cause new problems. Integrate the wall's drainage system (perforated pipe, daylight outlet) with the site's existing grade.`,
+  },
+  {
+    slug: "railroad-tie-retaining-wall",
+    title: "Railroad Tie Retaining Wall: Pros, Cons, Cost",
+    description:
+      "Railroad tie retaining walls are fast and cheap but have real limits. Here's what they cost, how long they last and when timber makes no sense for your project.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `**Railroad tie** (or **timber sleeper**) retaining walls use stacked pressure-treated timbers or salvaged railway ties. They're the cheapest and fastest to build for a short wall — and the ones most likely to fail if you ignore their limits.
+
+## Cost
+
+Installed cost: **$20–$40 per square foot** of wall face, the lowest of the common material choices. Materials are cheap; the labour to set deadmen (perpendicular tie-backs) and compact backfill adds up.
+
+## Lifespan
+
+Pressure-treated timber lasts **15–25 years** in most climates before rot, insect damage and weathering degrade structural performance. The ties at the base (always wet) deteriorate fastest. Railway ties treated with creosote last longer but are increasingly restricted and not approved for vegetable-garden use.
+
+## When timber works
+
+- Short walls (**under 3 ft**) with no surcharge.
+- Low-traffic areas where the wall won't need to outlast the landscape plan.
+- DIY projects on a budget.
+
+## When timber doesn't work
+
+- **Over 3 ft retained height** — you'll need deadman tie-backs at intervals, and past about 4 ft it needs engineering.
+- Near **food gardens** — creosote-treated ties leach into soil.
+- **Seismic zones** — timber lacks the ductility and connection details needed.
+- **Long-term investment** — if you're building for 30+ years, block or concrete is a better value.
+
+## Deadmen
+
+For timber walls over about 3 ft, **deadman tie-backs** (tie sections perpendicular to the wall, extending 4–6 ft into the backfill) are required at every 6-ft spacing vertically and every 6–8 ft horizontally. Without them, the wall can tip or bow.
+
+Use the [calculator](/) to compare timber vs block vs concrete at your wall dimensions — the cost difference narrows as height increases.`,
+  },
+  {
+    slug: "retaining-wall-maintenance-checklist",
+    title: "Retaining Wall Maintenance: What to Check Each Year",
+    description:
+      "A simple annual retaining wall maintenance checklist catches small problems before they become expensive failures. For homeowners and contractors alike.",
+    date: "2026-06-20",
+    readMins: 5,
+    body: `Most retaining walls fail because of neglected maintenance, not poor design. An annual check (ideally in spring after freeze-thaw cycles) takes 20 minutes and can prevent a $5,000–$15,000 repair.
+
+## Annual inspection checklist
+
+**Drainage (most critical):**
+- [ ] Weep holes or drain outlets are clear and flowing (test with a garden hose at the top of the wall).
+- [ ] No soil or mulch is blocking the base of the wall face.
+- [ ] Downspouts and surface water are still directed *away* from the wall.
+
+**Wall face and structure:**
+- [ ] No visible bulging, bowing, or outward lean in any section.
+- [ ] No wide cracks (hairline cracks in concrete are normal; cracks wider than 1/8" warrant investigation).
+- [ ] Block, stone or timber units are still tightly seated — no dislodged pieces or open gaps.
+- [ ] Cap blocks or coping are still bonded; no lifting or shifting.
+
+**Top of wall (backfill side):**
+- [ ] Grade still slopes *away* from the wall; no low spots where water pools.
+- [ ] No signs of settlement in the soil directly behind the wall (a depression signals water erosion in the drainage layer).
+- [ ] Trees or large shrubs are not pushing roots into the wall structure.
+
+## When to call an engineer
+
+A single bulge, a section of wall that has moved noticeably forward, widespread cracking, or any sign of foundation movement are all situations for a structural engineer — not a contractor with a laser level.
+
+Early intervention is dramatically cheaper than replacement. The [calculator](/) can give you rough repair cost estimates based on the affected wall area.`,
+  },
+];
+
+POSTS.push(...WEEK2_POSTS);
+
 export function postBySlug(slug: string): Post | undefined {
   return POSTS.find((p) => p.slug === slug);
 }
