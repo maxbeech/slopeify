@@ -1,10 +1,10 @@
 // US states + DC. `costIndex` is a representative regional construction-cost
 // multiplier relative to the US average (≈1.00), in the spirit of RSMeans city
-// cost indices — approximate, used only to scale cost estimates. `code` is the
+// cost indices, approximate, used only to scale cost estimates. `code` is the
 // model building code the state has adopted (almost every US jurisdiction bases
 // retaining-wall permitting on the IBC/IRC). `frost` is the typical minimum
 // footing/base depth (inches below grade) to reach below the frost line per IRC
-// R403.1.4 / IBC 1809.5 — frost depth varies within a state, so these are
+// R403.1.4 / IBC 1809.5, frost depth varies within a state, so these are
 // representative permit values (anchored to published frost-depth maps); every
 // state page tells the reader to confirm with their local building department.
 // These drive 51 programmatic pages.

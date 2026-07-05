@@ -1,31 +1,97 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Slopeify design tokens.
+
+   A single, intentional LIGHT theme built on warm paper neutrals (not the
+   default cold blue-grey) and a deep pine brand, so the product reads like a
+   considered engineering tool rather than a stock template. We override the
+   built-in `slate` and `emerald` scales in one place, so existing utility
+   classes across the app pick up the new palette without per-file churn.
+   We deliberately do NOT honour prefers-color-scheme: every surface uses
+   explicit light colors and a dark body would sit behind light-theme text.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Warm neutral scale (replaces slate) — stone-derived, kept high-contrast. */
+  --color-slate-50: #f7f5f0;
+  --color-slate-100: #eeeae1;
+  --color-slate-200: #ddd7ca;
+  --color-slate-300: #c5bdab;
+  --color-slate-400: #9c9483;
+  --color-slate-500: #756d5c;
+  --color-slate-600: #57503f;
+  --color-slate-700: #423c2f;
+  --color-slate-800: #2c2820;
+  --color-slate-900: #1c1913;
+
+  /* Brand pine (replaces emerald) — deeper and earthier than stock emerald. */
+  --color-emerald-50: #eef4ef;
+  --color-emerald-100: #d6e6da;
+  --color-emerald-200: #aecdb7;
+  --color-emerald-300: #7fac8e;
+  --color-emerald-400: #52886a;
+  --color-emerald-500: #356a4f;
+  --color-emerald-600: #2a5741;
+  --color-emerald-700: #234835;
+  --color-emerald-800: #1d3a2c;
+  --color-emerald-900: #182f24;
+
+  /* Warm clay accent — reserved for the highest-intent "hire a pro" action. */
+  --color-clay-50: #fbf2ea;
+  --color-clay-100: #f4ddc9;
+  --color-clay-200: #e8bd9a;
+  --color-clay-500: #bd6a35;
+  --color-clay-600: #a4562a;
+  --color-clay-700: #854623;
+  --color-clay-800: #6a3a20;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Single, intentional LIGHT theme. We deliberately do NOT honour
-   prefers-color-scheme: every surface uses explicit Tailwind colors
-   (bg-slate-50, white cards, text-slate-900); a dark body background would sit
-   behind light-theme text and make the page unreadable. */
+:root {
+  --background: #f7f5f0;
+  --foreground: #1c1913;
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Engineering figures line up when set with tabular, lining numerals. */
+.tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+/* Headings get slightly tighter tracking for a more deliberate, editorial feel. */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.014em;
+}
+
+/* Faint blueprint grid used behind the hero and section rules. */
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgba(35, 72, 53, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(35, 72, 53, 0.05) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
 /* Print / Save-as-PDF: drop the chrome and the input form, keep a clean results
    sheet. Elements tagged `print:hidden` are hidden; header/footer stripped. */
 @media print {
   header,
-  footer {
+  footer,
+  .print\:hidden {
     display: none !important;
   }
   main {
     max-width: 100% !important;
     padding: 0 !important;
-  }
-  .print\:hidden {
-    display: none !important;
   }
   * {
     box-shadow: none !important;

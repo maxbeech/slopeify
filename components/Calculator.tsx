@@ -29,7 +29,11 @@ function Field({ label, children, hint }: { label: string; children: React.React
 }
 
 const selCls =
-  "mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500";
+  "mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30";
+
+// Keep a numeric field usable while it is being edited: an empty field shows
+// empty (not a jammed 0), and the engine clamps any transient NaN on its own.
+const numVal = (n: number) => (Number.isFinite(n) ? n : "");
 
 export default function Calculator({
   initial,
@@ -41,13 +45,12 @@ export default function Calculator({
   lockWallType?: boolean;
 }) {
   const [inputs, setInputs] = useState<DesignInputs>({ ...DEFAULT_INPUTS, ...initial });
+  const [copied, setCopied] = useState(false);
 
   // Hydrate from a shared URL once on mount, then keep the URL in sync.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const fromUrl = decodeInputs(window.location.search, inputs.stateSlug);
-    // Hydrate once from a shared link — a legitimate sync from an external
-    // system (the URL), not derived render state.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     if (window.location.search) setInputs({ ...fromUrl, ...(lockWallType && initial?.wallTypeId ? { wallTypeId: initial.wallTypeId } : {}) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,18 +63,30 @@ export default function Calculator({
 
   const result = useMemo(() => designWall(inputs), [inputs]);
   const set = <K extends keyof DesignInputs>(k: K, v: DesignInputs[K]) => setInputs((p) => ({ ...p, [k]: v }));
+  const setNum = (k: "heightFt" | "lengthFt" | "surcharge", raw: string) =>
+    set(k, (raw === "" ? Number.NaN : Number(raw)) as DesignInputs[typeof k]);
+
+  async function share() {
+    try {
+      await navigator.clipboard?.writeText(window.location.href);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
+  }
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)]">
-      <form className="space-y-4 rounded-xl border border-slate-200 bg-white p-5 print:hidden" onSubmit={(e) => e.preventDefault()}>
+      <form className="space-y-4 self-start rounded-2xl border border-slate-200 bg-white p-5 shadow-sm print:hidden lg:sticky lg:top-20" onSubmit={(e) => e.preventDefault()}>
         <div className="grid grid-cols-2 gap-3">
           <Field label="Wall height" hint="Retained, ft">
-            <input type="number" min={1} max={30} step={0.5} value={inputs.heightFt} aria-label="Wall height in feet"
-              onChange={(e) => set("heightFt", Number(e.target.value))} className={selCls} />
+            <input type="number" min={1} max={30} step={0.5} value={numVal(inputs.heightFt)} aria-label="Wall height in feet"
+              onChange={(e) => setNum("heightFt", e.target.value)} className={selCls} />
           </Field>
           <Field label="Wall length" hint="ft">
-            <input type="number" min={1} max={2000} step={1} value={inputs.lengthFt} aria-label="Wall length in feet"
-              onChange={(e) => set("lengthFt", Number(e.target.value))} className={selCls} />
+            <input type="number" min={1} max={2000} step={1} value={numVal(inputs.lengthFt)} aria-label="Wall length in feet"
+              onChange={(e) => setNum("lengthFt", e.target.value)} className={selCls} />
           </Field>
         </div>
 
@@ -99,7 +114,7 @@ export default function Calculator({
 
         <Field label="Foundation soil (under the base)">
           <select value={inputs.foundationSoilId} onChange={(e) => set("foundationSoilId", e.target.value)} className={selCls} aria-label="Foundation soil">
-            {FOUNDATION_SOILS.map((s) => <option key={s.id} value={s.id}>{s.label} — {s.bearing.toLocaleString()} psf</option>)}
+            {FOUNDATION_SOILS.map((s) => <option key={s.id} value={s.id}>{s.label} ({s.bearing.toLocaleString()} psf)</option>)}
           </select>
         </Field>
 
@@ -109,20 +124,20 @@ export default function Calculator({
           </select>
         </Field>
 
-        <Field label="Surcharge behind wall" hint="Load on the soil — psf">
-          <input type="number" min={0} max={2000} step={10} value={inputs.surcharge} aria-label="Surcharge load in psf"
-            onChange={(e) => set("surcharge", Number(e.target.value))} className={selCls} />
+        <Field label="Surcharge behind wall" hint="Load on the soil, psf">
+          <input type="number" min={0} max={2000} step={10} value={numVal(inputs.surcharge)} aria-label="Surcharge load in psf"
+            onChange={(e) => setNum("surcharge", e.target.value)} className={selCls} />
           <div className="mt-1.5 flex flex-wrap gap-1.5">
             {SURCHARGE_PRESETS.map((s) => (
               <button key={s.id} type="button" onClick={() => set("surcharge", s.psf)}
-                className={`rounded-full border px-2.5 py-0.5 text-xs ${inputs.surcharge === s.psf ? "border-emerald-500 bg-emerald-50 text-emerald-800" : "border-slate-200 text-slate-600 hover:border-emerald-300"}`}>
+                className={`rounded-full border px-2.5 py-0.5 text-xs transition ${inputs.surcharge === s.psf ? "border-emerald-500 bg-emerald-50 text-emerald-800" : "border-slate-200 text-slate-600 hover:border-emerald-300"}`}>
                 {s.label} {s.psf > 0 ? `(${s.psf})` : ""}
               </button>
             ))}
           </div>
         </Field>
 
-        <Field label="State (for cost, permit & frost depth)">
+        <Field label="State (for cost, permit and frost depth)">
           <select value={inputs.stateSlug} onChange={(e) => set("stateSlug", e.target.value)} className={selCls} aria-label="State">
             {STATES.map((s) => <option key={s.slug} value={s.slug}>{s.name}</option>)}
           </select>
@@ -130,24 +145,23 @@ export default function Calculator({
 
         <div className="space-y-2 rounded-lg bg-slate-50 p-3 text-sm">
           <label className="flex items-center gap-2 text-slate-700">
-            <input type="checkbox" checked={inputs.restrained} onChange={(e) => set("restrained", e.target.checked)} />
+            <input type="checkbox" checked={inputs.restrained} onChange={(e) => set("restrained", e.target.checked)} className="accent-emerald-700" />
             Wall is restrained at the top (use at-rest pressure)
           </label>
           <label className="flex items-center gap-2 text-slate-700">
-            <input type="checkbox" checked={inputs.saturated} onChange={(e) => set("saturated", e.target.checked)} />
-            No working drainage (add hydrostatic — not recommended)
+            <input type="checkbox" checked={inputs.saturated} onChange={(e) => set("saturated", e.target.checked)} className="accent-emerald-700" />
+            No working drainage (add hydrostatic, not recommended)
           </label>
         </div>
 
         <div className="flex gap-2">
           <button type="button" onClick={() => window.print()}
-            className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">
+            className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50">
             Print / Save PDF
           </button>
-          <button type="button"
-            onClick={() => { navigator.clipboard?.writeText(window.location.href); }}
-            className="flex-1 rounded-lg bg-emerald-700 px-3 py-2 text-sm font-medium text-white hover:bg-emerald-600">
-            Copy share link
+          <button type="button" onClick={share}
+            className="flex-1 rounded-lg bg-emerald-700 px-3 py-2 text-sm font-medium text-white transition hover:bg-emerald-800">
+            {copied ? "Link copied" : "Copy share link"}
           </button>
         </div>
       </form>

@@ -112,18 +112,18 @@ export function designWall(raw: DesignInputs): DesignResult {
   const warnings: string[] = [];
   if (!backfill.suitableBackfill) {
     warnings.push(
-      `${backfill.label} is not a recommended backfill — it drains poorly and pushes harder. Most engineers replace it with clean granular fill behind the wall.`,
+      `${backfill.label} is not a recommended backfill, it drains poorly and pushes harder. Most engineers replace it with clean granular fill behind the wall.`,
     );
   }
   if (inputs.saturated) {
     warnings.push(
-      "You marked drainage as failed/saturated, which roughly doubles the load with hydrostatic pressure. A working drain (drain rock + perforated pipe) is the single most important detail — design for it.",
+      "You marked drainage as failed/saturated, which roughly doubles the load with hydrostatic pressure. A working drain (drain rock + perforated pipe) is the single most important detail, design for it.",
     );
   }
   if (!base.found) {
     warnings.push(
       reinforcement.needed
-        ? "A simple gravity wall can't pass the checks at this height/soil — it needs geogrid reinforcement (a reinforced SRW) or an engineered cantilever wall. The estimate below assumes reinforcement."
+        ? "A simple gravity wall can't pass the checks at this height/soil, it needs geogrid reinforcement (a reinforced SRW) or an engineered cantilever wall. The estimate below assumes reinforcement."
         : "This wall does not pass the stability checks. Reduce the height, improve the soil/drainage, or have it engineered.",
     );
   }

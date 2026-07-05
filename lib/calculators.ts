@@ -1,6 +1,6 @@
 // Calculator variants. Each one renders the SAME designer engine but foregrounds
 // a different job-to-be-done (cost, block count, base width, or a specific wall
-// material) with its own copy, H1 and result emphasis — so every page earns its
+// material) with its own copy, H1 and result emphasis, so every page earns its
 // keyword instead of being a thin duplicate of the home page.
 export type Focus = "design" | "cost" | "materials" | "base";
 
@@ -21,10 +21,10 @@ export const CALCULATORS: CalcVariant[] = [
     title: "Retaining Wall Cost Calculator",
     h1: "Retaining Wall Cost Calculator",
     description:
-      "Estimate retaining wall cost by material, height and length — installed price range plus a DIY materials takeoff, adjusted for your state.",
+      "Estimate retaining wall cost by material, height and length, installed price range plus a DIY materials takeoff, adjusted for your state.",
     focus: "cost",
     intro:
-      "Enter your wall and get an installed cost range plus a line-by-line materials cost — priced per square foot of wall face and adjusted by a regional cost index.",
+      "Enter your wall and get an installed cost range plus a line-by-line materials cost, priced per square foot of wall face and adjusted by a regional cost index.",
     bullets: [
       "Installed cost range by material (block, concrete, timber, boulder)",
       "DIY materials cost with quantities",
@@ -41,7 +41,7 @@ export const CALCULATORS: CalcVariant[] = [
     focus: "materials",
     presetWallType: "segmental",
     intro:
-      "Get an exact materials takeoff for a segmental block wall — blocks, caps, leveling-pad stone, drain rock, pipe, fabric and adhesive — from your length and height.",
+      "Get an exact materials takeoff for a segmental block wall: blocks, caps, leveling-pad stone, drain rock, pipe, fabric and adhesive, all from your length and height.",
     bullets: [
       "Block and cap counts with a waste allowance",
       "Leveling pad + drainage stone in cubic yards",
@@ -54,7 +54,7 @@ export const CALCULATORS: CalcVariant[] = [
     title: "Retaining Wall Base & Footing Calculator",
     h1: "Retaining Wall Base Width Calculator",
     description:
-      "Find the minimum base width for a stable gravity retaining wall — solved for the overturning, sliding and bearing factors of safety.",
+      "Find the minimum base width for a stable gravity retaining wall, solved for the overturning, sliding and bearing factors of safety.",
     focus: "base",
     intro:
       "We solve for the minimum base width that gives a factor of safety of at least 2.0 against overturning, 1.5 against sliding, and keeps bearing under the allowable soil pressure.",
@@ -70,7 +70,7 @@ export const CALCULATORS: CalcVariant[] = [
     title: "Segmental Block (SRW) Retaining Wall Calculator",
     h1: "Segmental Block Retaining Wall Calculator",
     description:
-      "Design and price a segmental (SRW) block retaining wall — base width, geogrid, block count and cost.",
+      "Design and price a segmental (SRW) block retaining wall, base width, geogrid, block count and cost.",
     focus: "design",
     presetWallType: "segmental",
     intro:
@@ -87,11 +87,11 @@ export const CALCULATORS: CalcVariant[] = [
     title: "Concrete Retaining Wall Calculator",
     h1: "Concrete Retaining Wall Calculator",
     description:
-      "Design and price a poured-concrete gravity retaining wall — earth pressure, base width, stability and cost.",
+      "Design and price a poured-concrete gravity retaining wall, earth pressure, base width, stability and cost.",
     focus: "design",
     presetWallType: "concrete-gravity",
     intro:
-      "A solid concrete mass wall — strongest and the smallest footprint at height, but it needs formwork and usually an engineer. Get the base width, stability and cost.",
+      "A solid concrete mass wall, strongest and the smallest footprint at height, but it needs formwork and usually an engineer. Get the base width, stability and cost.",
     bullets: [
       "Lateral earth pressure and overturning / sliding / bearing checks",
       "Minimum base width for the concrete mass",
@@ -104,11 +104,11 @@ export const CALCULATORS: CalcVariant[] = [
     title: "Timber Retaining Wall Calculator",
     h1: "Timber / Sleeper Retaining Wall Calculator",
     description:
-      "Design and price a timber or sleeper retaining wall — base width, stability, materials and cost.",
+      "Design and price a timber or sleeper retaining wall, base width, stability, materials and cost.",
     focus: "design",
     presetWallType: "timber",
     intro:
-      "Cheapest and fastest for short walls. Get the base width, stability factors of safety and a cost estimate — and a clear flag when a timber wall needs deadman anchors or an engineer.",
+      "Cheapest and fastest for short walls. Get the base width, stability factors of safety and a cost estimate, and a clear flag when a timber wall needs deadman anchors or an engineer.",
     bullets: [
       "Base width and stability for a timber mass wall",
       "Cost range per square foot of face",
@@ -121,11 +121,11 @@ export const CALCULATORS: CalcVariant[] = [
     title: "Boulder Retaining Wall Calculator",
     h1: "Boulder / Rock Retaining Wall Calculator",
     description:
-      "Design and price a boulder retaining wall — base width, stability and cost for stacked natural stone.",
+      "Design and price a boulder retaining wall, base width, stability and cost for stacked natural stone.",
     focus: "design",
     presetWallType: "boulder",
     intro:
-      "Stacked natural boulders battered into the slope — durable and natural-looking, but they need a wide base and machinery. Get the base width, stability and cost.",
+      "Stacked natural boulders battered into the slope, durable and natural-looking, but they need a wide base and machinery. Get the base width, stability and cost.",
     bullets: [
       "Base width and stability factors of safety",
       "Cost range per square foot of face",

@@ -61,6 +61,27 @@ function render(body: string) {
   return nodes;
 }
 
+// Emit a HowTo only when a post is genuinely a numbered sequence of steps,
+// so we never mislabel an explainer as instructions.
+function howToFromBody(title: string, description: string, body: string) {
+  const steps: { "@type": "HowToStep"; name: string; text: string }[] = [];
+  for (const block of body.split("\n\n")) {
+    const lines = block.split("\n");
+    const m = lines[0].match(/^##\s+(\d+)\.\s+(.*)$/);
+    if (!m) continue;
+    const text = lines.slice(1).join(" ").replace(/\*\*|\[|\]\([^)]*\)|`/g, "").trim();
+    steps.push({ "@type": "HowToStep", name: m[2].trim(), text: text || m[2].trim() });
+  }
+  if (steps.length < 3) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: title,
+    description,
+    step: steps,
+  };
+}
+
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const p = postBySlug(slug);
@@ -72,9 +93,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     headline: p.title,
     description: p.description,
     datePublished: p.date,
-    author: { "@type": "Organization", name: SITE.name },
+    dateModified: p.date,
+    author: { "@type": "Organization", name: SITE.name, url: SITE.url },
     publisher: { "@type": "Organization", name: SITE.name },
+    mainEntityOfPage: `${SITE.url}/blog/${p.slug}`,
   };
+
+  // A HowTo graph for step-by-step guides gives rich results and quotable
+  // structure for AI answer engines. We derive steps from the ## sections.
+  const howToLd = howToFromBody(p.title, p.description, p.body);
 
   const crumbs = breadcrumbLd([
     { name: "Home", path: "/" },
@@ -86,19 +113,27 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     <article className="mx-auto max-w-2xl">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(crumbs) }} />
+      {howToLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }} />}
       <nav className="mb-3 text-sm text-slate-500">
         <Link href="/blog" className="hover:text-slate-900">Guides</Link> / {p.title}
       </nav>
       <h1 className="text-3xl font-extrabold text-slate-900">{p.title}</h1>
-      <div className="mt-2 text-xs text-slate-500">{p.readMins} min read</div>
+      <div className="mt-2 text-xs text-slate-500">
+        Updated {new Date(p.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })} · {p.readMins} min read
+      </div>
       <div className="mt-4">{render(p.body)}</div>
 
-      <div className="mt-8 rounded-xl border border-emerald-200 bg-emerald-50 p-5 text-center">
+      <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
         <div className="font-semibold text-slate-900">Design your wall in 30 seconds</div>
-        <p className="mt-1 text-sm text-slate-600">Base width, factors of safety, materials and cost — free.</p>
-        <Link href="/" className="mt-3 inline-block rounded-lg bg-emerald-700 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-600">
-          Open the calculator
-        </Link>
+        <p className="mt-1 text-sm text-slate-600">Base width, factors of safety, materials and cost, all free.</p>
+        <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+          <Link href="/" className="inline-block rounded-lg bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-emerald-800">
+            Open the calculator
+          </Link>
+          <Link href="/find-a-pro" className="inline-block rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+            Find a local pro
+          </Link>
+        </div>
       </div>
     </article>
   );

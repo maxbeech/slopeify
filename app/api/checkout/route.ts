@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { SITE } from "@/lib/site";
 
 // Stripe Checkout for the one-time Pro design report. Keys come from Vercel env
 // (STRIPE_SECRET_KEY, STRIPE_PRICE_ID). When absent (before Stripe is wired) the
@@ -6,11 +7,11 @@ import { NextResponse } from "next/server";
 export async function POST() {
   const secret = process.env.STRIPE_SECRET_KEY;
   const price = process.env.STRIPE_PRICE_ID;
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://retaincalchq.vercel.app";
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? SITE.vercelUrl;
 
   if (!secret || !price) {
     return NextResponse.json(
-      { error: "The Pro design report launches shortly. Email hello@retaincalchq.com for early access." },
+      { error: `The Pro design report launches shortly. Email ${SITE.contactEmail} for early access.` },
       { status: 503 },
     );
   }

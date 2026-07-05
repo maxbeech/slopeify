@@ -1,10 +1,10 @@
-// Wall stability — overturning, sliding and bearing checks for a gravity-type
+// Wall stability, overturning, sliding and bearing checks for a gravity-type
 // retaining wall (segmental block, poured-concrete gravity, or timber), plus a
 // solver that finds the minimum base width that satisfies all three.
 //
 // Method (classical statics, taught in every foundation-engineering text):
 //   • Self-weight W = γ_wall · B · H, acting at B/2 from the toe (rectangular
-//     mass model — conservative for an SRW, which also gets soil weight on the
+//     mass model, conservative for an SRW, which also gets soil weight on the
 //     setback heel that we ignore on the safe side).
 //   • Overturning about the toe:  FS_OT = W·(B/2) / overturningMoment ≥ 2.0
 //   • Sliding:  FS_SL = W·μ / totalHorizontalForce ≥ 1.5

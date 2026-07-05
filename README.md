@@ -1,6 +1,6 @@
-# RetainCalc HQ
+# Slopeify
 
-Free retaining wall **design, cost & permit** calculator — `retaincalchq.com`.
+Free retaining wall **design, cost & permit** calculator — `slopeify.com`.
 
 Enter a wall and get the lateral earth pressure, the minimum stable base width, the
 overturning / sliding / bearing factors of safety, whether you need geogrid
@@ -28,16 +28,40 @@ Everything is documented on `/methodology` with the code tables reproduced.
 ## Stack
 
 Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · tsx tests. The free
-calculator is 100% client-side (no DB). The optional Pro design-report PDF uses an
-env-gated Stripe checkout (`STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID`) that degrades
-gracefully when unset.
+calculator is 100% client-side (no DB).
+
+## How it earns (lead-gen first)
+
+The calculator is free forever. Revenue comes from matching real demand, not an
+upsell wall:
+
+- **Materials affiliates.** Every takeoff line gets Home Depot / Amazon shop
+  links, tagged when an associate ID is set. See `lib/leadgen.ts`.
+- **Pro referrals.** In-context "hire a pro" CTAs route homeowners to a local
+  contractor or licensed engineer (the highest-intent segment). `/find-a-pro` is
+  both the internal fallback and an SEO landing for "contractor near me".
+- **Pro design report.** A one-time $29 PDF for people who need a document for a
+  permit or client, via env-gated Stripe checkout.
+
+Everything is env-gated and degrades gracefully. With nothing configured, shop
+links are plain retailer searches and the pro CTA points at `/find-a-pro`.
+
+### Environment variables (all optional)
+
+| Var | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_AMAZON_TAG` | Amazon associate tag appended to shop links |
+| `NEXT_PUBLIC_CONTRACTOR_PARTNER_URL` | Partner/affiliate URL for contractor matching |
+| `NEXT_PUBLIC_ENGINEER_PARTNER_URL` | Partner/affiliate URL for engineer matching |
+| `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` | Pro design-report checkout |
+| `NEXT_PUBLIC_SITE_URL` | Base URL for Stripe success/cancel redirects |
 
 ## Develop
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm test         # engine + share-URL tests (54 checks)
+npm test         # engine + share-URL + lead-gen tests
 npm run lint
 npm run build
 ```
@@ -46,8 +70,9 @@ npm run build
 
 - Home wall designer + 7 calculator variants (`/calculators/*`)
 - 51 per-state permit & cost pages (`/states/*`)
-- 12 guides (`/blog/*`)
-- `/methodology`, `/pricing`, sitemap, robots, JSON-LD, 1-week ISR
+- `/find-a-pro` contractor/engineer landing
+- 12 guides (`/blog/*`) with Article + HowTo JSON-LD
+- `/methodology`, `/pricing`, sitemap, robots, Organization + WebSite JSON-LD, 1-week ISR
 
 > Planning tool only. A wall over 4 ft, or any wall with a surcharge, needs a
 > licensed engineer's stamped design and a local permit.

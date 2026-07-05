@@ -2,7 +2,7 @@
 // params, so any result is shareable, bookmarkable and deep-linkable. Pure +
 // validated: every value is clamped or checked against its allowed set, so a
 // hand-edited or tracking-param-only URL can never produce NaN or a bad input.
-import { DEFAULT_INPUTS, type DesignInputs } from "./design";
+import { DEFAULT_INPUTS, clampInputs, type DesignInputs } from "./design";
 import { SOILS, FOUNDATION_SOILS } from "./soil";
 import { WALL_TYPES } from "./wall";
 import { STATES } from "./states";
@@ -34,7 +34,9 @@ function bool(v: string | null, fallback: boolean): boolean {
   return v === "1" || v === "true";
 }
 
-export function encodeInputs(i: DesignInputs): string {
+export function encodeInputs(raw: DesignInputs): string {
+  // Clamp first, so a field mid-edit (empty → NaN) never emits a junk URL param.
+  const i = clampInputs(raw);
   return new URLSearchParams({
     h: String(i.heightFt),
     l: String(i.lengthFt),

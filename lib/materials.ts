@@ -109,10 +109,10 @@ export function computeMaterials(c: CostInputs): MaterialsResult {
 
 // Common real SRW unit sizes (face area, sq ft) the block calculator can use.
 export const BLOCK_SIZES: { id: string; label: string; faceSqFt: number }[] = [
-  { id: "standard", label: "Standard SRW — 8″H × 18″W", faceSqFt: 1.0 },
-  { id: "jumbo", label: "Jumbo SRW — 8″H × 12″W", faceSqFt: 0.667 },
-  { id: "garden", label: "Garden wall — 4″H × 12″W", faceSqFt: 0.333 },
-  { id: "big", label: "Big block — 6″H × 18″W", faceSqFt: 0.75 },
+  { id: "standard", label: "Standard SRW, 8″H × 18″W", faceSqFt: 1.0 },
+  { id: "jumbo", label: "Jumbo SRW, 8″H × 12″W", faceSqFt: 0.667 },
+  { id: "garden", label: "Garden wall, 4″H × 12″W", faceSqFt: 0.333 },
+  { id: "big", label: "Big block, 6″H × 18″W", faceSqFt: 0.75 },
 ];
 export function blockSizeById(id: string): number {
   return BLOCK_SIZES.find((b) => b.id === id)?.faceSqFt ?? DEFAULT_BLOCK_FACE_SQFT;

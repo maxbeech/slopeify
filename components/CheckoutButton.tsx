@@ -13,7 +13,7 @@ export default function CheckoutButton() {
       const res = await fetch("/api/checkout", { method: "POST" });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; return; }
-      setMsg(data.error ?? "Checkout is not available yet — please check back soon.");
+      setMsg(data.error ?? "Checkout is not available yet. Please check back soon.");
     } catch {
       setMsg("Could not start checkout. Please try again.");
     } finally {
@@ -24,8 +24,8 @@ export default function CheckoutButton() {
   return (
     <div>
       <button onClick={start} disabled={loading}
-        className="w-full rounded-lg bg-sky-600 px-4 py-2 text-sm font-medium text-white hover:bg-sky-500 disabled:opacity-60">
-        {loading ? "Starting…" : "Get the Pro design report — $29"}
+        className="w-full rounded-lg bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-800 disabled:opacity-60">
+        {loading ? "Starting…" : "Get the Pro design report ($29)"}
       </button>
       {msg && <p className="mt-2 text-center text-xs text-slate-500">{msg}</p>}
     </div>

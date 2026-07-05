@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const urls: MetadataRoute.Sitemap = [
     { url: SITE.url, lastModified: now, priority: 1 },
     { url: `${SITE.url}/calculators`, lastModified: now, priority: 0.8 },
+    { url: `${SITE.url}/find-a-pro`, lastModified: now, priority: 0.8 },
     { url: `${SITE.url}/states`, lastModified: now, priority: 0.7 },
     { url: `${SITE.url}/blog`, lastModified: now, priority: 0.7 },
     { url: `${SITE.url}/pricing`, lastModified: now, priority: 0.6 },

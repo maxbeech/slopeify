@@ -3,7 +3,8 @@ import { SOILS } from "@/lib/soil";
 export const metadata = {
   title: "Methodology & Code References",
   description:
-    "Exactly how RetainCalc HQ computes a retaining wall: IBC Table 1610.1 lateral soil loads, IBC Table 1806.2 presumptive bearing, Rankine earth pressure, and the overturning / sliding / bearing stability checks.",
+    "Exactly how Slopeify computes a retaining wall: IBC Table 1610.1 lateral soil loads, IBC Table 1806.2 presumptive bearing, Rankine earth pressure, and the overturning, sliding and bearing stability checks.",
+  alternates: { canonical: "/methodology" },
 };
 
 export default function Methodology() {
@@ -16,7 +17,7 @@ export default function Methodology() {
         plan reviewer can check us.
       </p>
 
-      <h2 className="mt-8 text-xl font-bold text-slate-900">1. Lateral earth pressure — IBC Table 1610.1</h2>
+      <h2 className="mt-8 text-xl font-bold text-slate-900">1. Lateral earth pressure: IBC Table 1610.1</h2>
       <p className="mt-2 text-slate-600">
         The push of the retained soil is taken as a <strong>design lateral soil load</strong> (an
         equivalent-fluid pressure, in psf per foot of depth) from <strong>IBC Table 1610.1</strong>.
@@ -49,24 +50,24 @@ export default function Methodology() {
         Ka(β)/Ka(0). A uniform surcharge <em>q</em> adds a rectangular pressure Ka·q over the full height
         (Ka taken as EFP/γ for consistency with the code value). Where a row combines two USCS classes
         (ML, CL) we use the more conservative value (60 pcf, the CL figure; ML alone is 45). IBC lists
-        high-plasticity clays (CH/MH) as <em>unsuitable backfill</em> with no tabulated value — if you
-        select one we apply a conservative 100 pcf and warn you to replace it.
+        high-plasticity clays (CH/MH) as <em>unsuitable backfill</em> with no tabulated value; if you
+        select one, we apply a conservative 100 pcf and warn you to replace it.
       </p>
 
-      <h2 className="mt-8 text-xl font-bold text-slate-900">2. Presumptive bearing — IBC Table 1806.2</h2>
+      <h2 className="mt-8 text-xl font-bold text-slate-900">2. Presumptive bearing: IBC Table 1806.2</h2>
       <p className="mt-2 text-slate-600">
         The allowable pressure under the base is the presumptive load-bearing value from{" "}
         <strong>IBC Table 1806.2</strong>:
       </p>
       <ul className="mt-2 list-disc pl-6 text-slate-600">
-        <li>Crystalline bedrock — <strong>12,000 psf</strong></li>
-        <li>Sedimentary and foliated rock — <strong>4,000 psf</strong></li>
-        <li>Sandy gravel and/or gravel (GW, GP) — <strong>3,000 psf</strong></li>
-        <li>Sand, silty sand, clayey sand, silty/clayey gravel (SW, SP, SM, SC, GM, GC) — <strong>2,000 psf</strong></li>
-        <li>Clay, sandy clay, silty clay, clayey silt, silt and sandy silt (CL, ML, MH, CH) — <strong>1,500 psf</strong></li>
+        <li>Crystalline bedrock: <strong>12,000 psf</strong></li>
+        <li>Sedimentary and foliated rock: <strong>4,000 psf</strong></li>
+        <li>Sandy gravel and/or gravel (GW, GP): <strong>3,000 psf</strong></li>
+        <li>Sand, silty sand, clayey sand, silty/clayey gravel (SW, SP, SM, SC, GM, GC): <strong>2,000 psf</strong></li>
+        <li>Clay, sandy clay, silty clay, clayey silt, silt and sandy silt (CL, ML, MH, CH): <strong>1,500 psf</strong></li>
       </ul>
 
-      <h2 className="mt-8 text-xl font-bold text-slate-900">3. Stability — the three classical checks</h2>
+      <h2 className="mt-8 text-xl font-bold text-slate-900">3. Stability: the three classical checks</h2>
       <p className="mt-2 text-slate-600">
         Modelling the wall as a rectangular mass of width <em>B</em> and height <em>H</em> with unit
         weight γ<sub>wall</sub> (conservative for a segmental wall, which also gains soil weight on its
@@ -89,8 +90,8 @@ export default function Methodology() {
         The base must bear below the frost line so frost heave can&apos;t lift it (IRC R403.1.4 /
         IBC §1809.5). We recommend a minimum depth below grade of the larger of: your state&apos;s
         typical frost depth, one buried course (≈ 10% of wall height), and a 12-inch practical
-        minimum to reach stable bearing soil. Frost depth varies within a state — the per-state
-        figure is a representative permit value; confirm yours with the local building department.
+        minimum to reach stable bearing soil. Frost depth varies within a state, so the per-state
+        figure is a representative permit value. Confirm yours with the local building department.
       </p>
 
       <h2 className="mt-8 text-xl font-bold text-slate-900">5. Friction angle &amp; unit weight</h2>

@@ -48,11 +48,11 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
       </p>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
-        <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
           <h2 className="font-semibold text-slate-900">Do you need a permit in {s.name}?</h2>
           <p className="mt-2">
             The model-code line is {ENGINEERING_HEIGHT_FT} ft: under IRC R404.1 / IBC §1807.2, a wall
-            retaining more than {ENGINEERING_HEIGHT_FT} ft of earth needs an engineered design — and at
+            retaining more than {ENGINEERING_HEIGHT_FT} ft of earth needs an engineered design, and at
             any height when there is a surcharge (driveway, slope or structure). Most {s.name} building
             departments require a permit at the same point.
           </p>
@@ -61,23 +61,23 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
             departments, so always confirm with yours before you build.
           </p>
         </div>
-        <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
           <h2 className="font-semibold text-slate-900">{s.name} retaining wall cost</h2>
           <p className="mt-2">
             With a regional cost index of {s.costIndex.toFixed(2)}, a typical segmental block wall in {s.name}
-            runs roughly ${Math.round(30 * s.costIndex)}–${Math.round(60 * s.costIndex)} per square foot of
+            runs roughly ${Math.round(30 * s.costIndex)} to ${Math.round(60 * s.costIndex)} per square foot of
             wall face installed. Enter your dimensions for a full estimate and materials list.
           </p>
         </div>
       </div>
 
-      <div className="mt-4 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
-        <h2 className="font-semibold text-slate-900">Frost depth &amp; footing in {s.name}</h2>
+      <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
+        <h2 className="font-semibold text-slate-900">Frost depth and footing in {s.name}</h2>
         <p className="mt-2">
           The typical frost depth in {s.name} is about <strong>{s.frost} in</strong>. Per IRC R403.1.4 /
           IBC §1809.5 the wall&apos;s base must sit below the frost line, so bury the leveling pad at least
           {" "}{s.frost} in below grade (or one buried course / 12 in minimum, whichever is greater). The
-          calculator works this out for your exact wall height. Frost depth varies with elevation — confirm
+          calculator works this out for your exact wall height. Frost depth varies with elevation, so confirm
           the local figure with your building department.
         </p>
       </div>
@@ -85,6 +85,20 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
       <div className="mt-6">
         <Calculator initial={{ stateSlug: s.slug }} />
       </div>
+
+      <section className="mt-8 overflow-hidden rounded-2xl border border-clay-200 bg-clay-50 p-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
+        <div>
+          <h2 className="text-lg font-bold text-slate-900">Hire a retaining wall pro in {s.name}</h2>
+          <p className="mt-1 max-w-xl text-sm text-slate-600">
+            Compare quotes from vetted {s.name} contractors and licensed engineers against the numbers
+            above. It is free and there is no obligation.
+          </p>
+        </div>
+        <Link href={`/find-a-pro?state=${s.slug}`}
+          className="mt-4 inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-clay-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-clay-700 sm:mt-0">
+          Find a pro in {s.abbr} <span aria-hidden>→</span>
+        </Link>
+      </section>
 
       <section className="mt-10">
         <h2 className="text-lg font-bold text-slate-900">Other states</h2>

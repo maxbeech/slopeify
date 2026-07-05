@@ -1,4 +1,4 @@
-// Soil parameters — every number here is transcribed from a published code table
+// Soil parameters, every number here is transcribed from a published code table
 // or a standard geotechnical reference. NOTHING is invented.
 //
 //  • Lateral active / at-rest "design lateral soil load" (equivalent-fluid
@@ -65,7 +65,7 @@ export const SOILS: SoilType[] = [
     gamma: 125,
     bearing: 2000,
     suitableBackfill: true,
-    note: "Acceptable, but the silt fraction slows drainage — keep the drain rock chimney.",
+    note: "Acceptable, but the silt fraction slows drainage, keep the drain rock chimney.",
   },
   {
     id: "silty-sand",
@@ -89,7 +89,7 @@ export const SOILS: SoilType[] = [
     gamma: 120,
     bearing: 2000,
     suitableBackfill: true,
-    note: "Marginal backfill — drains poorly, pushes harder. Many engineers replace it with clean stone.",
+    note: "Marginal backfill, drains poorly, pushes harder. Many engineers replace it with clean stone.",
   },
   {
     id: "silt-clay",
@@ -113,7 +113,7 @@ export const SOILS: SoilType[] = [
     gamma: 110,
     bearing: 1500,
     suitableBackfill: false,
-    note: "NOT recommended as backfill — it swells, traps water and can fail a wall. Replace with clean granular fill and design for an engineer.",
+    note: "NOT recommended as backfill, it swells, traps water and can fail a wall. Replace with clean granular fill and design for an engineer.",
   },
 ];
 

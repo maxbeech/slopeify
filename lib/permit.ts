@@ -7,7 +7,7 @@
 //    4-ft line; many use 3 ft or 4 ft of exposed height. Exact local thresholds
 //    vary, so we present the code baseline and tell people to confirm locally.
 //
-// We never fabricate a specific city ordinance — we state the universal rule and
+// We never fabricate a specific city ordinance, we state the universal rule and
 // the conditions (height, surcharge, slope) that trigger it.
 
 export const ENGINEERING_HEIGHT_FT = 4; // IRC R404.1 / IBC 1807.2.3
@@ -35,7 +35,7 @@ export function permitVerdict(opts: {
   }
   if (hasSurcharge) {
     reasons.push(
-      "There is a surcharge (driveway, slope or structure) behind the wall — the codes drop the engineering trigger to any height when a surcharge is present.",
+      "There is a surcharge (driveway, slope or structure) behind the wall, the codes drop the engineering trigger to any height when a surcharge is present.",
     );
   }
   if (hasSlope) {
@@ -43,7 +43,7 @@ export function permitVerdict(opts: {
   }
   if (reasons.length === 0) {
     reasons.push(
-      `At ${opts.height} ft with no surcharge, many jurisdictions exempt the wall from a permit — but always confirm with your local building department, as some require one for any retaining wall.`,
+      `At ${opts.height} ft with no surcharge, many jurisdictions exempt the wall from a permit, but always confirm with your local building department, as some require one for any retaining wall.`,
     );
   }
 

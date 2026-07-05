@@ -35,10 +35,10 @@ export default async function CalcPage({ params }: { params: Promise<{ slug: str
       <nav className="mb-3 text-sm text-slate-500">
         <Link href="/calculators" className="hover:text-slate-900">Calculators</Link> / {c.h1}
       </nav>
-      <h1 className="text-3xl font-extrabold text-slate-900">{c.h1}</h1>
-      <p className="mt-2 max-w-2xl text-slate-600">{c.intro}</p>
-      <ul className="mt-3 flex flex-wrap gap-2 text-xs text-slate-500">
-        {c.bullets.map((b) => <li key={b} className="rounded-full bg-emerald-50 px-3 py-1 text-emerald-800">{b}</li>)}
+      <h1 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">{c.h1}</h1>
+      <p className="mt-3 max-w-2xl text-slate-600">{c.intro}</p>
+      <ul className="mt-4 flex flex-wrap gap-2 text-xs">
+        {c.bullets.map((b) => <li key={b} className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 font-medium text-emerald-800">{b}</li>)}
       </ul>
 
       <div className="mt-6">
