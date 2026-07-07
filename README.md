@@ -27,8 +27,8 @@ Everything is documented on `/methodology` with the code tables reproduced.
 
 ## Stack
 
-Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · tsx tests. The free
-calculator is 100% client-side (no DB).
+Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · tsx tests · Vercel Web
+Analytics. The free calculator is 100% client-side (no DB).
 
 ## How it earns (lead-gen first)
 
@@ -45,6 +45,11 @@ upsell wall:
 
 Everything is env-gated and degrades gracefully. With nothing configured, shop
 links are plain retailer searches and the pro CTA points at `/find-a-pro`.
+
+> **Known gap:** `app/api/checkout/route.ts` will happily create a Stripe session once
+> `STRIPE_SECRET_KEY`/`STRIPE_PRICE_ID` are set, but there is no webhook and no PDF
+> generation/email delivery yet. Do not set those two env vars in production until
+> fulfillment is built, or a customer will pay $29 and receive nothing.
 
 ### Environment variables (all optional)
 
@@ -72,7 +77,30 @@ npm run build
 - 51 per-state permit & cost pages (`/states/*`)
 - `/find-a-pro` contractor/engineer landing
 - 12 guides (`/blog/*`) with Article + HowTo JSON-LD
-- `/methodology`, `/pricing`, sitemap, robots, Organization + WebSite JSON-LD, 1-week ISR
+- `/methodology`, `/pricing`, `/privacy`, `/terms`, sitemap, robots, Organization +
+  WebSite JSON-LD, 1-week ISR
 
 > Planning tool only. A wall over 4 ft, or any wall with a surcharge, needs a
 > licensed engineer's stamped design and a local permit.
+
+## Launch checklist
+
+Code, tests and build are launch-ready. What's left is account/dashboard work that has
+to happen outside this repo:
+
+1. **Attach `slopeify.com`** in the Vercel dashboard (Project → Settings → Domains),
+   then add the CNAME/A record it gives you at your registrar.
+2. **Verify the domain in Google Search Console** (domain property, via DNS TXT record)
+   once step 1 is done, then submit `/sitemap.xml`.
+3. **Enable Vercel Web Analytics** for the project (Project → Analytics tab — the
+   `@vercel/analytics` package is already wired in, this just turns data collection on).
+4. **Set env vars in Vercel** (Project → Settings → Environment Variables) as you get
+   each account: `NEXT_PUBLIC_AMAZON_TAG`, `NEXT_PUBLIC_CONTRACTOR_PARTNER_URL`,
+   `NEXT_PUBLIC_ENGINEER_PARTNER_URL`, `NEXT_PUBLIC_SITE_URL` (`https://slopeify.com`
+   once step 1 lands). Leave `STRIPE_SECRET_KEY`/`STRIPE_PRICE_ID` unset until
+   fulfillment is built (see the known gap above).
+5. **Apply to affiliate/referral programs** at your own pace: Amazon Associates (for
+   `NEXT_PUBLIC_AMAZON_TAG`), and a contractor/engineer lead network for the
+   `*_PARTNER_URL` vars. Until those exist, shop links are plain retailer searches and
+   `/find-a-pro` is a self-contained SEO landing page with an email fallback — both
+   already live and functional with zero config.

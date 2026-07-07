@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-07-07
+
+### Added: go-live readiness (legal + analytics)
+- `/privacy` and `/terms` pages, written for what the site actually does (client-side
+  calculator, affiliate/referral links, Stripe checkout, no accounts) rather than generic
+  boilerplate. Linked from the footer and added to the sitemap.
+- Vercel Web Analytics (`@vercel/analytics`) wired into the root layout so traffic is
+  measurable once deployed (cookieless, no account setup beyond enabling it on the Vercel
+  project).
+- Audited the checkout flow: `app/api/checkout/route.ts` creates a Stripe session but has
+  no webhook/fulfillment yet. Decision: keep the Pro report on its existing "launches
+  shortly" graceful-degrade path until fulfillment (PDF generation + email delivery) is
+  built, rather than risk an unfulfilled paid order.
+
 ## 2026-07-05
 
 ### Changed: rebrand to Slopeify

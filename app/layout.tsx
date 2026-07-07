@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SITE, organizationLd, websiteLd } from "@/lib/site";
 
@@ -68,6 +69,8 @@ function Footer() {
           <FooterCol title="Get help" links={[
             ["Find a pro", "/find-a-pro"],
             ["Pro report", "/pricing"],
+            ["Privacy", "/privacy"],
+            ["Terms", "/terms"],
           ]} />
         </div>
         <p className="mt-8 max-w-3xl text-xs leading-relaxed text-slate-500">
@@ -76,7 +79,11 @@ function Footer() {
           engineered, stamped design and a local permit. Always confirm with a licensed engineer and your
           building department. Some outbound links are affiliate or referral links.
         </p>
-        <p className="mt-3 text-xs text-slate-400">© {new Date().getFullYear()} {SITE.name}. All rights reserved.</p>
+        <p className="mt-3 text-xs text-slate-400">
+          © {new Date().getFullYear()} {SITE.name}. All rights reserved. ·{" "}
+          <Link href="/privacy" className="hover:text-slate-600">Privacy</Link> ·{" "}
+          <Link href="/terms" className="hover:text-slate-600">Terms</Link>
+        </p>
       </div>
     </footer>
   );
@@ -104,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="mx-auto max-w-5xl px-5 py-8">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

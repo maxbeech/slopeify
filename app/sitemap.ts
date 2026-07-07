@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE.url}/blog`, lastModified: now, priority: 0.7 },
     { url: `${SITE.url}/pricing`, lastModified: now, priority: 0.6 },
     { url: `${SITE.url}/methodology`, lastModified: now, priority: 0.5 },
+    { url: `${SITE.url}/privacy`, lastModified: now, priority: 0.2 },
+    { url: `${SITE.url}/terms`, lastModified: now, priority: 0.2 },
   ];
   for (const c of CALCULATORS) urls.push({ url: `${SITE.url}/calculators/${c.slug}`, lastModified: now, priority: 0.8 });
   for (const s of STATES) urls.push({ url: `${SITE.url}/states/${s.slug}`, lastModified: now, priority: 0.6 });
