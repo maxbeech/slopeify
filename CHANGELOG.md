@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-07-08
+
+### Changed: full guides rewrite to skyscraper-length SEO posts
+- Expanded all 24 posts in `lib/posts.ts` from ~200-word summaries to 1,800-2,500
+  word in-depth guides: TL;DR key-takeaways box, a data table, an attributed
+  expert quote, a cited statistic, 3-6 internal links and 2-5 authoritative
+  external citations (ICC, NCMA/CMHA, ASCE, OSHA, USDA NRCS) per post, and a
+  3-5 question FAQ section. All existing engineering figures (cost ranges,
+  factors of safety, code sections, depths) were preserved verbatim; only
+  supporting depth was added.
+- `readMins` recalculated per post from the new word count.
+
+### Added: renderer support for tables, FAQ schema, TL;DR, and a table of contents
+- `app/blog/[slug]/page.tsx`: the body renderer now supports markdown pipe
+  tables, `###` subheadings, and a "label line directly above a list" pattern
+  (e.g. `**Drainage:**` followed by `- ` items with no blank line) that
+  previously fell through to a raw paragraph.
+- A `## Key takeaways` section now renders as a highlighted callout box.
+- A `## FAQs` section renders as a native `<details>` accordion and emits an
+  FAQPage JSON-LD graph (in addition to the existing Article and HowTo graphs).
+- An auto-generated table of contents (anchor-linked to each `##` heading) is
+  inserted after the intro on any post with 3+ sections.
+
 ## 2026-07-07
 
 ### Added: go-live readiness (legal + analytics)

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx test/engine.test.mts && tsx test/calc-url.test.mts && tsx test/leadgen.test.mts"
+    "test": "tsx test/engine.test.mts && tsx test/calc-url.test.mts && tsx test/leadgen.test.mts",
+    "deploy": "npx vercel pull --yes --environment=production && npx vercel build --prod && npx vercel deploy --prebuilt --prod"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

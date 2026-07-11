@@ -76,7 +76,8 @@ npm run build
 - Home wall designer + 7 calculator variants (`/calculators/*`)
 - 51 per-state permit & cost pages (`/states/*`)
 - `/find-a-pro` contractor/engineer landing
-- 12 guides (`/blog/*`) with Article + HowTo JSON-LD
+- 24 in-depth guides (`/blog/*`), 1,800-2,500 words each, with Article + HowTo + FAQPage
+  JSON-LD, a table of contents, key-takeaways box, data tables, and cited external sources
 - `/methodology`, `/pricing`, `/privacy`, `/terms`, sitemap, robots, Organization +
   WebSite JSON-LD, 1-week ISR
 

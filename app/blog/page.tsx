@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { POSTS } from "@/lib/posts";
 
@@ -16,10 +17,15 @@ export default function BlogIndex() {
       <div className="mt-8 space-y-3">
         {POSTS.map((p) => (
           <Link key={p.slug} href={`/blog/${p.slug}`}
-            className="block rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-sm">
-            <div className="font-semibold text-slate-900">{p.title}</div>
-            <div className="mt-1 text-sm text-slate-500">{p.description}</div>
-            <div className="mt-2 text-xs text-slate-400">{p.readMins} min read</div>
+            className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-sm">
+            <div className="relative hidden h-24 w-32 shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:block">
+              <Image src={p.image} alt={p.title} fill sizes="128px" className="object-cover" />
+            </div>
+            <div className="min-w-0">
+              <div className="font-semibold text-slate-900">{p.title}</div>
+              <div className="mt-1 text-sm text-slate-500">{p.description}</div>
+              <div className="mt-2 text-xs text-slate-400">{p.readMins} min read</div>
+            </div>
           </Link>
         ))}
       </div>
