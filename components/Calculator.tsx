@@ -56,9 +56,16 @@ export default function Calculator({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Debounced: a slider drag or fast typing sets `inputs` many times a
+  // second, and firing replaceState on every one of them hit Safari's "more
+  // than 100 times per 10 seconds" throttle (SLOPEIFY_WEB-1). The URL only
+  // needs to catch up with the latest inputs, not every intermediate value.
   useEffect(() => {
     if (typeof window === "undefined") return;
-    window.history.replaceState(null, "", `${window.location.pathname}?${encodeInputs(inputs)}`);
+    const id = window.setTimeout(() => {
+      window.history.replaceState(null, "", `${window.location.pathname}?${encodeInputs(inputs)}`);
+    }, 300);
+    return () => window.clearTimeout(id);
   }, [inputs]);
 
   const result = useMemo(() => designWall(inputs), [inputs]);
