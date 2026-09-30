@@ -5,8 +5,6 @@ export const SITE = {
   tagline: "Retaining wall design, cost and permit calculator",
   description:
     "Free retaining wall calculator. Get the lateral earth pressure, the minimum base width, the overturning, sliding and bearing factors of safety, whether you need geogrid reinforcement, a materials takeoff with cost, and whether your wall needs a permit. Built on IBC Table 1610.1 soil loads and Table 1806.2 bearing values.",
-  // Where the live preview lives until the .com DNS is wired.
-  vercelUrl: "https://slopeify.vercel.app",
   contactEmail: "hello@slopeify.com",
 };
 

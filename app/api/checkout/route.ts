@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { SITE } from "@/lib/site";
 
-// Stripe Checkout for the one-time Pro design report. Keys come from Vercel env
+// Stripe Checkout for the one-time Pro design report. Keys come from the Helm7 environment
 // (STRIPE_SECRET_KEY, STRIPE_PRICE_ID). When absent (before Stripe is wired) the
 // endpoint degrades gracefully — the Pro tier is "coming soon", not a 500.
 export async function POST() {
   const secret = process.env.STRIPE_SECRET_KEY;
   const price = process.env.STRIPE_PRICE_ID;
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? SITE.vercelUrl;
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? SITE.url;
 
   if (!secret || !price) {
     return NextResponse.json(

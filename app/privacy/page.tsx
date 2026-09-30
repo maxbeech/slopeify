@@ -27,9 +27,7 @@ export default function Privacy() {
 
       <h2 className="mt-8 text-xl font-bold text-slate-900">Analytics</h2>
       <p className="mt-2 text-slate-600">
-        We use Vercel Web Analytics to understand which pages get traffic and how the site performs. It
-        is cookieless and reports aggregated counts (page views, referrers, rough device/location), not
-        individual browsing history tied to you.
+        We do not currently run page analytics on this site. If that changes, we will say so here.
       </p>
 
       <h2 className="mt-8 text-xl font-bold text-slate-900">Affiliate and referral links</h2>

@@ -27,8 +27,8 @@ Everything is documented on `/methodology` with the code tables reproduced.
 
 ## Stack
 
-Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · tsx tests · Vercel Web
-Analytics. The free calculator is 100% client-side (no DB).
+Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · tsx tests · hosted on Helm7
+(`next start`, honours `$PORT`). The free calculator is 100% client-side (no DB).
 
 ## How it earns (lead-gen first)
 
@@ -89,13 +89,13 @@ npm run build
 Code, tests and build are launch-ready. What's left is account/dashboard work that has
 to happen outside this repo:
 
-1. **Attach `slopeify.com`** in the Vercel dashboard (Project → Settings → Domains),
-   then add the CNAME/A record it gives you at your registrar.
+1. **`slopeify.com`** is served by Helm7: `www` is a CNAME to the product's Helm7 edge
+   host and the bare domain is an A record to the Helm7 apex IP, both at IONOS.
 2. **Verify the domain in Google Search Console** (domain property, via DNS TXT record)
    once step 1 is done, then submit `/sitemap.xml`.
-3. **Enable Vercel Web Analytics** for the project (Project → Analytics tab — the
-   `@vercel/analytics` package is already wired in, this just turns data collection on).
-4. **Set env vars in Vercel** (Project → Settings → Environment Variables) as you get
+3. **Analytics** is off. `lib/openhelm-analytics.tsx` (GA4) measures nothing until
+   `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set.
+4. **Set env vars in Helm7** (product `web` service variables) as you get
    each account: `NEXT_PUBLIC_AMAZON_TAG`, `NEXT_PUBLIC_CONTRACTOR_PARTNER_URL`,
    `NEXT_PUBLIC_ENGINEER_PARTNER_URL`, `NEXT_PUBLIC_SITE_URL` (`https://slopeify.com`
    once step 1 lands). Leave `STRIPE_SECRET_KEY`/`STRIPE_PRICE_ID` unset until

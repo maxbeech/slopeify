@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-09-30
+
+### Changed: hosting moved from Vercel to Helm7
+- Removed `@vercel/analytics` (and its `<Analytics />` mount) and the `deploy` script that
+  ran the `vercel` CLI. Analytics is now off until `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set.
+- Sentry `environment` now comes from `NODE_ENV` only (the `VERCEL_ENV` variables are never set
+  on Helm7, so every production error would have been reported as "development").
+- Checkout redirect fallback is `SITE.url`; the `slopeify.vercel.app` URL is gone.
+- `/privacy` no longer says the site uses Vercel Web Analytics.
+- New `test/no-vercel.test.mts` (part of `npm test`) keeps Vercel packages, scripts and
+  `VERCEL_*` checks out.
+
 ## 2026-07-08
 
 ### Changed: full guides rewrite to skyscraper-length SEO posts

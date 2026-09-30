@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SITE, organizationLd, websiteLd } from "@/lib/site";
 import { OpenHelmAnalytics } from "../lib/openhelm-analytics";
@@ -112,7 +111,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="mx-auto max-w-5xl px-5 py-8">{children}</main>
         <Footer />
-        <Analytics />
         <OpenHelmAnalytics />
       </body>
     </html>
