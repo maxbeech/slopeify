@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { DEFAULT_INPUTS, designWall, type DesignInputs } from "@/lib/design";
 import { decodeInputs, encodeInputs } from "@/lib/calc-url";
 import { SOILS, FOUNDATION_SOILS } from "@/lib/soil";
@@ -10,6 +10,7 @@ import { BLOCK_SIZES } from "@/lib/materials";
 import { SURCHARGE_PRESETS } from "@/lib/earth-pressure";
 import type { Focus } from "@/lib/calculators";
 import CalcResults from "./CalcResults";
+import { trackJourney } from "@/lib/analytics-events";
 
 const SLOPES = [
   { deg: 0, label: "Level" },
@@ -46,6 +47,7 @@ export default function Calculator({
 }) {
   const [inputs, setInputs] = useState<DesignInputs>({ ...DEFAULT_INPUTS, ...initial });
   const [copied, setCopied] = useState(false);
+  const usedReported = useRef(false);
 
   // Hydrate from a shared URL once on mount, then keep the URL in sync.
   useEffect(() => {
@@ -69,7 +71,14 @@ export default function Calculator({
   }, [inputs]);
 
   const result = useMemo(() => designWall(inputs), [inputs]);
-  const set = <K extends keyof DesignInputs>(k: K, v: DesignInputs[K]) => setInputs((p) => ({ ...p, [k]: v }));
+  // The free-user step: the first time a visitor changes an input (not the initial render
+  // or a shared link loading), once per page view.
+  const reportUse = () => {
+    if (usedReported.current) return;
+    usedReported.current = true;
+    trackJourney("calculator_used", { wall_type: inputs.wallTypeId, state: inputs.stateSlug });
+  };
+  const set = <K extends keyof DesignInputs>(k: K, v: DesignInputs[K]) => { reportUse(); setInputs((p) => ({ ...p, [k]: v })); };
   const setNum = (k: "heightFt" | "lengthFt" | "surcharge", raw: string) =>
     set(k, (raw === "" ? Number.NaN : Number(raw)) as DesignInputs[typeof k]);
 

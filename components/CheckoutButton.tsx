@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { trackJourney } from "@/lib/analytics-events";
+import { PRO_REPORT_PRICE_USD } from "@/lib/analytics-journey";
 
 export default function CheckoutButton() {
   const [loading, setLoading] = useState(false);
@@ -9,12 +11,15 @@ export default function CheckoutButton() {
   async function start() {
     setLoading(true);
     setMsg(null);
+    trackJourney("begin_checkout", { currency: "USD", value: PRO_REPORT_PRICE_USD });
     try {
       const res = await fetch("/api/checkout", { method: "POST" });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; return; }
+      trackJourney("checkout_failed", { reason: res.status === 503 ? "unavailable" : "stripe_error" });
       setMsg(data.error ?? "Checkout is not available yet. Please check back soon.");
     } catch {
+      trackJourney("checkout_failed", { reason: "network" });
       setMsg("Could not start checkout. Please try again.");
     } finally {
       setLoading(false);
