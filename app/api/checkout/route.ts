@@ -21,7 +21,8 @@ export async function POST() {
       mode: "payment",
       "line_items[0][price]": price,
       "line_items[0][quantity]": "1",
-      success_url: `${base}/pricing?status=success`,
+      // Stripe fills in the session id; the pricing page uses it to confirm the payment.
+      success_url: `${base}/pricing?status=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${base}/pricing?status=cancel`,
       allow_promotion_codes: "true",
     });

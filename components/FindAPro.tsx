@@ -2,7 +2,10 @@
 // needs an engineered design we lead with a licensed engineer; otherwise we lead
 // with local contractor quotes. Both are the segments advertisers pay the most
 // to reach, so this is where the free tool earns its keep.
+"use client";
+
 import Link from "next/link";
+import { trackJourney } from "@/lib/analytics-events";
 import { proReferral } from "@/lib/leadgen";
 
 function ArrowLink({
@@ -10,7 +13,9 @@ function ArrowLink({
   external,
   children,
   variant,
+  kind,
 }: {
+  kind: "contractor" | "engineer";
   href: string;
   external: boolean;
   children: React.ReactNode;
@@ -25,7 +30,7 @@ function ArrowLink({
   const rel = external ? "noopener sponsored" : undefined;
   const target = external ? "_blank" : undefined;
   return (
-    <Link href={href} target={target} rel={rel}
+    <Link href={href} target={target} rel={rel} onClick={() => trackJourney("pro_referral_click", { kind })}
       className={`inline-flex items-center justify-center gap-1.5 rounded-lg px-4 py-2.5 text-sm font-semibold transition ${cls}`}>
       {children}
       <span aria-hidden>→</span>
@@ -63,10 +68,10 @@ export default function FindAPro({
               a contractor to build it. Comparing quotes is free and there is no obligation.
             </p>
             <div className="mt-4 flex flex-wrap gap-2.5">
-              <ArrowLink href={engineer.href} external={engineer.external} variant="clay">
+              <ArrowLink kind="engineer" href={engineer.href} external={engineer.external} variant="clay">
                 Get a stamped design quote
               </ArrowLink>
-              <ArrowLink href={contractor.href} external={contractor.external} variant="ghost">
+              <ArrowLink kind="contractor" href={contractor.href} external={contractor.external} variant="ghost">
                 Also get build quotes
               </ArrowLink>
             </div>
@@ -80,10 +85,10 @@ export default function FindAPro({
               before anyone starts digging. It is free and there is no obligation.
             </p>
             <div className="mt-4 flex flex-wrap gap-2.5">
-              <ArrowLink href={contractor.href} external={contractor.external} variant="clay">
+              <ArrowLink kind="contractor" href={contractor.href} external={contractor.external} variant="clay">
                 Compare contractor quotes
               </ArrowLink>
-              <ArrowLink href={engineer.href} external={engineer.external} variant="ghost">
+              <ArrowLink kind="engineer" href={engineer.href} external={engineer.external} variant="ghost">
                 Talk to an engineer first
               </ArrowLink>
             </div>

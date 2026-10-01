@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import CheckoutButton from "@/components/CheckoutButton";
+import CheckoutReturnTracker from "@/components/CheckoutReturnTracker";
 
 export const metadata = {
   title: "Pricing: Free Calculator, Pro Design Report",
@@ -30,6 +32,7 @@ const PRO = [
 export default function Pricing() {
   return (
     <div>
+      <Suspense fallback={null}><CheckoutReturnTracker /></Suspense>
       <div className="mx-auto max-w-2xl text-center">
         <h1 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">Simple pricing</h1>
         <p className="mt-3 text-slate-600">
