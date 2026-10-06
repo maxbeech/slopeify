@@ -35,8 +35,22 @@ check("transaction url + spans", tx.request!.url === "https://s.com/a" && tx.tra
   && (tx.spans![0] as any).data["http.url"] === "https://s.com/b" && (tx.spans![0] as any).data["url.query"] === "" && (tx.spans![0] as any).description === "GET /b");
 const ev = scrubEvent({ message: "boom sk_live_abcdefghijkl1234", user: { id: "u1", email: "a@b.com" }, request: { url: "/a?b=1", cookies: { a: "b" } } } as any)!;
 check("event scrubbed, user reduced to id", !ev.message!.includes("sk_live") && ev.user!.email === undefined && ev.user!.id === "u1" && ev.request!.url === "/a" && !ev.request!.cookies);
-const fb = { type: "feedback", contexts: { feedback: { name: "Jo", contact_email: "jo@example.com", message: "hi" } } } as any;
-check("feedback keeps name and email", scrubEvent(fb) === fb && fb.contexts.feedback.contact_email === "jo@example.com");
+const fb = {
+  type: "feedback",
+  contexts: { feedback: { name: "Jo", contact_email: "jo@example.com", message: "hi, call me on 555-123-4567" }, app: { token: "t0k3n", note: "jane@example.com" } },
+  user: { id: "u1", email: "jo@example.com", username: "Jo" },
+  tags: { api_key: "k", plan: "free" },
+  extra: { password: "p", n: 1 },
+  request: { url: "https://x.com/a?token=abc", cookies: { sid: "s" }, headers: { cookie: "sid=abc", authorization: "Bearer abcdefghijklmnop1234", accept: "*/*" } },
+  breadcrumbs: [{ category: "navigation", message: "to jane@example.com", data: { to: "/page?token=abc", url: "https://x.com/b?token=abc" } }],
+} as any;
+const fbOut = scrubEvent(fb) as any;
+check("feedback keeps contexts.feedback intact", fbOut.contexts.feedback.name === "Jo" && fbOut.contexts.feedback.contact_email === "jo@example.com" && fbOut.contexts.feedback.message === "hi, call me on 555-123-4567");
+check("feedback keeps user name and email", fbOut.user.email === "jo@example.com" && fbOut.user.username === "Jo");
+check("feedback breadcrumbs scrubbed", fbOut.breadcrumbs[0].data.to === "/page" && fbOut.breadcrumbs[0].data.url === "https://x.com/b" && !fbOut.breadcrumbs[0].message.includes("jane@"));
+check("feedback request scrubbed", fbOut.request.url === "https://x.com/a" && !fbOut.request.cookies && fbOut.request.headers.cookie === "[redacted]" && fbOut.request.headers.authorization === "[redacted]" && fbOut.request.headers.accept === "*/*");
+check("feedback tags, extra and other contexts scrubbed", fbOut.tags.api_key === "[redacted]" && fbOut.tags.plan === "free" && fbOut.extra.password === "[redacted]" && fbOut.contexts.app.token === "[redacted]" && !fbOut.contexts.app.note.includes("jane@"));
+check("feedback fails closed", scrubEvent({ type: "feedback", extra: new Proxy({}, { ownKeys() { throw new Error("x"); } }) } as any) === null);
 
 console.log("Fail closed");
 const hostile = { get message() { throw new Error("boom"); } } as any;

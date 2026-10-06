@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-07
+
+### Fixed: feedback events no longer bypass the Sentry scrubber
+- User feedback used to return early and skip all scrubbing. Now only `contexts.feedback` and `user` (the reporter's own name, email and message) are kept; breadcrumbs, request, tags, extra and other contexts are scrubbed as normal. Tested.
+
 ## 2026-10-06
 
 ### Changed: Sentry hardening and project fix

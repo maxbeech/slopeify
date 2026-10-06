@@ -113,14 +113,21 @@ function scrubCommon(event: ErrorEvent | TransactionEvent): void {
 
 /** Sentry `beforeSend`. Fails closed: a scrubbing error drops the event. */
 export function scrubEvent(event: ErrorEvent, _hint?: EventHint): ErrorEvent | null {
-  // User feedback is the one event that keeps name and email: the person typed
-  // them into the form on purpose so we can reply.
-  if ((event as { type?: string }).type === "feedback") return event;
   try {
+    // User feedback keeps ONLY the reporter's own name, email and message
+    // (contexts.feedback and user): they typed them into the form on purpose so
+    // we can reply. Everything else on the event is scrubbed as normal, so these
+    // two fields are set aside, the usual scrub runs, then they are restored.
+    const isFeedback = (event as { type?: string }).type === "feedback";
+    const feedbackCtx = isFeedback ? event.contexts?.feedback : undefined;
+    const feedbackUser = isFeedback && event.user ? { ...event.user } : undefined;
+    if (isFeedback && event.contexts) delete event.contexts.feedback;
     scrubCommon(event);
     for (const ex of event.exception?.values ?? []) {
       if (typeof ex.value === "string") ex.value = scrubString(ex.value);
     }
+    if (feedbackCtx) event.contexts = { ...(event.contexts ?? {}), feedback: feedbackCtx };
+    if (feedbackUser) event.user = feedbackUser;
     return event;
   } catch {
     return null;
