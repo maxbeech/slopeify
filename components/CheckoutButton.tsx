@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { trackJourney } from "@/lib/analytics-events";
+import { captureServerError } from "@/lib/observability";
 import { PRO_REPORT_PRICE_USD } from "@/lib/analytics-journey";
 
 export default function CheckoutButton() {
@@ -18,7 +19,8 @@ export default function CheckoutButton() {
       if (data.url) { window.location.href = data.url; return; }
       trackJourney("checkout_failed", { reason: res.status === 503 ? "unavailable" : "stripe_error" });
       setMsg(data.error ?? "Checkout is not available yet. Please check back soon.");
-    } catch {
+    } catch (err) {
+      captureServerError(err, { scope: "checkout-client" });
       trackJourney("checkout_failed", { reason: "network" });
       setMsg("Could not start checkout. Please try again.");
     } finally {

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { checkoutStatusFrom, isSessionId } from "@/lib/analytics-journey";
+import { captureServerError, captureServerMessage } from "@/lib/observability";
 import { userRefFor } from "@/lib/openhelm-analytics-mp";
 
 // Confirms a Stripe Checkout return so the browser only reports `purchase` for a
@@ -15,10 +16,14 @@ export async function GET(req: Request) {
       headers: { Authorization: `Bearer ${secret}` },
       cache: "no-store",
     });
-    if (!res.ok) return NextResponse.json({ paid: false }, { status: 502 });
+    if (!res.ok) {
+      captureServerMessage("Stripe session lookup failed", { scope: "checkout-status", httpStatus: res.status });
+      return NextResponse.json({ paid: false }, { status: 502 });
+    }
     const session = await res.json();
     return NextResponse.json(checkoutStatusFrom(session, await userRefFor(id)));
-  } catch {
+  } catch (err) {
+    captureServerError(err, { scope: "checkout-status" });
     return NextResponse.json({ paid: false }, { status: 502 });
   }
 }

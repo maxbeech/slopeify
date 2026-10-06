@@ -95,12 +95,14 @@ to happen outside this repo:
    once step 1 is done, then submit `/sitemap.xml`.
 3. **Analytics** is off. `lib/openhelm-analytics.tsx` (GA4) measures nothing until
    `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set.
-4. **Set env vars in Helm7** (product `web` service variables) as you get
+4. **Sentry**: set `NEXT_PUBLIC_SENTRY_DSN` and `SENTRY_DSN` (project `retaincalchq_web`, see
+   `.env.example`) in Helm7. `NEXT_PUBLIC_SENTRY_DSN` is baked in at build time.
+5. **Set env vars in Helm7** (product `web` service variables) as you get
    each account: `NEXT_PUBLIC_AMAZON_TAG`, `NEXT_PUBLIC_CONTRACTOR_PARTNER_URL`,
    `NEXT_PUBLIC_ENGINEER_PARTNER_URL`, `NEXT_PUBLIC_SITE_URL` (`https://slopeify.com`
    once step 1 lands). Leave `STRIPE_SECRET_KEY`/`STRIPE_PRICE_ID` unset until
    fulfillment is built (see the known gap above).
-5. **Apply to affiliate/referral programs** at your own pace: Amazon Associates (for
+6. **Apply to affiliate/referral programs** at your own pace: Amazon Associates (for
    `NEXT_PUBLIC_AMAZON_TAG`), and a contractor/engineer lead network for the
    `*_PARTNER_URL` vars. Until those exist, shop links are plain retailer searches and
    `/find-a-pro` is a self-contained SEO landing page with an email fallback — both

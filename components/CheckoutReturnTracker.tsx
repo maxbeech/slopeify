@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { trackJourney } from "@/lib/analytics-events";
+import { captureServerError } from "@/lib/observability";
 import { identify } from "@/lib/openhelm-analytics";
 import type { CheckoutStatus } from "@/lib/analytics-journey";
 
@@ -38,7 +39,8 @@ export default function CheckoutReturnTracker() {
           value: data.value ?? 0,
         });
         try { sessionStorage.setItem(key, "1"); } catch { /* ignore */ }
-      } catch {
+      } catch (err) {
+        captureServerError(err, { scope: "checkout-return-client" });
         if (!cancelled) trackJourney("purchase_failed", { reason: "lookup_failed" });
       }
     })();

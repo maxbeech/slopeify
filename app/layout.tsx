@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 import { SITE, organizationLd, websiteLd } from "@/lib/site";
 import { OpenHelmAnalytics } from "../lib/openhelm-analytics";
+import { FeedbackButton } from "@/components/FeedbackButton";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -39,6 +40,7 @@ function Header() {
           <Link href="/calculators" className="rounded-md px-2.5 py-1.5 hover:bg-slate-100 hover:text-slate-900">Calculators</Link>
           <Link href="/states" className="hidden rounded-md px-2.5 py-1.5 hover:bg-slate-100 hover:text-slate-900 sm:inline-block">By state</Link>
           <Link href="/blog" className="rounded-md px-2.5 py-1.5 hover:bg-slate-100 hover:text-slate-900">Guides</Link>
+          <FeedbackButton variant="pill" className="hidden sm:inline-block" />
           <Link href="/find-a-pro" className="rounded-lg bg-emerald-700 px-3 py-1.5 text-white hover:bg-emerald-800">Find a pro</Link>
         </nav>
       </div>
@@ -71,7 +73,7 @@ function Footer() {
             ["Pro report", "/pricing"],
             ["Privacy", "/privacy"],
             ["Terms", "/terms"],
-          ]} />
+          ]} extra={<FeedbackButton />} />
         </div>
         <p className="mt-8 max-w-3xl text-xs leading-relaxed text-slate-500">
           {SITE.name} gives simplified, code-based planning estimates (IBC Tables 1610.1 and 1806.2,
@@ -89,7 +91,7 @@ function Footer() {
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: [string, string][] }) {
+function FooterCol({ title, links, extra }: { title: string; links: [string, string][]; extra?: React.ReactNode }) {
   return (
     <div>
       <div className="text-xs font-semibold uppercase tracking-wide text-slate-700">{title}</div>
@@ -97,6 +99,7 @@ function FooterCol({ title, links }: { title: string; links: [string, string][] 
         {links.map(([label, href]) => (
           <li key={href}><Link href={href} className="hover:text-slate-900">{label}</Link></li>
         ))}
+        {extra ? <li>{extra}</li> : null}
       </ul>
     </div>
   );

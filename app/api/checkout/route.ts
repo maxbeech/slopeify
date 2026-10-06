@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { SITE } from "@/lib/site";
+import { captureServerError, captureServerMessage } from "@/lib/observability";
 
 // Stripe Checkout for the one-time Pro design report. Keys come from the Helm7 environment
 // (STRIPE_SECRET_KEY, STRIPE_PRICE_ID). When absent (before Stripe is wired) the
@@ -33,10 +34,12 @@ export async function POST() {
     });
     const session = await res.json();
     if (!res.ok) {
+      captureServerMessage("Stripe checkout session was rejected", { scope: "checkout", httpStatus: res.status, stripeErrorType: session?.error?.type, stripeErrorCode: session?.error?.code });
       return NextResponse.json({ error: session?.error?.message ?? "Stripe error" }, { status: 502 });
     }
     return NextResponse.json({ url: session.url });
-  } catch {
+  } catch (err) {
+    captureServerError(err, { scope: "checkout" });
     return NextResponse.json({ error: "Could not reach Stripe." }, { status: 502 });
   }
 }

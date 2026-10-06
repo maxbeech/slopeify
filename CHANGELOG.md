@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-06
+
+### Added: Sentry to the Maxed Labs standard (project `retaincalchq_web`)
+- Errors, logs and user feedback now go to `retaincalchq_web`. One shared options helper
+  (`lib/sentry-options.ts`) feeds the browser, server and edge inits; the old
+  `sentry.server.config.ts` and `sentry.edge.config.ts` are gone.
+- `lib/scrub.ts` scrubs events, logs, breadcrumbs and transactions: emails, phone numbers,
+  tokens, API keys and secret-looking fields are masked, query strings are stripped. It uses
+  linear-time patterns, truncates long strings and drops the payload if scrubbing fails.
+- `lib/observability.ts` (`captureServerError`) now reports the checkout routes and the
+  client checkout handlers, plus a new `app/error.tsx` boundary. Context is ids and codes only.
+- "Send feedback" in the header and footer opens Sentry's form; the old floating button is gone.
+- Source maps upload at build when `SENTRY_AUTH_TOKEN` is set; the tunnel route is randomised.
+- New tests: `test/sentry-scrub.test.mts`, `test/feedback-and-capture.test.mts`.
+
 ## 2026-09-30
 
 ### Changed: hosting moved from Vercel to Helm7
