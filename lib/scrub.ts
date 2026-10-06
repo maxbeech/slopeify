@@ -104,6 +104,8 @@ function scrubCommon(event: ErrorEvent | TransactionEvent): void {
   // Keep an opaque id for "users affected", never an email, name or address.
   if (event.user) event.user = event.user.id ? { id: event.user.id } : undefined;
   if (typeof event.message === "string") event.message = scrubString(event.message);
+  if (event.logentry?.message) event.logentry.message = scrubString(event.logentry.message);
+  if (typeof event.transaction === "string") event.transaction = scrubString(stripQuery(event.transaction));
   if (event.breadcrumbs) {
     event.breadcrumbs = event.breadcrumbs.map((b) => scrubBreadcrumbUnsafe(b));
   }

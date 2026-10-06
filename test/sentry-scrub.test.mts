@@ -59,5 +59,8 @@ for (const [i, s] of nasty.entries()) {
   check(`adversarial #${i} fast (${ms}ms) and truncated`, ms < 500 && out.length <= MAX_STRING * 2, `${ms}ms len ${out.length}`);
 }
 
+const ev2 = scrubEvent({ logentry: { message: "x jane@example.com" }, transaction: "GET /a?x=1" } as any)!;
+check("event logentry and transaction scrubbed", !ev2.logentry!.message!.includes("jane@") && ev2.transaction === "GET /a");
+
 console.log(`\n${pass} passed, ${fail} failed`);
 if (fail) process.exit(1);

@@ -2,8 +2,14 @@
 
 ## 2026-10-06
 
-### Added: Sentry to the Maxed Labs standard (project `retaincalchq_web`)
-- Errors, logs and user feedback now go to `retaincalchq_web`. One shared options helper
+### Changed: Sentry hardening and project fix
+- Errors, logs and feedback go to `slopeify_web` (was `retaincalchq_web`).
+- `captureServerError` and `captureServerMessage` now keep only ids, codes, counts and booleans; free text is dropped.
+- The header "Feedback" control is visible on mobile too; `openFeedbackForm` is tested.
+- Event `logentry` and transaction names are scrubbed; the global error page is styled and reports the crash.
+
+### Added: Sentry to the Maxed Labs standard (project `slopeify_web`)
+- Errors, logs and user feedback now go to `slopeify_web`. One shared options helper
   (`lib/sentry-options.ts`) feeds the browser, server and edge inits; the old
   `sentry.server.config.ts` and `sentry.edge.config.ts` are gone.
 - `lib/scrub.ts` scrubs events, logs, breadcrumbs and transactions: emails, phone numbers,

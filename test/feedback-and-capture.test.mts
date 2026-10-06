@@ -3,8 +3,8 @@
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
-import { FeedbackButton } from "../components/FeedbackButton.tsx";
-import { captureServerError, captureServerMessage } from "../lib/observability.ts";
+import { FeedbackButton, openFeedbackForm } from "../components/FeedbackButton.tsx";
+import { captureServerError, captureServerMessage, safeContext } from "../lib/observability.ts";
 
 let pass = 0, fail = 0;
 function check(name: string, cond: boolean, detail = "") {
@@ -33,6 +33,17 @@ for (const f of ["app/api/checkout/route.ts", "app/api/checkout/status/route.ts"
 }
 const layout = readFileSync("app/layout.tsx", "utf8");
 check("layout has header and footer feedback controls", (layout.match(/<FeedbackButton/g) ?? []).length === 2);
+
+console.log("Opening the form and ids-only context");
+const calls: string[] = [];
+const sdk = (has: boolean) => ({
+  setUser: (u: { email?: string }) => calls.push(`user:${u.email}`),
+  getFeedback: () => (has ? { createForm: async () => ({ appendToDom: () => calls.push("append"), open: () => calls.push("open") }) } : undefined),
+});
+check("opens the form and pre-fills a known user", (await openFeedbackForm(async () => sdk(true), { email: "a@b.co" })) === true && calls.join() === "user:a@b.co,append,open", calls.join());
+check("reports unavailable without a DSN", (await openFeedbackForm(async () => sdk(false))) === false);
+const safe = safeContext({ scope: "x", httpStatus: 502, flag: true, email: "a@b.co", body: "free text here", id: "cs_123" });
+check("context keeps ids and drops free text", JSON.stringify(safe) === JSON.stringify({ scope: "x", httpStatus: 502, flag: true, id: "cs_123" }), JSON.stringify(safe));
 
 console.log(`\n${pass} passed, ${fail} failed`);
 if (fail) process.exit(1);

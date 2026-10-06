@@ -40,7 +40,7 @@ function Header() {
           <Link href="/calculators" className="rounded-md px-2.5 py-1.5 hover:bg-slate-100 hover:text-slate-900">Calculators</Link>
           <Link href="/states" className="hidden rounded-md px-2.5 py-1.5 hover:bg-slate-100 hover:text-slate-900 sm:inline-block">By state</Link>
           <Link href="/blog" className="rounded-md px-2.5 py-1.5 hover:bg-slate-100 hover:text-slate-900">Guides</Link>
-          <FeedbackButton variant="pill" className="hidden sm:inline-block" />
+          <FeedbackButton variant="pill" label="Feedback" />
           <Link href="/find-a-pro" className="rounded-lg bg-emerald-700 px-3 py-1.5 text-white hover:bg-emerald-800">Find a pro</Link>
         </nav>
       </div>

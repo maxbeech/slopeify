@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
  */
 export default withSentryConfig(nextConfig, {
   org: process.env.SENTRY_ORG || "maxed-labs",
-  project: process.env.SENTRY_PROJECT || "retaincalchq_web",
+  project: process.env.SENTRY_PROJECT || "slopeify_web",
   silent: !process.env.CI,
   widenClientFileUpload: true,
   // Route the browser SDK through our own domain so an ad blocker does not

@@ -95,7 +95,7 @@ to happen outside this repo:
    once step 1 is done, then submit `/sitemap.xml`.
 3. **Analytics** is off. `lib/openhelm-analytics.tsx` (GA4) measures nothing until
    `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set.
-4. **Sentry**: set `NEXT_PUBLIC_SENTRY_DSN` and `SENTRY_DSN` (project `retaincalchq_web`, see
+4. **Sentry**: set `NEXT_PUBLIC_SENTRY_DSN` and `SENTRY_DSN` (project `slopeify_web`, see
    `.env.example`) in Helm7. `NEXT_PUBLIC_SENTRY_DSN` is baked in at build time.
 5. **Set env vars in Helm7** (product `web` service variables) as you get
    each account: `NEXT_PUBLIC_AMAZON_TAG`, `NEXT_PUBLIC_CONTRACTOR_PARTNER_URL`,
