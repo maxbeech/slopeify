@@ -107,3 +107,5 @@ to happen outside this repo:
    `*_PARTNER_URL` vars. Until those exist, shop links are plain retailer searches and
    `/find-a-pro` is a self-contained SEO landing page with an email fallback — both
    already live and functional with zero config.
+
+The Sentry scrubber (`lib/scrub.ts`) redacts secrets of any length, backs up to a clean boundary when it truncates, and fails closed; its regression tests are in `test/scrub-hardening.test.mts`.
