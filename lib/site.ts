@@ -42,17 +42,12 @@ export function organizationLd() {
   };
 }
 
-/** WebSite schema with a sitewide search action. */
+/** WebSite schema. No SearchAction: the site has no search endpoint to point at. */
 export function websiteLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE.name,
     url: SITE.url,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${SITE.url}/calculators?q={search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
   };
 }

@@ -5,7 +5,7 @@ import { buildLlmsTxt } from "../lib/llms.ts";
 import { CALCULATORS } from "../lib/calculators.ts";
 import { POSTS } from "../lib/posts.ts";
 import { STATES } from "../lib/states.ts";
-import { SITE } from "../lib/site.ts";
+import { SITE, websiteLd } from "../lib/site.ts";
 import * as robotsModule from "../app/robots.ts";
 
 // tsx loads a .ts file as CJS, so the default export sits one level down.
@@ -29,6 +29,10 @@ check("links every state", STATES.every((s) => llms.includes(`${SITE.url}/states
 check("links methodology and pricing", llms.includes(`${SITE.url}/methodology`) && llms.includes(`${SITE.url}/pricing`));
 check("states it has no public API", llms.includes("no public API"));
 check("no link points outside the site", (llms.match(/\]\((https?:\/\/[^)]+)\)/g) ?? []).every((m) => m.startsWith(`](${SITE.url}`)));
+
+console.log("WebSite schema");
+check("WebSite declares no SearchAction (no search endpoint exists)", !("potentialAction" in websiteLd()));
+check("WebSite is typed and points at the site", websiteLd()["@type"] === "WebSite" && websiteLd().url === SITE.url);
 
 console.log("robots.txt policy");
 const rules = robots().rules;
