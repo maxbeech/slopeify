@@ -35,7 +35,10 @@ export default function Home() {
     name: SITE.name,
     applicationCategory: "Engineering",
     operatingSystem: "Web",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    offers: [
+      { "@type": "Offer", name: "Free calculator", price: "0", priceCurrency: "USD" },
+      { "@type": "Offer", name: "Pro design report", price: "29", priceCurrency: "USD" },
+    ],
     description: SITE.description,
   };
 

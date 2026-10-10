@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-10: Machine-readability foundations
+
+- **llms.txt.** `/llms.txt` was a 404. It is now generated from the calculator, guide and state lists in `lib/llms.ts`, so its links cannot drift from the site. It states that there is no public API.
+- **AI crawlers.** `robots.txt` now names GPTBot, ClaudeBot, PerplexityBot, Google-Extended and CCBot as allowed, alongside the catch-all.
+- **Offers.** Home-page `WebApplication` JSON-LD lists both offers that the pricing page shows: the free calculator and the $29 Pro design report.
+- **Tests.** `test/geo-surfaces.test.mts` covers the llms.txt links and H1, and the robots policy.
+
 ## 2026-10-07: Sentry scrubber security pass
 
 - **Long secrets.** JWTs, bearer tokens, vendor keys (`sk_`, `whsec_`, `hlm_sk_`, `sntrys_`) and `key=value` secrets of any length are now redacted whole. The old bounded patterns left the tail of anything longer than their limit.

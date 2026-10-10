@@ -80,6 +80,8 @@ npm run build
   JSON-LD, a table of contents, key-takeaways box, data tables, and cited external sources
 - `/methodology`, `/pricing`, `/privacy`, `/terms`, sitemap, robots, Organization +
   WebSite JSON-LD, 1-week ISR
+- `/llms.txt`, generated from the calculator, guide and state data (`lib/llms.ts`); robots
+  explicitly allows GPTBot, ClaudeBot, PerplexityBot, Google-Extended and CCBot
 
 > Planning tool only. A wall over 4 ft, or any wall with a surcharge, needs a
 > licensed engineer's stamped design and a local permit.
