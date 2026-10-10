@@ -6,6 +6,7 @@
 - **AI crawlers.** `robots.txt` now names GPTBot, ClaudeBot, PerplexityBot, Google-Extended and CCBot as allowed, alongside the catch-all.
 - **Offers.** Home-page `WebApplication` JSON-LD lists both offers that the pricing page shows: the free calculator and the $29 Pro design report.
 - **Tests.** `test/geo-surfaces.test.mts` covers the llms.txt links and H1, and the robots policy.
+- **WebSite schema.** Removed the `SearchAction` that pointed at `/calculators?q=`. That page has no search, so the schema advertised a search the site does not offer.
 
 ## 2026-10-07: Sentry scrubber security pass
 
