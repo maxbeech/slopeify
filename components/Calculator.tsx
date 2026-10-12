@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { DEFAULT_INPUTS, designWall, type DesignInputs } from "@/lib/design";
 import { decodeInputs, encodeInputs } from "@/lib/calc-url";
 import { SOILS, FOUNDATION_SOILS } from "@/lib/soil";
@@ -11,6 +12,7 @@ import { SURCHARGE_PRESETS } from "@/lib/earth-pressure";
 import type { Focus } from "@/lib/calculators";
 import CalcResults from "./CalcResults";
 import { trackJourney } from "@/lib/analytics-events";
+import { PRO_REPORT_PRICE_USD } from "@/lib/analytics-journey";
 
 const SLOPES = [
   { deg: 0, label: "Level" },
@@ -180,6 +182,12 @@ export default function Calculator({
             {copied ? "Link copied" : "Copy share link"}
           </button>
         </div>
+
+        {/* The Pro report is built from this exact wall, so the link carries the inputs. */}
+        <Link href={`/pricing?${encodeInputs(inputs)}`}
+          className="block rounded-lg border border-emerald-700 px-3 py-2 text-center text-sm font-medium text-emerald-800 transition hover:bg-emerald-50">
+          Get the Pro design report for this wall (${PRO_REPORT_PRICE_USD})
+        </Link>
       </form>
 
       <div>

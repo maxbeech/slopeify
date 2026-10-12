@@ -119,14 +119,31 @@ export function identify({ userRef, plan }: { userRef: string; plan: AnalyticsPl
   return true;
 }
 
+/**
+ * Query parameters that never go to GA. `session_id` is Stripe Checkout's return
+ * parameter, and a product that unlocks a purchase with it (Slopeify's /report)
+ * would otherwise hand GA a working download link on every buyer's first view.
+ * NOTE: local addition; port it to the canonical copy before the next regenerate.
+ */
+export const REDACTED_QUERY_PARAMS = ["session_id"];
+
+/** `url` (absolute or path) with the redacted parameters removed, same shape back. */
+export function redactUrl(url: string): string {
+  const absolute = /^[a-z][a-z0-9+.-]*:/i.test(url);
+  const parsed = new URL(url, "http://localhost");
+  if (!REDACTED_QUERY_PARAMS.some((p) => parsed.searchParams.has(p))) return url;
+  for (const p of REDACTED_QUERY_PARAMS) parsed.searchParams.delete(p);
+  return absolute ? parsed.href : `${parsed.pathname}${parsed.search}${parsed.hash}`;
+}
+
 /** Send a page_view for one resolved URL. Exported for tests and for products
  *  that route outside the App Router (a modal treated as a page, say). */
 export function trackPageView(url: string): boolean {
   if (!analyticsEnabled) return false;
   if (typeof window === "undefined") return false;
   pushCommand("event", "page_view", {
-    page_path: url,
-    page_location: window.location.href,
+    page_path: redactUrl(url),
+    page_location: redactUrl(window.location.href),
     page_title: document.title,
   });
   return true;

@@ -54,7 +54,9 @@ export default function Privacy() {
         The Pro design report is purchased through Stripe&apos;s hosted checkout. We never see or store
         your card number; Stripe processes the payment under its own privacy policy and PCI compliance
         obligations. We receive confirmation that a purchase happened and the report is delivered to the
-        email you provide at checkout.
+        email you provide at checkout. The wall details you entered are saved on your Stripe checkout
+        record, which is how we rebuild your report, and the report is emailed through our email
+        provider, which keeps a copy of the sent message.
       </p>
 
       <h2 className="mt-8 text-xl font-bold text-slate-900">Cookies</h2>

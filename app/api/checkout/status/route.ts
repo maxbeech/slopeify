@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
-import { checkoutStatusFrom, isSessionId } from "@/lib/analytics-journey";
+import { checkoutStatusFrom, isSessionId, transactionIdFor } from "@/lib/analytics-journey";
 import { captureServerError, captureServerMessage } from "@/lib/observability";
 import { userRefFor } from "@/lib/openhelm-analytics-mp";
 
 // Confirms a Stripe Checkout return so the browser only reports `purchase` for a
-// session Stripe says is paid. The user ref is hashed here; the raw session id is
-// only used as the transaction id GA needs to de-duplicate a purchase.
+// session Stripe says is paid. The session id unlocks the paid report, so it never
+// goes back out: the user ref and the GA transaction id are both one-way hashes of it.
 export async function GET(req: Request) {
   const id = new URL(req.url).searchParams.get("session_id");
   const secret = process.env.STRIPE_SECRET_KEY;
@@ -21,7 +21,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ paid: false }, { status: 502 });
     }
     const session = await res.json();
-    return NextResponse.json(checkoutStatusFrom(session, await userRefFor(id)));
+    return NextResponse.json(checkoutStatusFrom(session, await userRefFor(id), await transactionIdFor(id)));
   } catch (err) {
     captureServerError(err, { scope: "checkout-status" });
     return NextResponse.json({ paid: false }, { status: 502 });

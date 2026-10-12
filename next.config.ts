@@ -1,8 +1,19 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
+/** Paths whose URL carries the Stripe session id that unlocks the paid report. */
+export const NO_REFERRER_PATHS = ["/report", "/api/report/:path*"];
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Send no Referer from these pages, so the session id in their URL never leaves
+  // for a script, font or link host. The page also sets the meta tag, and the PDF
+  // route sets the header itself; this covers every response on those paths.
+  async headers() {
+    return NO_REFERRER_PATHS.map((source) => ({
+      source,
+      headers: [{ key: "Referrer-Policy", value: "no-referrer" }],
+    }));
+  },
 };
 
 /**

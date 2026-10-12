@@ -7,6 +7,7 @@ import type { Focus } from "@/lib/calculators";
 import { FS_OVERTURNING_MIN, FS_SLIDING_MIN } from "@/lib/wall";
 import { stateBySlug } from "@/lib/states";
 import { shopLinksForItem, AFFILIATE_DISCLOSURE } from "@/lib/leadgen";
+import { verdictFor, permitHeadline, buildNextSteps } from "@/lib/result-text";
 import WallDiagram from "./WallDiagram";
 import FindAPro from "./FindAPro";
 
@@ -24,13 +25,8 @@ function Stat({ label, value, ok }: { label: string; value: string; ok?: boolean
 
 export default function CalcResults({ r, focus = "design" }: { r: DesignResult; focus?: Focus }) {
   const c = r.base.check;
-  const passes = r.base.found;
   const state = stateBySlug(r.inputs.stateSlug);
-  const verdict = passes
-    ? { tone: "emerald", title: "This gravity wall works", sub: `A ${c.baseWidth}-ft base passes all three stability checks.` }
-    : r.reinforcement.needed
-      ? { tone: "amber", title: "Needs geogrid reinforcement", sub: "A plain gravity wall cannot pass here. Reinforce it, or use an engineered cantilever." }
-      : { tone: "rose", title: "This wall does not pass", sub: "Reduce the height, improve the soil and drainage, or have it engineered." };
+  const verdict = verdictFor(r);
 
   const nextSteps = buildNextSteps(r);
 
@@ -67,7 +63,7 @@ export default function CalcResults({ r, focus = "design" }: { r: DesignResult; 
 
       <div className={`rounded-lg border p-3 text-sm ${r.permit.engineeringRequired ? "border-rose-200 bg-rose-50 text-rose-900" : "border-slate-200 bg-white text-slate-700"}`}>
         <div className="font-semibold">
-          {r.permit.engineeringRequired ? "Permit and engineered design required" : r.permit.permitLikely ? "A permit is likely, check locally" : "May be permit-exempt, confirm locally"}
+          {permitHeadline(r.permit)}
         </div>
         <ul className="mt-1 list-disc pl-5">
           {r.permit.reasons.map((reason, i) => <li key={i}>{reason}</li>)}
@@ -100,26 +96,6 @@ export default function CalcResults({ r, focus = "design" }: { r: DesignResult; 
       )}
     </div>
   );
-}
-
-function buildNextSteps(r: DesignResult): string[] {
-  const steps: string[] = [];
-  steps.push(
-    `Excavate and compact a 6-inch crushed-stone leveling pad, then bury the base at least ${r.footingDepth} in below grade, below the frost line for your state.`,
-  );
-  if (r.base.found) {
-    steps.push(`Build to a ${r.base.check.baseWidth}-ft base width and batter the wall back into the slope.`);
-  } else if (r.reinforcement.needed) {
-    steps.push(`Add about ${r.reinforcement.layers} geogrid layers (${r.reinforcement.length.toFixed(1)} ft long), or switch to an engineered cantilever wall.`);
-  }
-  steps.push("Install the drainage system: clean drain rock behind the wall, a perforated pipe at the base daylighted to a low point, and filter fabric.");
-  steps.push("Backfill and compact in 6 to 8 inch lifts, and finish the grade so surface water runs away from the wall.");
-  if (r.permit.engineeringRequired) {
-    steps.push("Hire a licensed engineer for a stamped design and pull a permit before you build.");
-  } else if (r.permit.permitLikely) {
-    steps.push("Check with your local building department; a permit is likely for a wall this size.");
-  }
-  return steps;
 }
 
 function CostBlock({ r }: { r: DesignResult }) {

@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import CheckoutButton from "@/components/CheckoutButton";
+import ProReportCta from "@/components/ProReportCta";
 import CheckoutReturnTracker from "@/components/CheckoutReturnTracker";
+import SessionIdScrubber from "@/components/SessionIdScrubber";
+import { canSell } from "@/lib/report/config";
+import { parseWall } from "@/lib/report/purchase";
+
+// Whether payments are connected is read from the environment per request, and the wall
+// comes from the URL, so this page cannot be prerendered.
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Pricing: Free Calculator, Pro Design Report",
@@ -29,10 +36,23 @@ const PRO = [
   "Saved projects (coming soon)",
 ];
 
-export default function Pricing() {
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+export default async function Pricing({ searchParams }: { searchParams: SearchParams }) {
+  // The calculator links here with the wall in the query string (the same encoding as its
+  // share links). parseWall is strict: a partial or hand-edited string counts as no wall.
+  const query = new URLSearchParams();
+  for (const [key, value] of Object.entries(await searchParams)) {
+    const v = Array.isArray(value) ? value[0] : value;
+    if (v !== undefined) query.set(key, v);
+  }
+  const wall = parseWall(query.toString());
+
   return (
     <div>
       <Suspense fallback={null}><CheckoutReturnTracker /></Suspense>
+      {/* Checkouts started before success moved to /report return here with the id. */}
+      <SessionIdScrubber />
       <div className="mx-auto max-w-2xl text-center">
         <h1 className="text-3xl font-extrabold text-slate-900 sm:text-4xl">Simple pricing</h1>
         <p className="mt-3 text-slate-600">
@@ -62,7 +82,7 @@ export default function Pricing() {
           <ul className="mt-4 space-y-2 text-sm text-slate-600">
             {PRO.map((f) => <li key={f} className="flex gap-2"><span className="text-emerald-700">✓</span>{f}</li>)}
           </ul>
-          <div className="mt-5"><CheckoutButton /></div>
+          <div className="mt-5"><ProReportCta available={canSell()} wall={wall} /></div>
         </div>
       </div>
 

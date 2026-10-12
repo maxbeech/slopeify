@@ -1,5 +1,37 @@
 # Changelog
 
+## 2026-10-10: Pro design report fulfilment
+
+The $29 report can now be bought and delivered. Checkout stays off until it is fully configured, so nobody can pay for a report we cannot deliver.
+
+### Added
+- **The report.** Built by the real engine (`designWall()`) from the buyer's wall: result at a glance, inputs, cross-section with dimensions, the full earth-pressure and stability calculation sheet with the numbers worked through, footing depth, geogrid (when needed), permit, notes, materials and cost, and the code references. On screen at `/report` and as a PDF, both drawn from one model (`lib/report/model.ts`).
+- **Verified success path.** `/report` re-reads the Checkout Session from Stripe and shows the report only if it is paid, in payment mode, with our price. Otherwise it shows a waiting, failed or not-found screen. `GET /api/report/pdf` runs the same check on every download.
+- **Webhook** `POST /api/stripe/webhook` for `checkout.session.completed` and `checkout.session.async_payment_succeeded`: signature checked on the raw body, event id claimed and released on failure, 500 so Stripe retries, other products' events ignored by price id. It emails the PDF through the existing `lib/openhelm-mail.ts`, keyed on the session id so a repeat is never sent twice.
+- **Dependency:** `pdf-lib` 1.17.1 (MIT, pure JS, no native or file-system access, so it bundles under Next with no config). Nothing in the repo made PDFs; the free page uses the browser's print.
+- Tests: `report-checkout`, `report-pdf` and `stripe-webhook` suites (see `npm test`).
+
+### Changed
+- **Checkout** now takes the wall (`POST /api/checkout` with `{ wall }`), stores it in `metadata.wall`, returns to `/report` after payment and back to `/pricing` with the same wall on cancel. It needs `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ID` and `STRIPE_WEBHOOK_SECRET`; without all three it answers 503.
+- **Pricing page** shows one of three honest states: payments not connected (one sentence), no wall chosen yet (link to the calculator), or a working button naming the wall. It now renders per request because it reads the environment and the URL.
+- **Calculator** has a "Get the Pro design report for this wall" link that carries the inputs.
+- Verdict, permit headline and next-step wording moved to `lib/result-text.ts`, and the cross-section geometry to `lib/wall-section.ts`, so the results panel, the report and the PDF share them. Output of the on-screen diagram checked identical before the fix below.
+- Privacy page says where the wall and the email go.
+- README: the "known gap" warning is replaced by how fulfilment works, the env table, the webhook setup and a test-mode purchase script.
+
+### Fixed
+- The cross-section's base-width label ("2' base") was cut off at the bottom of the frame on every wall. The frame now has room for it.
+
+### Security
+- The Stripe session id unlocks the report, so it is treated as a credential. GA's `transaction_id` is now a SHA-256 of it (`transactionIdFor`), and `/api/checkout/status` no longer returns the raw id; the browser refuses to forward anything session-id-shaped. Page views drop `session_id` from `page_path`/`page_location` (`lib/openhelm-analytics.tsx`, a local change to port to the canonical copy).
+- `/report` and `/api/report/*` send `Referrer-Policy: no-referrer` (header via `next.config.ts`, plus the page's meta tag and the PDF route's own header).
+- `/report` (and a legacy `/pricing` success return) removes `session_id` from the address bar with `history.replaceState` once rendered, keeping the report and its download link on screen. A reload after that shows "not found"; the emailed link reopens it.
+- Tests: `session-id-privacy` suite.
+
+### Not done
+- No database or purchase table: Stripe is the record. Event-id dedupe is in memory per process; the mail idempotency key is what holds across restarts.
+- `/report` is private and `noindex`, so it is deliberately not in the sitemap.
+
 ## 2026-10-10: Machine-readability foundations
 
 - **llms.txt.** `/llms.txt` was a 404. It is now generated from the calculator, guide and state lists in `lib/llms.ts`, so its links cannot drift from the site. It states that there is no public API.

@@ -33,22 +33,39 @@ export function planForPayment(paymentStatus: string | undefined): AnalyticsPlan
 
 export interface CheckoutStatus {
   paid: boolean;
+  /** One-way hash of the session id (transactionIdFor), never the id itself. */
   transactionId?: string;
   currency?: string;
   value?: number;
   userRef?: string;
 }
 
-/** Shape the client-facing status from a Stripe Checkout Session object. */
+/**
+ * The GA `transaction_id` for a Checkout Session: the SHA-256 of the session id, as
+ * 64 lowercase hex chars. Stable per purchase, so GA still de-duplicates a repeat,
+ * but it cannot be turned back into the session id. The raw id is a credential
+ * (it unlocks /report and /api/report/pdf), so it must never reach analytics.
+ */
+export async function transactionIdFor(sessionId: string): Promise<string> {
+  const digest = await globalThis.crypto.subtle.digest("SHA-256", new TextEncoder().encode(sessionId));
+  return Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+/**
+ * Shape the client-facing status from a Stripe Checkout Session object.
+ * `transactionId` is the hashed id from transactionIdFor; the session's own id is
+ * deliberately not copied into the result.
+ */
 export function checkoutStatusFrom(
   session: { id?: unknown; payment_status?: unknown; currency?: unknown; amount_total?: unknown } | null,
   userRef: string | null,
+  transactionId: string | null,
 ): CheckoutStatus {
-  if (!session || session.payment_status !== "paid" || typeof session.id !== "string") return { paid: false };
+  if (!session || session.payment_status !== "paid" || typeof session.id !== "string" || !transactionId) return { paid: false };
   const cents = typeof session.amount_total === "number" ? session.amount_total : 0;
   return {
     paid: true,
-    transactionId: session.id,
+    transactionId,
     currency: typeof session.currency === "string" ? session.currency.toUpperCase() : "USD",
     value: cents / 100,
     ...(userRef ? { userRef } : {}),

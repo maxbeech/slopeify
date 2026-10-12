@@ -1,7 +1,7 @@
 // OpenHelm journey analytics: user ref hashing, plan derivation, checkout
 // confirmation shape and the status route (Stripe is stubbed, nothing leaves the process).
 import { userRefFor } from "../lib/openhelm-analytics-mp.ts";
-import { checkoutStatusFrom, isSessionId, planForPayment } from "../lib/analytics-journey.ts";
+import { checkoutStatusFrom, isSessionId, planForPayment, transactionIdFor } from "../lib/analytics-journey.ts";
 import { GET } from "../app/api/checkout/status/route.ts";
 
 let pass = 0, fail = 0;
@@ -19,10 +19,14 @@ check("paid only when Stripe says paid", planForPayment("paid") === "paid");
 check("unpaid is not paid", planForPayment("unpaid") !== "paid" && planForPayment(undefined) !== "paid");
 
 console.log("\nCheckout status shape");
-const ok = checkoutStatusFrom({ id: "cs_test_abcdefghij", payment_status: "paid", currency: "usd", amount_total: 2900 }, "abc");
-check("paid session maps to value, currency and ref", ok.paid && ok.value === 29 && ok.currency === "USD" && ok.userRef === "abc" && ok.transactionId === "cs_test_abcdefghij");
-check("unpaid session is not paid", !checkoutStatusFrom({ id: "cs_test_abcdefghij", payment_status: "unpaid" }, "abc").paid);
-check("null session is not paid", !checkoutStatusFrom(null, null).paid);
+const txn = await transactionIdFor("cs_test_abcdefghij");
+const ok = checkoutStatusFrom({ id: "cs_test_abcdefghij", payment_status: "paid", currency: "usd", amount_total: 2900 }, "abc", txn);
+check("paid session maps to value, currency and ref", ok.paid && ok.value === 29 && ok.currency === "USD" && ok.userRef === "abc" && ok.transactionId === txn);
+check("transaction id is the SHA-256 of the session id, not the id", /^[0-9a-f]{64}$/.test(txn) && txn !== "cs_test_abcdefghij" && !JSON.stringify(ok).includes("cs_test_abcdefghij"));
+check("transaction id is stable per session (GA de-duplicates on it)", txn === (await transactionIdFor("cs_test_abcdefghij")) && txn !== (await transactionIdFor("cs_test_abcdefghik")));
+check("unpaid session is not paid", !checkoutStatusFrom({ id: "cs_test_abcdefghij", payment_status: "unpaid" }, "abc", txn).paid);
+check("null session is not paid", !checkoutStatusFrom(null, null, null).paid);
+check("paid session without a hashed id is not reported as paid", !checkoutStatusFrom({ id: "cs_test_abcdefghij", payment_status: "paid" }, "abc", null).paid);
 check("no email or raw id fields leak", !("email" in ok) && Object.keys(ok).sort().join() === "currency,paid,transactionId,userRef,value");
 check("session id format", isSessionId("cs_live_abcdefghij12") && !isSessionId("../etc") && !isSessionId(null));
 
@@ -34,6 +38,7 @@ let called = 0;
 globalThis.fetch = (async () => { called++; return new Response(JSON.stringify({ id: sid, payment_status: "paid", currency: "usd", amount_total: 2900 }), { status: 200 }); }) as typeof fetch;
 const good = await (await GET(new Request(`http://x/api/checkout/status?session_id=${sid}`))).json();
 check("paid session returns hashed ref", good.paid === true && good.userRef === (await userRefFor(sid)) && good.value === 29);
+check("status route returns the hashed transaction id, never the raw session id", good.transactionId === (await transactionIdFor(sid)) && !JSON.stringify(good).includes(sid));
 const bad = await GET(new Request("http://x/api/checkout/status?session_id=nope"));
 check("bad id is rejected without calling Stripe", bad.status === 400 && called === 1);
 globalThis.fetch = (async () => new Response("{}", { status: 404 })) as typeof fetch;

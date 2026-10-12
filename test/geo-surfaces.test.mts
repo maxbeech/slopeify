@@ -9,8 +9,9 @@ import { SITE, websiteLd } from "../lib/site.ts";
 import * as robotsModule from "../app/robots.ts";
 
 // tsx loads a .ts file as CJS, so the default export sits one level down.
-const robots: () => { rules: unknown; sitemap: string } =
-  typeof robotsModule.default === "function" ? robotsModule.default : (robotsModule.default as any).default;
+const robots = (
+  typeof robotsModule.default === "function" ? robotsModule.default : (robotsModule.default as unknown as { default: unknown }).default
+) as () => { rules: unknown; sitemap: string };
 
 let pass = 0, fail = 0;
 function check(name: string, cond: boolean, detail = "") {
