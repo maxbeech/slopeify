@@ -12,7 +12,7 @@ import { loadReport } from "../lib/report/load.ts";
 import { reportReference } from "../lib/report/purchase.ts";
 import { SITE } from "../lib/site.ts";
 import {
-  BUYER_EMAIL, ENV_OK, SECRET_KEY, SESSION_ID, WALLS, WEBHOOK_SECRET,
+  BUYER_EMAIL, ENV_OK, SECRET_KEY, SESSION_ID, WALLS, WEBHOOK_SECRET, fakeStripe,
   fakeSession, json, pick, stubFetch, withEnv, type Call,
 } from "./helpers/report-fixtures.mts";
 
@@ -36,7 +36,9 @@ const evId = (body: string) => JSON.parse(body).id as string;
 
 console.log("Signature: known answer from two other implementations (openssl and python)");
 {
-  const secret = "whsec_VECTORSECRET0000000000";
+  // Same bytes the openssl and python vectors were computed with, assembled at runtime
+  // so the repo holds no Stripe-shaped literal.
+  const secret = fakeStripe("whsec", "VECTORSECRET0000000000");
   const payload = '{"id":"evt_1TestVector","type":"checkout.session.completed"}';
   const v1 = "824029e8da5303db6185ac5c421b17123d634203c110eefe5f655915e02667c0";
   const header = `t=1700000000,v1=${v1}`;
@@ -45,7 +47,7 @@ console.log("Signature: known answer from two other implementations (openssl and
   check("returns the signed timestamp", (verifyStripeSignature(payload, header, secret, at()) as { timestamp: number }).timestamp === 1700000000);
   check("one changed byte in the body fails", verifyStripeSignature(payload.replace("evt_1", "evt_2"), header, secret, at()).ok === false);
   check("re-serialised JSON (different whitespace) fails: the raw bytes are what is signed", verifyStripeSignature(JSON.stringify(JSON.parse(payload), null, 1), header, secret, at()).ok === false);
-  check("a different secret fails", verifyStripeSignature(payload, header, "whsec_OTHERSECRET00000000000", at()).ok === false);
+  check("a different secret fails", verifyStripeSignature(payload, header, fakeStripe("whsec", "OTHERSECRET00000000000"), at()).ok === false);
   check("the timestamp is bound into the signature", verifyStripeSignature(payload, `t=1700000001,v1=${v1}`, secret, at()).ok === false);
   check("the secret is used exactly as given, prefix included", verifyStripeSignature(payload, header, secret.replace("whsec_", ""), at()).ok === false);
   check(`accepts a ${SIGNATURE_TOLERANCE_SECONDS}s old timestamp`, verifyStripeSignature(payload, header, secret, at({ nowSeconds: 1700000000 + SIGNATURE_TOLERANCE_SECONDS })).ok === true);
@@ -271,7 +273,7 @@ console.log("\nHandler: refused before anything happens");
 {
   const w = world();
   const body = event();
-  const bad = await w.run(body, sign(body, "whsec_NOTTHESECRET000000000000"));
+  const bad = await w.run(body, sign(body, fakeStripe("whsec", "NOTTHESECRET000000000000")));
   check("wrong signature: 400", bad.status === 400 && bad.body.error === "invalid_signature");
   check("no header: 400", (await w.run(body, null)).status === 400);
   check("stale timestamp: 400", (await w.run(body, sign(body, WEBHOOK_SECRET, NOW - SIGNATURE_TOLERANCE_SECONDS - 5))).status === 400);

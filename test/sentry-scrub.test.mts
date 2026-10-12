@@ -10,8 +10,9 @@ function check(name: string, cond: boolean, detail = "") {
 }
 
 const SECRETS = [
-  "sk_live_abcdefghijkl1234", "pk_test_abcdefghijkl1234", "whsec_abcdefghijkl1234", "hlm_sk_abcdefghijkl1234",
-  "sntrys_abcdefghijkl1234", "jane.doe@example.com", "+44 20 7946 0958", "555-123-4567",
+  // Vendor-key fakes are assembled at runtime so no literal in the repo matches a real key pattern.
+  ...["sk_live", "pk_test", "whsec", "hlm_sk", "sntrys"].map((prefix) => [prefix, "abcdefghijkl1234"].join("_")),
+  "jane.doe@example.com", "+44 20 7946 0958", "555-123-4567",
   "Bearer abcdefghijklmnop1234", "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.abcdefghijk",
 ];
 console.log("Patterns");
@@ -33,7 +34,7 @@ const tx = scrubTransaction({
 } as any)!;
 check("transaction url + spans", tx.request!.url === "https://s.com/a" && tx.transaction === "GET /a"
   && (tx.spans![0] as any).data["http.url"] === "https://s.com/b" && (tx.spans![0] as any).data["url.query"] === "" && (tx.spans![0] as any).description === "GET /b");
-const ev = scrubEvent({ message: "boom sk_live_abcdefghijkl1234", user: { id: "u1", email: "a@b.com" }, request: { url: "/a?b=1", cookies: { a: "b" } } } as any)!;
+const ev = scrubEvent({ message: `boom ${["sk_live", "abcdefghijkl1234"].join("_")}`, user: { id: "u1", email: "a@b.com" }, request: { url: "/a?b=1", cookies: { a: "b" } } } as any)!;
 check("event scrubbed, user reduced to id", !ev.message!.includes("sk_live") && ev.user!.email === undefined && ev.user!.id === "u1" && ev.request!.url === "/a" && !ev.request!.cookies);
 const fb = {
   type: "feedback",

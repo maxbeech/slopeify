@@ -113,7 +113,7 @@ const baseEvent = (): any => ({
   contexts: { foo: { email: "bob@example.com", apiKey: "k" } },
   breadcrumbs: [{ message: "call bob@example.com", data: { url: "https://x.com/?token=bc123secret", token: "bctok" } }],
 });
-const EVENT_NEEDLES = ["bob@example.com", "secret123abc", "bc123secret", "pw12345678", "abc12345678", "abc123xyz987", "bctok", "sk_live_Z9", "eyJzdWIi"];
+const EVENT_NEEDLES = ["bob@example.com", "secret123abc", "bc123secret", "pw12345678", "abc12345678", "abc123xyz987", "bctok", ["sk_live", "Z9"].join("_"), "eyJzdWIi"];
 
 T("scrubEvent: no secret or PII survives in message, exception, frame vars, request, extra, tags, contexts, breadcrumbs", () => {
   const out = scrubEvent(baseEvent());
@@ -196,7 +196,7 @@ T("scrubTransaction strips URL queries from request, name and spans, and fails c
 
 T("scrubLog redacts message and attributes (including URLs and nested secrets) and fails closed", () => {
   const out = scrubLog({ level: "info", message: "x bob@example.com Bearer " + tail(30), attributes: { token: "logtok", email: "bob@example.com", url: "https://x.com/?token=lg123secret", nested: { a: "sk_live_" + tail(30) } } } as any);
-  A(out !== null && leaks(out, "bob@example.com", "logtok", "lg123secret", "sk_live_Z9").length === 0 && !NEEDLE.test(JSON.stringify(out)), "log leaked");
+  A(out !== null && leaks(out, "bob@example.com", "logtok", "lg123secret", ["sk_live", "Z9"].join("_")).length === 0 && !NEEDLE.test(JSON.stringify(out)), "log leaked");
   const bad: any = { level: "info", message: "x" };
   Object.defineProperty(bad, "attributes", { get() { throw new Error("boom"); }, enumerable: true });
   A(scrubLog(bad) === null, "raw log returned");

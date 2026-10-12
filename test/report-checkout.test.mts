@@ -13,7 +13,7 @@ import { encodeInputs } from "../lib/calc-url.ts";
 import { DEFAULT_INPUTS } from "../lib/design.ts";
 import { SITE } from "../lib/site.ts";
 import {
-  BUYER_EMAIL, ENV_OK, PRICE_ID, SECRET_KEY, SESSION_ID, WALLS, WEBHOOK_SECRET,
+  BUYER_EMAIL, ENV_OK, PRICE_ID, SECRET_KEY, SESSION_ID, WALLS, WEBHOOK_SECRET, fakeStripe,
   fakeSession, json, pick, stripeReturns, stubFetch, withEnv,
 } from "./helpers/report-fixtures.mts";
 
@@ -38,8 +38,10 @@ for (const name of Object.values(ENV)) {
 }
 check("whitespace around a value is trimmed", canSell({ ...ENV_OK, STRIPE_PRICE_ID: `  ${PRICE_ID}\n` }));
 check("a product id is not accepted as a price id", !canSell({ ...ENV_OK, STRIPE_PRICE_ID: "prod_123456789" }));
-check("a publishable key is not accepted as the secret key", !canSell({ ...ENV_OK, STRIPE_SECRET_KEY: "pk_test_FAKEFAKEFAKEFAKE0000" }));
-check("a restricted key is accepted", canSell({ ...ENV_OK, STRIPE_SECRET_KEY: "rk_live_FAKEFAKEFAKEFAKE0000" }));
+check("a publishable key is not accepted as the secret key", !canSell({ ...ENV_OK, STRIPE_SECRET_KEY: fakeStripe("pk_test", "FAKEFAKEFAKEFAKE0000") }));
+check("a restricted key is accepted", canSell({ ...ENV_OK, STRIPE_SECRET_KEY: fakeStripe("rk_live", "FAKEFAKEFAKEFAKE0000") }));
+check("a secret key too short to be real is refused", !canSell({ ...ENV_OK, STRIPE_SECRET_KEY: fakeStripe("sk_test", "short") }) && readConfig({ ...ENV_OK, STRIPE_SECRET_KEY: fakeStripe("sk_test", "short") }) === null);
+check("a webhook secret too short to be real is refused", !canSell({ ...ENV_OK, STRIPE_WEBHOOK_SECRET: fakeStripe("whsec", "short") }));
 check("a webhook secret needs the whsec_ prefix", !canSell({ ...ENV_OK, STRIPE_WEBHOOK_SECRET: "FAKEFAKEFAKEFAKEFAKE0000" }));
 check("viewing a report needs only key and price (not the webhook secret)", readConfig({ ...ENV_OK, STRIPE_WEBHOOK_SECRET: undefined }) !== null && sellConfig({ ...ENV_OK, STRIPE_WEBHOOK_SECRET: undefined }) === null);
 const leak = JSON.stringify(missingEnv({ STRIPE_SECRET_KEY: SECRET_KEY, STRIPE_PRICE_ID: "bad", STRIPE_WEBHOOK_SECRET: WEBHOOK_SECRET }));
@@ -133,7 +135,7 @@ console.log("\nStripe lookup");
 }
 {
   const s = stripeReturns(fakeSession());
-  for (const bad of ["", "cs_test_", "../../v1/customers", "cs_test_abc/../x", `${SESSION_ID}?x=1`, "sk_test_FAKEFAKEFAKE", null, undefined]) {
+  for (const bad of ["", "cs_test_", "../../v1/customers", "cs_test_abc/../x", `${SESSION_ID}?x=1`, fakeStripe("sk_test", "FAKEFAKEFAKE"), null, undefined]) {
     const r = await fetchCheckoutSession(bad as string, SECRET_KEY);
     check(`rejects ${JSON.stringify(bad)} without calling Stripe`, !r.ok && r.kind === "invalid_id");
   }

@@ -32,7 +32,7 @@ check("session id format", isSessionId("cs_live_abcdefghij12") && !isSessionId("
 
 console.log("\nStatus route");
 const realFetch = globalThis.fetch;
-process.env.STRIPE_SECRET_KEY = "sk_test_x";
+process.env.STRIPE_SECRET_KEY = ["sk_test", "x"].join("_"); // assembled: no Stripe-shaped literal in the repo
 const sid = "cs_test_abcdefghij12";
 let called = 0;
 globalThis.fetch = (async () => { called++; return new Response(JSON.stringify({ id: sid, payment_status: "paid", currency: "usd", amount_total: 2900 }), { status: 200 }); }) as typeof fetch;

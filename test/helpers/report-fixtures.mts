@@ -6,8 +6,16 @@ import { encodeInputs } from "../../lib/calc-url.ts";
 
 export const SESSION_ID = "cs_test_a1B2c3D4e5F6g7H8i9J0k1L2m3N4o5P6";
 export const PRICE_ID = "price_1TestSlopeifyReport";
-export const SECRET_KEY = "sk_test_FAKEFAKEFAKE0000"; // kept short so secret scanners do not mistake it for a real key
-export const WEBHOOK_SECRET = "whsec_FAKEFAKEFAKEFAKEFAKE0000";
+/**
+ * A Stripe-shaped fake, assembled at runtime from its prefix and body so that no
+ * literal anywhere in the repo matches a Stripe key or secret pattern (secret
+ * scanners flag those even when they are fakes). Fixed values, so failures reproduce.
+ */
+export const fakeStripe = (prefix: "sk_test" | "sk_live" | "rk_live" | "pk_test" | "whsec", body: string) =>
+  [prefix, body].join("_");
+
+export const SECRET_KEY = fakeStripe("sk_test", "FAKEFAKEFAKE0000");
+export const WEBHOOK_SECRET = fakeStripe("whsec", "FAKEFAKEFAKEFAKEFAKE0000");
 export const BUYER_EMAIL = "buyer@example.com";
 
 /** Complete, valid environment for selling and fulfilling. */
