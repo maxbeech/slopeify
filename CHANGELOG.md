@@ -25,7 +25,8 @@ The $29 report can now be bought and delivered. Checkout stays off until it is f
 ### Security
 - The Stripe session id unlocks the report, so it is treated as a credential. GA's `transaction_id` is now a SHA-256 of it (`transactionIdFor`), and `/api/checkout/status` no longer returns the raw id; the browser refuses to forward anything session-id-shaped. Page views drop `session_id` from `page_path`/`page_location` (`lib/openhelm-analytics.tsx`, a local change to port to the canonical copy).
 - `/report` and `/api/report/*` send `Referrer-Policy: no-referrer` (header via `next.config.ts`, plus the page's meta tag and the PDF route's own header).
-- `/report` (and a legacy `/pricing` success return) removes `session_id` from the address bar with `history.replaceState` once rendered, keeping the report and its download link on screen. A reload after that shows "not found"; the emailed link reopens it.
+- `/report` (and a legacy `/pricing` success return) removes `session_id` from the address bar with `history.replaceState` once rendered, keeping the report and its download link on screen.
+- Reloading the clean `/report` keeps the report: the first load stores the id in this tab's `sessionStorage` (`slopeify:report:session_id`), and `ReportRecovery` rebuilds the report through the `recoverReport` Server Action, so the id travels in a POST body, not a URL, and is not logged. With storage blocked or empty it shows "not found" as before, without throwing; the emailed link still reopens the report.
 - Tests: `session-id-privacy` suite.
 
 ### Not done

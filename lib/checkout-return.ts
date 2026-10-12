@@ -25,6 +25,51 @@ export function urlWithoutSessionId(href: string): string | null {
   return `${url.pathname}${query ? `?${query}` : ""}${url.hash}`;
 }
 
+/**
+ * sessionStorage key for the report this tab is showing. Scoped to /report: it holds
+ * one session id, so a reload of the scrubbed /report URL can rebuild the report
+ * (components/ReportRecovery.tsx) without the id going back into the URL.
+ * sessionStorage is per tab and is cleared when the tab closes.
+ */
+export const REPORT_SESSION_KEY = "slopeify:report:session_id";
+
+type KeyStore = Pick<Storage, "getItem" | "setItem">;
+
+/** window.sessionStorage, or null where it is missing or blocked (merely touching it can throw). */
+export function sessionStore(): KeyStore | null {
+  try {
+    return typeof window === "undefined" ? null : (window.sessionStorage ?? null);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * First load of /report: keep a valid session id from `href` in `storage`, then hand
+ * back the scrubbed URL (or null when the URL has no id). Never throws: with storage
+ * blocked the URL is still scrubbed, and a reload falls back to "not found".
+ */
+export function rememberSessionId(href: string, storage: KeyStore | null): string | null {
+  const next = urlWithoutSessionId(href);
+  if (next === null) return null;
+  const id = new URL(href, "http://localhost").searchParams.get(SESSION_ID_PARAM);
+  if (storage && isSessionId(id)) {
+    try { storage.setItem(REPORT_SESSION_KEY, id); } catch { /* blocked or full: scrub anyway */ }
+  }
+  return next;
+}
+
+/** Reload of /report without an id: the id this tab stored, or null. Never throws. */
+export function recallSessionId(storage: KeyStore | null): string | null {
+  if (!storage) return null;
+  try {
+    const id = storage.getItem(REPORT_SESSION_KEY);
+    return isSessionId(id) ? id : null;
+  } catch {
+    return null;
+  }
+}
+
 export interface ReturnDeps {
   fetch: typeof fetch;
   track: <K extends keyof JourneyEvents>(event: K, params: JourneyEvents[K]) => unknown;

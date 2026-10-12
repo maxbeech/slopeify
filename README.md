@@ -145,7 +145,8 @@ to happen outside this repo:
    `/api/checkout/status`, which never returns the raw id), page views drop `session_id` from
    `page_path` and `page_location`, `/report` and `/api/report/*` send
    `Referrer-Policy: no-referrer`, and `/report` removes the id from the address bar once the
-   report has rendered (`test/session-id-privacy.test.mts`). As a second layer, also add
+   report has rendered, keeping it in the tab's `sessionStorage` so a reload rebuilds the
+   report through a Server Action (`test/session-id-privacy.test.mts`). As a second layer, also add
    `session_id` to the GA4 web stream's data redaction when you set the id up.
 4. **Sentry**: set `NEXT_PUBLIC_SENTRY_DSN` and `SENTRY_DSN` (project `slopeify_web`, see
    `.env.example`) in Helm7. `NEXT_PUBLIC_SENTRY_DSN` is baked in at build time.

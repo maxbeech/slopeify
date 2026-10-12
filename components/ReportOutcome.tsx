@@ -47,7 +47,7 @@ export default function ReportOutcome({ load, sessionId }: { load: ReportLoad; s
                 <span className="text-xs text-slate-600">We also email a copy to {maskEmail(load.email)}. It can take a minute.</span>
               )}
             </div>
-            <p className="mt-3 text-xs text-slate-500">Download the PDF now: for your privacy this page stops showing the report once you leave or reload it. Anyone with your report link can open it, so keep that link to yourself.</p>
+            <p className="mt-3 text-xs text-slate-500">This tab keeps your report while it stays open, so download the PDF to keep a copy. Anyone with your report link can open it, so keep that link to yourself.</p>
           </div>
           <ReportView model={load.model} design={load.design} />
         </div>

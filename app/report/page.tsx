@@ -2,14 +2,17 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import CheckoutReturnTracker from "@/components/CheckoutReturnTracker";
 import ReportOutcome from "@/components/ReportOutcome";
+import ReportRecovery from "@/components/ReportRecovery";
 import SessionIdScrubber from "@/components/SessionIdScrubber";
 import { loadReport } from "@/lib/report/load";
 
 // Private, per-buyer page: never indexed, never cached, and deliberately absent from
 // the sitemap (a sitemap lists pages we want found; this one is only for a buyer).
 // The session id in its URL unlocks the report, so the page sends no referrer (here
-// and as a Referrer-Policy header in next.config.ts) and drops the id from the
-// address bar once it has rendered (SessionIdScrubber).
+// and as a Referrer-Policy header in next.config.ts), keeps the id in this tab's
+// sessionStorage and drops it from the address bar once it has rendered
+// (SessionIdScrubber). A reload of the clean URL rebuilds the report from the stored
+// id (ReportRecovery); with nothing stored it shows the usual "not found".
 export const metadata: Metadata = {
   title: "Your design report",
   robots: { index: false, follow: false },
@@ -25,12 +28,13 @@ export default async function ReportPage({ searchParams }: { searchParams: Searc
   // Never trust the redirect alone: the session is re-read from Stripe and must be a paid
   // Slopeify report before anything is shown (lib/report/session.ts).
   const load = await loadReport(sessionId);
+  const outcome = <ReportOutcome load={load} sessionId={sessionId} />;
 
   return (
     <div className="mx-auto max-w-3xl">
       <Suspense fallback={null}><CheckoutReturnTracker /></Suspense>
-      <SessionIdScrubber />
-      <ReportOutcome load={load} sessionId={sessionId} />
+      <SessionIdScrubber remember />
+      {sessionId ? outcome : <ReportRecovery fallback={outcome} />}
     </div>
   );
 }
