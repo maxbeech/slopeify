@@ -1,7 +1,7 @@
 export const SITE = {
   name: "Slopeify",
   domain: "slopeify.com",
-  url: "https://slopeify.com",
+  url: "https://www.slopeify.com",
   tagline: "Retaining wall design, cost and permit calculator",
   description:
     "Free retaining wall calculator. Get the lateral earth pressure, the minimum base width, the overturning, sliding and bearing factors of safety, whether you need geogrid reinforcement, a materials takeoff with cost, and whether your wall needs a permit. Built on IBC Table 1610.1 soil loads and Table 1806.2 bearing values.",
