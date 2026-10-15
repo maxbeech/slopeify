@@ -381,7 +381,7 @@ Weep holes are small openings through the face of a solid wall that let water es
     title: "Block vs Concrete vs Timber Retaining Walls: How to Choose",
     description:
       "Segmental block, poured concrete, timber and boulder walls compared on cost, lifespan and DIY difficulty — find your best fit.",
-    date: "2026-06-11",
+    date: "2026-10-15",
     readMins: 9,
     image: "/blog/segmental-block-vs-poured-concrete-vs-timber.jpg",
     imageCredit: "Photo by Jef KoeleWijn / Pexels",
@@ -393,7 +393,8 @@ Weep holes are small openings through the face of a solid wall that let water es
 - **Poured concrete** costs $40-$75/sq ft but gives you the smallest footprint and highest strength for a given height.
 - **Timber** is the cheapest option at $20-$40/sq ft, though it has the shortest lifespan at 15-25 years.
 - **Boulder walls** cost $25-$55/sq ft and are the most forgiving of uneven ground, but need excavator access.
-- Most US jurisdictions require a permit and a stamped engineering design once a wall passes **4 ft** in height or carries a surcharge, per the [International Code Council](https://codes.iccsafe.org/s/IRC2021P2/part-i-administrative/IRC2021P2-Pt01-Ch01-SecR105.2).
+- Most US jurisdictions require a permit once a wall passes **4 ft** in height or carries a surcharge, the limits in the [IRC permit exemption](https://codes.iccsafe.org/s/IRC2021P2/part-i-administrative/IRC2021P2-Pt01-Ch01-SecR105.2). Many also require an engineered design above that height, so check locally.
+- The prices below are rough installed ranges. They vary a lot by region and by excavation and drainage needs, so get local quotes before you budget.
 - Run your own numbers through the [retaining wall calculator](/) before you commit — base width and reinforcement needs change a lot between materials.
 
 ## Segmental block (SRW)
@@ -409,7 +410,7 @@ Segmental retaining wall (SRW) units are hollow or solid concrete blocks that in
 
 ### Where it trips people up
 
-The most common failure isn't the block — it's what's behind it. Skimping on drainage gravel or forgetting a perforated pipe at the base lets hydrostatic pressure build up, and the wall bulges or tips within a few wet seasons. The fix is simple and cheap relative to the wall itself: at least 12 in of clean crushed stone behind the face, a drain pipe daylighted downhill, and free-draining backfill rather than the clay you dug out. The [NCMA/CMHA design manual](https://www.masonryandhardscapes.org/resource/srw-man-001/) has been the industry reference for SRW engineering since 1993, and drainage detailing is one of its central chapters for good reason.
+The most common failure isn't the block — it's what's behind it. Skimping on drainage gravel or forgetting a perforated pipe at the base lets hydrostatic pressure build up, and the wall bulges or tips within a few wet seasons. The fix is simple and cheap relative to the wall itself: at least 12 in of clean crushed stone behind the face, a drain pipe daylighted downhill, and free-draining backfill rather than the clay you dug out. The [CMHA segmental retaining wall design manual](https://www.masonryandhardscapes.org/resource/srw-man-001/) is the industry reference for SRW engineering, and drainage detailing is one of its central topics.
 
 For a deeper look at picking blocks and sizing courses, see our [segmental retaining wall blocks design guide](/blog/segmental-retaining-wall-blocks), or run your wall through the [segmental block calculator](/calculators/segmental-block-retaining-wall-calculator) to see base width and geogrid layers for your exact height and soil.
 
@@ -605,7 +606,7 @@ Not always — short walls with good soil and no surcharge often don't need it. 
     title: "When Does a Retaining Wall Need Geogrid Reinforcement?",
     description:
       "Find out exactly when your retaining wall needs geogrid reinforcement, how it's sized, and what it costs — check your wall for free.",
-    date: "2026-06-09",
+    date: "2026-10-15",
     readMins: 8,
     image: "/blog/when-do-you-need-geogrid.jpg",
     imageCredit: "Photo by Willians Huerta / Pexels",
@@ -626,7 +627,7 @@ Picture a stiff, open-weave mesh, usually high-density polyethylene (HDPE) or wo
 
 That combined mass is far heavier and far more resistant to sliding and overturning than the block alone. Engineers call it a **mechanically stabilised earth (MSE)** structure. The design approach behind it, developed and published through the segmental retaining wall design manual maintained by the industry body now known as the Concrete Masonry & Hardscapes Association (formerly NCMA), calculates the pulling force at each grid elevation and checks it against both the grid's pullout resistance and its long-term strength, according to [CMHA's segmental retaining wall resources](https://www.cmha.org/building-solutions/segmental-retaining-walls/). It's the same method our wall design calculator runs behind the scenes.
 
-> "The moment you add a surcharge — a driveway, a slope, a shed — height stops being the only number that matters. We size for the load, not just the wall." — Slopeify's engineering advisors
+Surcharge matters as much as height. A driveway, a slope or a shed above the wall adds load the grid has to resist, and the design should size for that load, not just for the height of the wall.
 
 ## When you actually need it
 
@@ -660,7 +661,7 @@ Manufacturer spacing tables generally allow layers anywhere from 8 in up to a ma
 
 ## Geogrid types and grades
 
-Not all geogrid is interchangeable, and picking the wrong type is a common DIY mistake.
+Not all geogrid is interchangeable, and picking the wrong type is a common DIY mistake. The strength ranges below are typical catalogue figures; check the manufacturer's data sheet for the product you buy, and the engineer's design for the strength your wall needs.
 
 | Type | Typical material | Best suited to | Typical ultimate strength |
 |---|---|---|---|
@@ -669,7 +670,7 @@ Not all geogrid is interchangeable, and picking the wrong type is a common DIY m
 | Woven, coated PET | Polyester yarn, PVC or latex coated | Standard residential SRW | 2,000-4,800 lb/ft |
 | High-strength extruded | Punched-and-drawn HDPE | Tall walls, heavy surcharge | 6,000-8,000+ lb/ft |
 
-Uniaxial grid is what goes into a wall — the strength runs perpendicular to the block face, pulling straight back into the fill. Biaxial grid is built for two-way loads and belongs under a driveway or parking pad, not woven into a wall design; swap the two and you'll underbuild the wall even if the layer count looks right on paper. Quality PET and HDPE geogrids are rated for service lives well beyond 75 years when specified and installed correctly, but cheap product, sun exposure before burial, or sharp crushed aggregate that punctures the mesh will shorten that considerably.
+Uniaxial grid is what goes into a wall — the strength runs perpendicular to the block face, pulling straight back into the fill. Biaxial grid is built for two-way loads and belongs under a driveway or parking pad, not woven into a wall design; swap the two and you'll underbuild the wall even if the layer count looks right on paper. Manufacturers publish design service lives for quality PET and HDPE geogrid when it is specified and installed correctly, but cheap product, sun exposure before burial, or sharp crushed aggregate that punctures the mesh will shorten that considerably.
 
 ## Installation mistakes that undo the design
 
@@ -683,9 +684,9 @@ Geogrid only works if it's installed the way it was designed, and small shortcut
 
 ## A worked example: when a short wall still needs grid
 
-A homeowner planning a 30-ft-long, 3.5-ft-tall block wall to hold up a new gravel driveway assumed a short wall meant a simple gravity build. Run through our calculator, the driveway surcharge tipped the bearing and sliding checks into failure at every gravity base width tested. Two geogrid layers, each reaching 4 ft back into the compacted base course, solved it without changing the visible wall height at all.
+Take a hypothetical 30-ft-long, 3.5-ft-tall block wall holding up a new gravel driveway. It looks like a simple gravity build, but the driveway surcharge can push the bearing and sliding checks past their limits at practical base widths. One common answer is two geogrid layers, each reaching 4 ft back into the compacted base course, which changes the design without changing the visible wall height.
 
-The face area was 105 sq ft (30 ft × 3.5 ft). At a typical **$30-60/sq ft** installed range for block walls, the base build sat around **$3,150-6,300**. Two layers of grid, the extra excavation to place them, and the added compaction time added roughly **$400-800** to that job, a 10-20% bump for a wall that would otherwise have needed a rebuild within a few wet seasons. That's the trade most homeowners don't see coming: the surcharge, not the height, was what pushed this particular wall into reinforced territory, and the design guide in [Gravity Retaining Wall Design Explained](/blog/gravity-retaining-wall-sizing) is worth reading alongside this one so you can spot the difference on your own site. For anything past a simple garden wall, getting a local contractor or engineer to check the site specifics through [Find a Pro](/find-a-pro) is cheap insurance against a costly redo.
+The face area was 105 sq ft (30 ft × 3.5 ft). At a typical **$30-60/sq ft** installed range for block walls, the base build sat around **$3,150-6,300**. Two layers of grid, the extra excavation to place them, and the added compaction time added roughly **$400-800** to that job, a 10-20% bump in this example. Local prices vary a lot, so treat these figures as a sense check, not a quote. That's the trade most homeowners don't see coming: the surcharge, not the height, was what pushed this particular wall into reinforced territory, and the design guide in [Gravity Retaining Wall Design Explained](/blog/gravity-retaining-wall-sizing) is worth reading alongside this one so you can spot the difference on your own site. For anything past a simple garden wall, getting a local contractor or engineer to check the site specifics through [Find a Pro](/find-a-pro) is cheap insurance against a costly redo.
 
 ## FAQs
 
@@ -703,7 +704,7 @@ Uniaxial geogrid is strong in one direction and is what's used to reinforce a re
 
 ### Does geogrid degrade or rot over time?
 
-Quality PET and HDPE geogrid is designed for service lives well past 75 years when specified correctly and buried promptly. Cheap product, prolonged UV exposure before installation, or sharp aggregate punching through the mesh will shorten that considerably.
+Manufacturers publish design service lives for quality PET and HDPE geogrid when it is specified correctly and buried promptly, and the figure depends on the product. Cheap product, prolonged UV exposure before installation, or sharp aggregate punching through the mesh will shorten that considerably.
 
 ### How much does adding geogrid increase the cost of a retaining wall?
 
@@ -1537,7 +1538,7 @@ Often, yes. Splitting a 6-ft wall into two 3-ft tiers with a planted setback bet
     title: "Retaining Wall Surcharge Explained",
     description:
       "Driveways, sheds and parked cars all add surcharge load to a retaining wall. See how it's calculated and when it forces an engineered design.",
-    date: "2026-06-20",
+    date: "2026-10-15",
     readMins: 9,
     image: "/blog/retaining-wall-surcharge-explained.jpg",
     imageCredit: "Photo by Chanh Thi Ha / Pexels",
@@ -1548,7 +1549,7 @@ Often, yes. Splitting a 6-ft wall into two 3-ft tiers with a planted setback bet
 - A surcharge is any extra load on the soil behind a wall — driveways, parked vehicles, sheds, pools, decks, and steep slopes all count.
 - A typical residential driveway adds about **100 psf**, which behaves like an extra **0.83 ft of soil height** pressing on the wall.
 - Lateral force from a surcharge is calculated as **q × Ka × H** (load × active pressure coefficient × wall height) — a simple multiplication, not exotic maths.
-- Any wall that carries a surcharge needs engineering and, in most jurisdictions, a permit — regardless of how short it is.
+- Any wall that carries a surcharge loses the small-wall permit exemption, so it usually needs a permit and often an engineered design, however short it is.
 - A wall that's fine on day one can fail years later if a driveway, patio or shed gets added behind it afterwards.
 - The [calculator](/) and [base width tool](/calculators/retaining-wall-base-calculator) both let you enter a surcharge value so you can see the impact before you build.
 
@@ -1565,9 +1566,7 @@ Common examples:
 - **A steeper slope above the wall** than the design assumed — the extra soil mass itself acts as a surcharge.
 - **Stockpiled materials** — pallets of pavers, firewood, soil, or building supplies stacked near the top of the wall during a renovation.
 
-That last one catches people out constantly. A UK safety body, CROSS (Collaborative Reporting for Safer Structures), documented a case where a contractor stacked two storeys of palletised bricks at the top of a small garden retaining wall during a house renovation — a load the wall was never designed to carry. The report concluded plainly:
-
-> "Overloaded masonry retaining walls are liable to sudden failure even in domestic circumstances with serious, and sometimes, fatal consequences. The danger increases with surcharge loading at the top of them." — [CROSS-US Safety Report #834](https://www.cross-safety.org/us/safety-information/cross-safety-report/excessive-surcharge-back-retaining-wall-834)
+That last one catches people out constantly. Stacking pallets of bricks, pavers or soil at the top of a wall during a renovation puts a load on it that a wall built for soil alone was never designed to carry.
 
 Materials deliveries, dumpsters, and even a line of parked contractor vehicles during construction can temporarily do the same thing a permanent driveway does. If you're mid-renovation, that pile of pavers waiting to be laid is a surcharge too — treat it that way.
 
@@ -1587,7 +1586,7 @@ For the lateral force itself — the sideways shove trying to tip or slide the w
 
 Multiply those three together and you get the extra horizontal force, in pounds per linear foot of wall, that the surcharge adds on top of the soil's own pressure. Because H is in the equation, taller walls feel a proportionally bigger surcharge penalty than short ones — a 6-ft wall picks up roughly twice the surcharge force of a 3-ft wall carrying the same load.
 
-> "Surcharge loads are added directly to the active earth pressure at each design elevation — they don't get a separate, lesser category of safety check. If the wall fails with the surcharge included, it fails, full stop." — Slopeify's engineering advisors
+In design terms, surcharge loads are added directly to the active earth pressure at each design elevation. They don't get a separate, lesser safety check: a wall that fails with the surcharge included fails.
 
 ## Typical surcharge values by scenario
 
@@ -1609,9 +1608,9 @@ Notice the jump between a plain car driveway (100 psf) and one that a fire truck
 
 Most residential building codes set a height threshold — commonly 4 ft measured from the bottom of the footing — below which a retaining wall doesn't need a permit or a stamped engineering design. That threshold quietly disappears the moment a surcharge is involved.
 
-Under the [International Residential Code](https://codes.iccsafe.org/s/IRC2021P3/chapter-4-foundations/IRC2021P3-Pt03-Ch04-SecR404.4) (IRC R404) and IBC §1807, a wall that resists a surcharge in addition to plain soil must be engineered regardless of its height. A 2-ft wall holding back a driveway is treated more seriously by code than a 3.5-ft wall holding back nothing but bare slope.
+The model codes exempt a retaining wall of 4 ft or less, measured from the bottom of the footing, from a permit, but only if it does not support a surcharge or impound liquids ([IRC R105.2](https://codes.iccsafe.org/s/IRC2021P2/part-i-administrative/IRC2021P2-Pt01-Ch01-SecR105.2) lists the exemption). A wall carrying a surcharge is outside that exemption whatever its height, and your adopted edition and local amendments decide the rest. A 2-ft wall holding back a driveway is treated more seriously by code than a 3.5-ft wall holding back nothing but bare slope.
 
-The reason is simple once you've seen the maths: a gravity wall's stability comes almost entirely from its own weight and base width. Add 100 psf of driveway behind a 3-ft wall and you can tip its overturning safety factor from comfortably passing to failing, without changing a single other dimension. It genuinely can be the difference between a wall that stands for 40 years and one that starts leaning in three. Falls, drainage backups, and fence damage from tipped walls are a routine cause of homeowner insurance claims, which is part of why the [International Code Council](https://codes.iccsafe.org/s/IRC2021P3/chapter-4-foundations/IRC2021P3-Pt03-Ch04-SecR404.4) treats surcharge as a trigger for review rather than a footnote.
+The reason is simple once you've seen the maths: a gravity wall's stability comes almost entirely from its own weight and base width. Add 100 psf of driveway behind a 3-ft wall and you can tip its overturning safety factor from comfortably passing to failing, without changing a single other dimension. It genuinely can be the difference between a wall that stands for 40 years and one that starts leaning in three.
 
 This is also the scenario homeowners misjudge most. It's tempting to look at a wall that's "only" 2.5 ft tall and assume it's automatically DIY territory. If there's a driveway, a shed pad, or a parked trailer anywhere near the top of that slope, it isn't. Our guide on [permits for retaining walls](/blog/do-i-need-a-permit-for-a-retaining-wall) walks through how height and surcharge combine to decide whether you need paperwork at all, and [the three stability checks every wall must pass](/blog/retaining-wall-engineering-basics) explains overturning, sliding and bearing pressure in more depth.
 
@@ -1633,7 +1632,7 @@ Say you're planning a 3-ft gravity block wall along the back of a yard, with pla
 
 Add the driveway's 100 psf surcharge and the equivalent extra soil height is 0.83 ft, effectively pushing the wall's working height toward 3.8 ft for pressure purposes. Run q × Ka × H with q = 100 psf, Ka = 0.33 and H = 3 ft, and you get roughly 99 lb of extra lateral force per linear foot of wall — on top of whatever the soil alone was already contributing. That's often enough to drop the overturning factor of safety below the usual 1.5 minimum, meaning the same wall now needs a wider base, a deeper footing, or reinforcement to stay put.
 
-This is exactly the trap one homeowner in Ohio fell into: an 18-inch modular block wall stood fine for two years until a paver driveway went in directly behind it. Within six months the wall had leaned nearly 2 in out of plumb, and the fix ended up costing more than double what building it correctly the first time would have. Nobody had recalculated the wall once the driveway plans changed — the surcharge simply wasn't part of the original design.
+The trap is a wall designed for soil alone, with a paver driveway added behind it later and nobody re-running the numbers. The surcharge simply wasn't part of the original design.
 
 Run your own numbers through the [wall design calculator](/) before committing to a footing size, especially if there's any chance the land use behind the wall will change. If the slope above your wall is part of the picture too, [our guide to building on a slope](/blog/retaining-wall-on-slope) covers how surcharge and grade interact, and if the wall sits close to a house, [check the foundation-proximity rules](/blog/retaining-wall-near-foundation) as well — surcharge and setback problems often show up together. When the numbers come back tight, it's worth getting a second opinion from a local engineer via [Find a Pro](/find-a-pro) rather than guessing at a bigger footing and hoping.
 
@@ -1649,7 +1648,7 @@ A typical driveway surcharge of 100 psf behaves like roughly 0.83 ft of extra so
 
 ### Do I need an engineer for a small retaining wall with a surcharge?
 
-In almost every US jurisdiction, yes. Codes based on the IRC and IBC require engineering for any wall that carries a surcharge, regardless of height, because the standard height exemptions assume soil-only loading. Check with your local building department, but budget for a stamped design if any load sits behind the wall.
+Often, yes. A wall of 4 ft or less that carries no surcharge is usually exempt from a permit. A surcharge takes it outside that exemption whatever its height, so a permit is needed, and many building departments then require a stamped design. Check with your local building department before you budget.
 
 ### Can I reduce surcharge load without removing the driveway?
 
@@ -1902,7 +1901,7 @@ Yes. The 2× figure assumes reasonably well-draining, compacted backfill. Looser
     title: "Gravity Retaining Wall Sizing Explained",
     description:
       "How to size a gravity retaining wall's base width by height, soil type and material density, with worked examples and a free calculator.",
-    date: "2026-06-20",
+    date: "2026-10-15",
     readMins: 10,
     image: "/blog/gravity-retaining-wall-sizing.jpg",
     imageCredit: "Photo by Muhammed Zahid Bulut / Pexels",
@@ -1915,7 +1914,7 @@ Yes. The 2× figure assumes reasonably well-draining, compacted backfill. Looser
 - Equivalent fluid pressure (EFP) for common backfills ranges from about **30 pcf** (free-draining gravel) to **60 pcf** (wet clay) — this single number swings the base width more than almost anything else.
 - Denser materials need less base for the same height: a poured concrete gravity wall (~150 pcf) can run narrower than a boulder wall (~120–125 pcf effective) at the same height and soil.
 - Past roughly **4 ft**, or as soon as any surcharge sits above the wall, pure gravity sizing balloons — that's the point to switch to reinforced or cantilever construction.
-- Most US jurisdictions follow the [International Code Council](https://www.iccsafe.org)'s threshold exempting walls under 4 ft from a building permit — unless they carry a surcharge, in which case engineering is required regardless of height.
+- The model codes exempt a wall of 4 ft or less, measured from the bottom of the footing, from a permit, unless it supports a surcharge or impounds liquids ([IRC R105.2](https://codes.iccsafe.org/s/IRC2021P2/part-i-administrative/IRC2021P2-Pt01-Ch01-SecR105.2)). Adopted editions and local amendments vary, so check yours.
 
 ## How a gravity wall actually stays up
 
@@ -1927,7 +1926,7 @@ There's no steel in a true gravity wall. No geogrid, no rebar cage, no anchors t
 
 A wall can pass one check and fail the other, so both get calculated separately. This is the same pair of checks covered in more depth in [Retaining Wall Engineering Basics: The Three Checks](/blog/retaining-wall-engineering-basics) (which also covers the third check, bearing pressure) — this guide focuses purely on what those two checks mean for how wide the base needs to be.
 
-> "Gravity retaining walls resist sliding and overturning by means of their large mass, rather than by reinforcement — the entire design exercise is about proportioning that mass correctly." — Concrete Masonry & Hardscapes Association, [TEK 15-06: Concrete Masonry Gravity Retaining Walls](https://www.cmha.org/resource/tek-15-06/)
+Gravity walls resist sliding and overturning through their large mass rather than reinforcement, so the design exercise is proportioning that mass correctly. The Concrete Masonry & Hardscapes Association covers concrete masonry gravity walls in [TEK 15-06](https://www.cmha.org/resource/tek-15-06/).
 
 ## What actually drives the required base width
 
@@ -1948,6 +1947,8 @@ Here's roughly what base width you need at each common height, assuming a mid-de
 | 3 ft | 1.5–1.8 ft | 2.0–2.3 ft |
 | 4 ft | 2.0–2.4 ft | 2.7–3.1 ft |
 
+These are illustrative ranges, not a design; run your own inputs through the [wall design calculator](/) or a stamped design.
+
 Notice the poor-soil column doesn't just add a fixed amount — it grows faster than the good-soil column as the wall gets taller, because the horizontal push scales with the square of the height. That's why a 2 ft wall barely notices bad soil, but a 4 ft wall in clay needs nearly 50% more base than the same wall in gravel.
 
 It's also why so many DIY walls that "worked fine at 2 ft" fail when someone repeats the same base-width ratio at 4 ft without re-checking the soil. The relationship isn't linear, so eyeballing it from a shorter wall you've already built is a genuinely common way to get it wrong.
@@ -1956,7 +1957,7 @@ It's also why so many DIY walls that "worked fine at 2 ft" fail when someone rep
 
 Weight per cubic foot of wall material has an outsized effect on required base width, because it's doing the work on the righting-moment side of the overturning check. A denser wall doesn't need to be as wide to generate the same resisting moment.
 
-Rough dry densities for common gravity wall materials:
+Typical dry densities for common gravity wall materials (these vary by mix and manufacturer, so check your product data sheet):
 
 - **Poured mass concrete:** ~145–150 pcf
 - **Mortared stone or brick:** ~140–150 pcf
@@ -2496,7 +2497,7 @@ Yes, noticeably. Sloped ground concentrates surface runoff toward the base of th
     title: "Retaining Wall Near a House Foundation: Safe Setbacks",
     description:
       "How close can a retaining wall sit to your foundation? The 45-degree rule, lateral load risks, and when you need an engineer.",
-    date: "2026-06-20",
+    date: "2026-10-15",
     readMins: 9,
     image: "/blog/retaining-wall-near-foundation.jpg",
     imageCredit: "Photo by David Brown / Pexels",
@@ -2521,7 +2522,7 @@ This is why a wall that would be perfectly fine as a stand-alone structure ten f
 
 ## The 45-degree pressure zone, explained simply
 
-Picture a line drawn at 45 degrees, starting at the bottom outside edge of the house footing and angling downward and outward into the yard. Everything below that line is considered inside the foundation's zone of influence — load from the house footing is still meaningfully pressing on the soil there. The [International Code Council's foundations chapter](https://codes.iccsafe.org/content/ibc2018/chapter-18-soils-and-foundations) uses this same 45-degree geometry as the deemed-adequate method for setting back new foundations and excavations near slopes and existing footings.
+Picture a line drawn at 45 degrees, starting at the bottom outside edge of the house footing and angling downward and outward into the yard. Everything below that line is considered inside the foundation's zone of influence — load from the house footing is still meaningfully pressing on the soil there. Geotechnical guidance and several local codes use a similar 45-degree line from the bottom edge of an existing footing as the limit for excavation without underpinning or shoring. The exact angle depends on soil, so check your adopted code and ask your engineer.
 
 In plain terms: if your house footing sits 4 ft below grade, that imaginary 45-degree line reaches 4 ft out horizontally from the footing edge by the time it drops another 4 ft down. A retaining wall footing that lands inside that wedge is, in effect, sharing bearing pressure with the house. It might still be fine — plenty of walls are built inside this zone successfully — but it needs someone to actually check the numbers rather than assume.
 
@@ -2542,7 +2543,7 @@ The 45-degree zone covers vertical bearing pressure, but there's a second load p
 
 If a retaining wall is holding back soil that sits directly against, or very near, a basement wall, some of that lateral pressure can transfer through the intervening soil and press on the house's below-grade wall. Basement and foundation walls are built to resist the soil pressure from normal backfill — they're generally not designed for the extra surcharge of a second retaining structure pushing from further out. Our [surcharge load guide](/blog/retaining-wall-surcharge-explained) covers this same mechanism in more detail for cases like driveways, decks, and parked vehicles near a wall.
 
-> "Any time a new retaining structure sits close enough to add load to soil that's already bearing against a foundation wall, that load has to be accounted for in the foundation's design — it doesn't disappear just because two different contractors built the two walls." — Slopeify's engineering advisors
+When a new retaining structure adds load to soil that already bears against a foundation wall, that load has to be accounted for in the foundation's design, even when two different contractors built the two structures.
 
 This is exactly why unreinforced masonry foundations are the case that keeps engineers up at night. Brick, hollow clay tile, and mortared stone foundations resist compression well but have very little capacity to resist bending or tension from a sideways push. Reinforced poured concrete can usually take some extra lateral load with margin to spare; unreinforced masonry often can't.
 
@@ -2550,9 +2551,9 @@ This is exactly why unreinforced masonry foundations are the case that keeps eng
 
 Basements deserve their own line item because the exposed wall area is so much larger than a typical shallow footing. A basement wall might be 8 ft tall below grade, all of it in contact with soil, compared to a footing that's only 2-3 ft down. More contact area means more opportunity for a nearby retaining wall's pressure to add up against it.
 
-Older homes compound the risk. Homes built before the mid-20th century commonly used unreinforced masonry for foundations and basement walls, long before modern reinforcing and lateral-load provisions became standard in residential codes. Foundation type has shifted a lot since then — new construction today is overwhelmingly built on slab or shallow crawl-space foundations rather than full basements, according to [NAHB's Eye on Housing analysis](https://eyeonhousing.org/2024/07/share-of-homes-built-on-slabs-surges-to-72-4/) — but that shift doesn't help the millions of older basement homes already standing.
+Older homes compound the risk. Homes built before the mid-20th century commonly used unreinforced masonry for foundations and basement walls, long before modern reinforcing and lateral-load provisions became standard in residential codes. Foundation practice has shifted since then, and many newer homes are built on slabs or shallow crawl spaces rather than full basements. That shift doesn't help the many older basement homes already standing.
 
-A real-world version of this: a homeowner with a 1920s brick-foundation bungalow wanted a 4 ft retaining wall along a sloped driveway, sitting about 6 ft from the house. On paper it looked routine. Once an engineer checked the basement footing depth and the age and condition of the brick foundation, the project needed a redesigned footing with extra setback and a below-grade drainage tie-in to avoid loading the old masonry. The wall still got built — it just needed real numbers behind it instead of a guess.
+Consider a hypothetical 1920s brick-foundation bungalow with a 4 ft wall planned along a sloped driveway about 6 ft from the house. On paper it looks routine. Before anything is dug, an engineer would check the basement footing depth and the age and condition of the brick foundation, and the design may need extra setback or a drainage tie-in that keeps load off the old masonry.
 
 A common misjudgement here is assuming that because a wall is "not that tall," it can't affect the house. Height matters, but distance and the house's own foundation type matter just as much, sometimes more.
 

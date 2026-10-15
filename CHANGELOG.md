@@ -1,6 +1,12 @@
 # Changelog
 
-## 2026-10-10: Pro design report fulfilment
+## 2026-10-15: Refresh five guides from the content inventory
+
+### Changed
+- **Retaining wall surcharge, when you need geogrid, gravity wall sizing, retaining wall near a foundation, and block vs concrete vs timber** guides are refreshed. Each now has an accurate permit-exemption statement (4 ft or less and no surcharge), an accurate reference for the 45-degree excavation line, and clearly labelled hypothetical examples instead of anecdotes presented as real cases.
+- Removed quotes and citations that could not be traced to a source (a CROSS report number, "engineering advisors" quotes, an NAHB share figure, a CMHA "since 1993" claim) and marked price, density and strength figures as typical or illustrative.
+- Visible dates on those five guides move to 2026-10-15.
+
 
 The $29 report can now be bought and delivered. Checkout stays off until it is fully configured, so nobody can pay for a report we cannot deliver.
 
