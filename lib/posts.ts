@@ -2448,7 +2448,7 @@ A homeowner we hear about often: a hillside lot where the original plan called f
 
 If the numbers above are making a single tall wall look expensive, there's usually a simpler answer: build two shorter walls instead of one tall one, with a planted or paved terrace between them. Two 3 ft walls set back from each other can retain the same total height as one 6 ft wall, but each wall only has to resist its own local backfill — not the compounding load of a full slope stacked behind a single face.
 
-This isn't just cheaper concrete and block. Shorter walls usually dodge the engineering and permit trigger entirely, need less geogrid, and are far more forgiving if the backfill turns out wetter or looser than expected. The tradeoff is that terracing eats more horizontal space than one tall wall, so it works best on lots with room to give. For the mechanics and spacing rules of doing this properly, see our guide on [terraced retaining walls](/blog/terraced-retaining-walls).
+This isn't just cheaper concrete and block. Shorter walls usually dodge the engineering and permit trigger entirely, need less geogrid, and are far more forgiving if the backfill turns out wetter or looser than expected. The tradeoff is that terracing eats more horizontal space than one tall wall, so it works best on lots with room to give. For the mechanics and spacing rules of doing this properly, see our guide on [terraced retaining walls](/blog/terraced-retaining-walls). The [2× spacing rule for tiered walls](/blog/tiered-retaining-wall-spacing) shows how far apart the tiers must sit before they count as separate walls.
 
 ## Drainage matters more on a slope
 

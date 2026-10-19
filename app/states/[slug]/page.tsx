@@ -5,6 +5,14 @@ import { STATES, stateBySlug } from "@/lib/states";
 import { ENGINEERING_HEIGHT_FT } from "@/lib/permit";
 import { breadcrumbLd } from "@/lib/site";
 
+const GUIDES = [
+  { href: "/blog/retaining-wall-permit-guide", label: "Retaining wall permit guide", note: "when a permit and an engineer's stamp are required" },
+  { href: "/blog/retaining-wall-footing-depth", label: "Footing depth guide", note: "how deep to bury the base for your frost line" },
+  { href: "/blog/retaining-wall-drainage", label: "Drainage guide", note: "the backfill and drain pipe that keep a wall standing" },
+  { href: "/blog/tiered-retaining-wall-spacing", label: "Tiered wall spacing", note: "why two short walls can count as one tall wall" },
+  { href: "/blog/how-much-does-a-retaining-wall-cost", label: "Retaining wall cost guide", note: "what drives the price per square foot" },
+];
+
 export const revalidate = 604800; // 1 week ISR
 
 export function generateStaticParams() {
@@ -29,6 +37,13 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
   const pct = Math.round((s.costIndex - 1) * 100);
   const costNote =
     pct === 0 ? "right around the US average" : pct > 0 ? `about ${pct}% above the US average` : `about ${Math.abs(pct)}% below the US average`;
+  const byCost = [...STATES].sort((a, b) => b.costIndex - a.costIndex);
+  const byFrost = [...STATES].sort((a, b) => b.frost - a.frost);
+  const costRank = byCost.findIndex((x) => x.slug === s.slug) + 1;
+  const frostRank = byFrost.findIndex((x) => x.slug === s.slug) + 1;
+  const exampleFace = 4 * 30; // sq ft: a 4 ft x 30 ft wall
+  const exLow = Math.round(30 * s.costIndex * exampleFace);
+  const exHigh = Math.round(60 * s.costIndex * exampleFace);
   const crumbs = breadcrumbLd([
     { name: "Home", path: "/" },
     { name: "By state", path: "/states" },
@@ -81,6 +96,32 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
           the local figure with your building department.
         </p>
       </div>
+
+      <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
+        <h2 className="font-semibold text-slate-900">{s.name} at a glance</h2>
+        <p className="mt-2">
+          Of the {STATES.length} jurisdictions we cover, {s.name} ranks <strong>#{costRank}</strong> for
+          construction cost (1 is the most expensive) and <strong>#{frostRank}</strong> for frost depth
+          (1 is the deepest). That means a {s.name} wall is priced {costNote}, and its footing must reach
+          {" "}{s.frost} in below grade.
+        </p>
+        <p className="mt-2">
+          Worked example: a 4 ft tall, 30 ft long segmental block wall is {exampleFace} sq ft of wall face. At
+          {" "}{s.name} rates of ${Math.round(30 * s.costIndex)} to ${Math.round(60 * s.costIndex)} per square foot,
+          that is roughly ${exLow.toLocaleString("en-US")} to ${exHigh.toLocaleString("en-US")} installed, before
+          permits, engineering or site-specific extras such as access or haul-off. A wall taller than{" "}
+          {ENGINEERING_HEIGHT_FT} ft, or one carrying a driveway or slope above it, moves into engineered territory
+          and costs more.
+        </p>
+        <h3 className="mt-4 font-semibold text-slate-900">Before you build in {s.name}</h3>
+        <ul className="mt-2 list-disc space-y-1 pl-5">
+          {GUIDES.map((g) => (
+            <li key={g.href}>
+              <Link href={g.href} className="font-medium text-emerald-700 hover:underline">{g.label}</Link>: {g.note}
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <div className="mt-6">
         <Calculator initial={{ stateSlug: s.slug }} />
