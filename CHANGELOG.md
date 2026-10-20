@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-20: Keyword field on every guide
+
+### Added
+- `keyword` on the `Post` interface in `lib/posts.ts`, set on all 24 guides to the primary search keyword recorded in the Content Log. Used by the on-page SEO audit; not rendered.
+
 ## 2026-10-15: Refresh five guides from the content inventory
 
 ### Changed

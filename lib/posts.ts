@@ -3,6 +3,7 @@
 // the engine and the cited codes, no fabricated numbers.
 export interface Post {
   slug: string;
+  keyword: string; // primary search keyword the page targets
   title: string;
   description: string;
   date: string; // ISO
@@ -15,6 +16,7 @@ export interface Post {
 export const POSTS: Post[] = [
   {
     slug: "how-much-does-a-retaining-wall-cost",
+    keyword: "how much does a retaining wall cost",
     title: "How Much Does a Retaining Wall Cost in 2026?",
     description:
       "Retaining wall costs by material, height, and region, real project example, and how to get your exact price with our free calculator.",
@@ -130,6 +132,7 @@ The biggest hidden multipliers are height past 4 ft, a surcharge like a driveway
   },
   {
     slug: "do-i-need-a-permit-for-a-retaining-wall",
+    keyword: "do i need a permit for a retaining wall",
     title: "Do I Need a Permit for a Retaining Wall?",
     description:
       "The 4-ft rule, the surcharge exception, and how height is really measured — check your wall's permit status free with Slopeify.",
@@ -254,6 +257,7 @@ Sometimes, through an after-the-fact or retroactive permit process, but it usual
   },
   {
     slug: "retaining-wall-drainage",
+    keyword: "retaining wall drainage",
     title: "Retaining Wall Drainage: Why Walls Fail and How to Fix It",
     description:
       "Water wrecks most retaining walls. See the drain rock, pipe and fabric system that stops it, plus common mistakes to avoid.",
@@ -378,6 +382,7 @@ Weep holes are small openings through the face of a solid wall that let water es
   },
   {
     slug: "segmental-block-vs-poured-concrete-vs-timber",
+    keyword: "block vs concrete vs timber retaining wall",
     title: "Block vs Concrete vs Timber Retaining Walls: How to Choose",
     description:
       "Segmental block, poured concrete, timber and boulder walls compared on cost, lifespan and DIY difficulty — find your best fit.",
@@ -501,6 +506,7 @@ Poured concrete, particularly an engineered cantilever design, offers the highes
   },
   {
     slug: "how-to-build-a-retaining-wall",
+    keyword: "how to build a retaining wall",
     title: "How to Build a Retaining Wall (Block), Step by Step",
     description:
       "Build a segmental block retaining wall that lasts decades: step-by-step instructions, quantities and drainage tips from our free calculator.",
@@ -603,6 +609,7 @@ Not always — short walls with good soil and no surcharge often don't need it. 
   },
   {
     slug: "when-do-you-need-geogrid",
+    keyword: "when do you need geogrid",
     title: "When Does a Retaining Wall Need Geogrid Reinforcement?",
     description:
       "Find out exactly when your retaining wall needs geogrid reinforcement, how it's sized, and what it costs — check your wall for free.",
@@ -712,6 +719,7 @@ Expect roughly 10-20% more than an equivalent unreinforced wall, covering the gr
   },
   {
     slug: "retaining-wall-soil-and-backfill",
+    keyword: "retaining wall backfill",
     title: "Retaining Wall Soil and Backfill: What Actually Matters",
     description:
       "Backfill pushes, foundation soil holds. See IBC pressure and bearing numbers by soil type, then check your wall free with Slopeify.",
@@ -831,6 +839,7 @@ It can add up fast. Doubling the design pressure by using clayey backfill instea
   },
   {
     slug: "how-many-retaining-wall-blocks",
+    keyword: "how many retaining wall blocks do i need",
     title: "How Many Retaining Wall Blocks Do I Need?",
     description:
       "Work out your exact block, cap, and base stone quantities with a simple length x height formula and a full worked example.",
@@ -980,6 +989,7 @@ Geogrid reinforcement is typically required once a wall passes a certain height 
   },
   {
     slug: "gravity-vs-cantilever-retaining-walls",
+    keyword: "gravity vs cantilever retaining wall",
     title: "Gravity vs Cantilever Retaining Walls",
     description:
       "Gravity or cantilever retaining wall? Compare cost, height limits, and base width, then size yours with Slopeify's free calculator.",
@@ -1080,6 +1090,7 @@ Standard segmental block walls are gravity systems — they rely on unit weight 
   },
   {
     slug: "why-retaining-walls-fail",
+    keyword: "why do retaining walls fail",
     title: "Why Retaining Walls Fail (and How to Avoid It)",
     description:
       "The four real reasons retaining walls fail, the warning signs to watch for, and what repairs cost. Check your wall's numbers free.",
@@ -1173,6 +1184,7 @@ For low walls under about 3–4 ft with no surcharge and stable soil, many homeo
   },
   {
     slug: "terraced-retaining-walls",
+    keyword: "terraced retaining wall",
     title: "Terraced Retaining Walls: Two Short Walls vs. One Tall Wall",
     description:
       "Learn when terracing beats one tall wall, the spacing rule, drainage, and planting tips. Try Slopeify's free calculator.",
@@ -1294,6 +1306,7 @@ Often, yes, because it can avoid the engineering fees and reinforcement that a s
   },
   {
     slug: "retaining-wall-engineering-basics",
+    keyword: "retaining wall design",
     title: "Retaining Wall Engineering Basics: The Three Checks",
     description:
       "How retaining walls resist tipping, sliding and sinking, with the maths, a worked example and the code checks behind each.",
@@ -1423,6 +1436,7 @@ Leaning usually points to a sliding or overturning issue slowly progressing, oft
 const WEEK2_POSTS: Post[] = [
   {
     slug: "retaining-wall-cost-per-linear-foot",
+    keyword: "retaining wall cost per foot",
     title: "Retaining Wall Cost Per Linear Foot (2026 Guide)",
     description:
       "See real cost-per-linear-foot ranges by material and height, why height changes everything, and how to compare quotes fairly.",
@@ -1535,6 +1549,7 @@ Often, yes. Splitting a 6-ft wall into two 3-ft tiers with a planted setback bet
   },
   {
     slug: "retaining-wall-surcharge-explained",
+    keyword: "surcharge load",
     title: "Retaining Wall Surcharge Explained",
     description:
       "Driveways, sheds and parked cars all add surcharge load to a retaining wall. See how it's calculated and when it forces an engineered design.",
@@ -1660,6 +1675,7 @@ A steeper slope above the wall than the design assumed still counts as a surchar
   },
   {
     slug: "retaining-wall-footing-depth",
+    keyword: "how deep should a retaining wall footing be",
     title: "Retaining Wall Footing Depth: The Right Number",
     description:
       "Frost depth or bearing soil, whichever is deeper. See real depth-by-state numbers and check your wall free with our calculator.",
@@ -1779,6 +1795,7 @@ The [calculator](/) looks up frost depth for your state automatically. You can a
   },
   {
     slug: "tiered-retaining-wall-spacing",
+    keyword: "terraced retaining wall",
     title: "Tiered Retaining Wall Spacing: Getting It Right",
     description:
       "The 2x-height spacing rule for tiered retaining walls, worked examples by wall height, and surcharge maths. Check your layout free.",
@@ -1898,6 +1915,7 @@ Yes. The 2× figure assumes reasonably well-draining, compacted backfill. Looser
   },
   {
     slug: "gravity-retaining-wall-sizing",
+    keyword: "gravity retaining wall design",
     title: "Gravity Retaining Wall Sizing Explained",
     description:
       "How to size a gravity retaining wall's base width by height, soil type and material density, with worked examples and a free calculator.",
@@ -2026,6 +2044,7 @@ Plenty of homeowners build gravity walls under 3–4 ft themselves, particularly
   },
   {
     slug: "segmental-retaining-wall-blocks",
+    keyword: "retaining wall blocks",
     title: "Segmental Retaining Wall Blocks: Design Guide",
     description:
       "How segmental retaining wall blocks, batter and MSE reinforcement actually work — plus a free calculator to size your wall correctly.",
@@ -2130,6 +2149,7 @@ No — stick to one manufacturer's system per wall. Published design tables, con
   },
   {
     slug: "retaining-wall-permit-guide",
+    keyword: "retaining wall permit",
     title: "Retaining Wall Permits: A State-by-State Guide",
     description:
       "Confused about retaining wall permit rules? See the height thresholds, real costs and state quirks, then check your wall with our free calculator.",
@@ -2275,6 +2295,7 @@ Yes, in most cases. Permit requirements are based on the wall's height, load and
   },
   {
     slug: "cmu-retaining-wall-design",
+    keyword: "retaining wall design",
     title: "CMU Retaining Wall Design: When Blocks Beat SRW",
     description:
       "CMU retaining wall design explained: rebar spacing, footing depth, cost per sq ft, and when SRW beats grouted block. Get the numbers right first.",
@@ -2392,6 +2413,7 @@ Below about 4 ft, yes, clearly — SRW skips grout, rebar, and usually the engin
   },
   {
     slug: "retaining-wall-on-slope",
+    keyword: "how to build a retaining wall on a slope",
     title: "Retaining Wall on a Slope: Key Design Rules",
     description:
       "Sloped backfill adds real pressure to a retaining wall. See how much, what it changes, and how to design it right with our free calculator.",
@@ -2494,6 +2516,7 @@ Yes, noticeably. Sloped ground concentrates surface runoff toward the base of th
   },
   {
     slug: "retaining-wall-near-foundation",
+    keyword: "retaining wall setback",
     title: "Retaining Wall Near a House Foundation: Safe Setbacks",
     description:
       "How close can a retaining wall sit to your foundation? The 45-degree rule, lateral load risks, and when you need an engineer.",
@@ -2605,6 +2628,7 @@ Yes. A structurally sound wall can still redirect water toward the house if it i
   },
   {
     slug: "railroad-tie-retaining-wall",
+    keyword: "railroad tie retaining wall",
     title: "Railroad Tie Retaining Wall: Pros, Cons & Cost",
     description:
       "Railroad tie retaining walls cost $20-40/sq ft but last only 15-25 years. See when timber works, when it doesn't, and how to compare it.",
@@ -2725,6 +2749,7 @@ Railroad ties are cheaper upfront, at roughly $20–$40 per sq ft installed vers
   },
   {
     slug: "retaining-wall-maintenance-checklist",
+    keyword: "retaining wall inspection",
     title: "Retaining Wall Maintenance: Annual Inspection Checklist",
     description:
       "Free annual retaining wall maintenance checklist: drainage, cracks, warning signs, and when to call an engineer. Check yours today.",
