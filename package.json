@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx test/engine.test.mts && tsx test/calc-url.test.mts && tsx test/leadgen.test.mts && tsx test/no-vercel.test.mts && tsx test/analytics-journey.test.mts && tsx test/sentry-scrub.test.mts && tsx test/feedback-and-capture.test.mts && tsx test/scrub-hardening.test.mts && tsx test/geo-surfaces.test.mts && tsx test/report-checkout.test.mts && tsx test/report-pdf.test.mts && tsx test/stripe-webhook.test.mts && tsx test/session-id-privacy.test.mts"
+    "test": "tsx test/engine.test.mts && tsx test/calc-url.test.mts && tsx test/leadgen.test.mts && tsx test/no-vercel.test.mts && tsx test/analytics-journey.test.mts && tsx test/sentry-scrub.test.mts && tsx test/feedback-and-capture.test.mts && tsx test/scrub-hardening.test.mts && tsx test/geo-surfaces.test.mts && tsx test/report-checkout.test.mts && tsx test/report-pdf.test.mts && tsx test/stripe-webhook.test.mts && tsx test/session-id-privacy.test.mts && tsx test/content-refresh.test.mts"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.71.0",

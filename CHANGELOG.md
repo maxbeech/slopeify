@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-10-21: Refresh permit, methodology and Georgia pages from the content inventory
+
+### Changed
+- **Retaining wall permit guide** is refreshed: the surcharge wording now matches the model-code exemption (4 ft or less with no surcharge is usually exempt; a surcharge removes the exemption at any height, with engineering set locally). The 4 ft height table row and the worked example follow the same rule. Dated 2026-10-21.
+- Removed an unattributed "engineering advisors" quote and a Montgomery County citation whose page does not state the permit thresholds, inspections or documents the guide attributed to it. The guide now cites the City of Port Townsend's IRC guidance for the exemption wording.
+- **Methodology** limits paragraph: the retaining-wall section is cited as IRC R404.4 / IBC §1807.2 (was R404.1, which is the foundation-wall section), and the surcharge wording matches the exemption above.
+- **State pages**: the permit card cites IRC R404.4 / IBC §1807.2 and states the no-surcharge exemption. Georgia gets a state-specific note (2018 IBC/IRC with Georgia amendments, effective 1 January 2020, per DCA) and an accurate code string. The optional `note` field on `StateInfo` renders only when set.
+
+### Added
+- `test/content-refresh.test.mts` pins these corrections; run by `npm test`.
+
 ## 2026-10-20: Keyword field on every guide
 
 ### Added

@@ -66,11 +66,13 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
         <div className="rounded-2xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
           <h2 className="font-semibold text-slate-900">Do you need a permit in {s.name}?</h2>
           <p className="mt-2">
-            The model-code line is {ENGINEERING_HEIGHT_FT} ft: under IRC R404.1 / IBC §1807.2, a wall
-            retaining more than {ENGINEERING_HEIGHT_FT} ft of earth needs an engineered design, and at
-            any height when there is a surcharge (driveway, slope or structure). Most {s.name} building
-            departments require a permit at the same point.
+            The model-code line is {ENGINEERING_HEIGHT_FT} ft: under IRC R404.4 / IBC §1807.2, a wall
+            retaining more than {ENGINEERING_HEIGHT_FT} ft of earth needs an engineered design. A wall of
+            {" "}{ENGINEERING_HEIGHT_FT} ft or less with no surcharge is usually exempt from a permit, but a
+            surcharge (driveway, slope or structure) removes that exemption at any height. Local amendments
+            can set the permit point lower.
           </p>
+          {s.note && <p className="mt-2">{s.note}</p>}
           <p className="mt-2 text-xs text-slate-500">
             Thresholds are set locally. {s.name} delegates enforcement to city/county building
             departments, so always confirm with yours before you build.

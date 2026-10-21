@@ -104,10 +104,12 @@ export default function Methodology() {
 
       <h2 className="mt-8 text-xl font-bold text-slate-900">Important limits</h2>
       <p className="mt-2 text-slate-600">
-        This tool produces a <strong>planning estimate</strong>, not a stamped design. A wall retaining
-        more than 4 ft, or any wall with a surcharge, requires an engineered design (IRC R404.1 / IBC
-        §1807.2) and a local permit. Confirm soil parameters with a geotechnical investigation and the
-        final design with a licensed engineer.
+        This tool produces a <strong>planning estimate</strong>, not a stamped design. Under the model
+        code&apos;s retaining-wall section (IRC R404.4 / IBC §1807.2), a wall retaining more than 4 ft
+        needs an engineered design. A wall of 4 ft or less with no surcharge is usually exempt from a
+        permit, but a surcharge such as a driveway or slope removes that exemption at any height, and
+        local rules set the final thresholds. Confirm soil parameters with a geotechnical investigation
+        and the final design with a licensed engineer.
       </p>
     </article>
   );

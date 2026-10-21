@@ -16,6 +16,8 @@ export interface StateInfo {
   costIndex: number;
   frost: number; // typical minimum footing depth, inches
   code: string;
+  /** Optional state-specific permit fact, shown on the state page only when set. */
+  note?: string;
 }
 
 export const STATES: StateInfo[] = [
@@ -29,7 +31,13 @@ export const STATES: StateInfo[] = [
   { name: "Delaware", slug: "delaware", abbr: "DE", costIndex: 1.0, frost: 30, code: "IBC/IRC 2018" },
   { name: "District of Columbia", slug: "district-of-columbia", abbr: "DC", costIndex: 1.18, frost: 24, code: "DC Construction Codes (IBC)" },
   { name: "Florida", slug: "florida", abbr: "FL", costIndex: 0.9, frost: 12, code: "Florida Building Code (FBC)" },
-  { name: "Georgia", slug: "georgia", abbr: "GA", costIndex: 0.88, frost: 12, code: "Georgia State Minimum Codes (IBC)" },
+  {
+    name: "Georgia", slug: "georgia", abbr: "GA", costIndex: 0.88, frost: 12,
+    code: "2018 IBC/IRC with Georgia amendments (DCA)",
+    // Source: Georgia DCA 2020 state minimum codes notice, and the Georgia amendments DCA publishes.
+    note:
+      "Georgia's State Minimum Standard Codes adopted the 2018 International Building Code and International Residential Code effective 1 January 2020, with Georgia amendments published by the Department of Community Affairs (DCA). Your city or county building department enforces them and may be stricter.",
+  },
   { name: "Hawaii", slug: "hawaii", abbr: "HI", costIndex: 1.35, frost: 12, code: "County codes (IBC)" },
   { name: "Idaho", slug: "idaho", abbr: "ID", costIndex: 0.93, frost: 24, code: "Idaho Building Code (IBC)" },
   { name: "Illinois", slug: "illinois", abbr: "IL", costIndex: 1.08, frost: 42, code: "IBC/IRC (local adoption)" },

@@ -2153,7 +2153,7 @@ No — stick to one manufacturer's system per wall. Published design tables, con
     title: "Retaining Wall Permits: A State-by-State Guide",
     description:
       "Confused about retaining wall permit rules? See the height thresholds, real costs and state quirks, then check your wall with our free calculator.",
-    date: "2026-06-20",
+    date: "2026-10-21",
     readMins: 9,
     image: "/blog/retaining-wall-permit-guide.jpg",
     imageCredit: "Photo by Mark Stebnicki / Pexels",
@@ -2161,8 +2161,8 @@ No — stick to one manufacturer's system per wall. Published design tables, con
 
 ## Key takeaways
 
-- Walls retaining more than **4 ft** of soil (footing to top) need an engineer's stamp and a permit in almost every US jurisdiction, under IRC R404.4.
-- Any **surcharge load** — a driveway, patio, parking pad or structure sitting behind the wall — can trigger engineering requirements regardless of height.
+- Walls retaining more than **4 ft** of soil (footing to top) need an engineer's stamp and a permit in almost every US jurisdiction, under the model code's retaining-wall section (IRC R404.4, IBC §1807.2).
+- Under the model code, a wall **4 ft or less** with no surcharge is exempt from a permit. Any **surcharge load** — a driveway, patio, parking pad or structure sitting behind the wall — removes that exemption at any height, and local rules often then require engineering.
 - Permit fees typically run **$200–$1,000**, with stamped engineering adding several hundred to a couple of thousand dollars on top.
 - Some cities set the bar lower, requiring permits (and sometimes engineering) starting at **3 ft or even 2 ft**.
 - HOAs can demand design approval and specific materials even where the building department doesn't require a permit at all.
@@ -2173,18 +2173,20 @@ No — stick to one manufacturer's system per wall. Published design tables, con
 Almost every jurisdiction uses the same underlying code — IRC R404 for one- and two-family homes, and IBC §1807 for everything else — and applies it with local amendments. Here's what holds true almost everywhere.
 
 - Retained heights over **4 ft** (measured from the bottom of the footing to the top of the wall) trigger an engineered design requirement and typically a building permit.
-- Any wall subject to a **surcharge** (driveway, parking, slope, structure) must be engineered regardless of height.
+- The model code's permit exemption covers walls **4 ft or less** that carry **no surcharge** (driveway, parking, slope, structure). A surcharge takes the wall out of that exemption at any height, and many jurisdictions then want engineering too.
 - **Proximity to property lines, easements or structures** often triggers a permit even for short walls.
+
+The IRC wording of that exemption and its surcharge condition is quoted in the [City of Port Townsend's guidance on retaining walls under the IRC](https://cityofpt.us/sites/default/files/fileattachments/planning_and_community_development/page/8190/information-_retaining_walls-_irc_2018.pdf). Local amendments change it, so read it as the baseline, not the final answer.
 
 That 4 ft threshold isn't arbitrary. It's roughly where a gravity wall's overturning and sliding forces start to outrun what a homeowner can safely eyeball, and both the residential and commercial codes it's drawn from are maintained by the [International Code Council](https://www.iccsafe.org), the body most US states and cities adopt their building rules from. Below that line, most walls behave predictably. Above it, soil pressure builds fast, and a few extra inches of height means real extra force pushing outward at the base.
 
-> "Engineering isn't really about the height number on its own — it's about what's stacked behind the wall and how the soil behaves once it's saturated." — Slopeify's engineering advisors
+Height is only part of the picture. What's stacked behind the wall and how the soil behaves once it's saturated matter just as much, which is why a surcharge changes the answer.
 
 If you're unsure whether your project crosses that line, our [permit guide for first-time builders](/blog/do-i-need-a-permit-for-a-retaining-wall) walks through the decision in more detail, and our piece on [surcharge loads](/blog/retaining-wall-surcharge-explained) explains why a driveway behind a 2 ft wall can force the same engineering as a 6 ft wall with nothing behind it.
 
 ## What varies by state, city and HOA
 
-Some cities lower the permit threshold to **3 ft**. Some require a permit for any wall visible from the street. A few states carry specific provisions for walls near hillsides, expansive clay soils or high-seismic zones, and coastal counties often layer on wind and drainage rules that a landlocked county never sees.
+Some cities lower the permit threshold to **3 ft**, below the model code's 4 ft. Some require a permit for any wall visible from the street. A few states carry specific provisions for walls near hillsides, expansive clay soils or high-seismic zones, and coastal counties often layer on wind and drainage rules that a landlocked county never sees.
 
 States don't all adopt the same edition of the model code either, and some write substantial amendments of their own.
 
@@ -2209,7 +2211,7 @@ For a permitted wall you'll typically need:
 3. A **permit fee** (usually $200–$1,000 depending on jurisdiction).
 4. An **inspection** — often at base, geogrid layers and final grade.
 
-Montgomery County, Maryland, publishes a fairly typical version of that sequence: a stamped drawing, a site plan showing the wall's relationship to the property line, and inspections at footing, backfill/geogrid placement and final grade before the permit closes out, according to the county's own [residential retaining wall permit guidance](https://www.montgomerycountymd.gov/DPS/Process/rci/residential-retain-wall.html). Plenty of other counties run something close to that same order of operations.
+Permit packages vary by county. Expect to be asked for a site plan that shows the wall's position against the property line, a stamped drawing where engineering applies, and inspections during construction. The order of steps and the inspection points are set by your own building department, so use its checklist rather than this list.
 
 ### Common mistakes that slow the process down
 
@@ -2222,7 +2224,7 @@ If your wall needs a stamped design and you don't have an engineer lined up, [fi
 
 ## What permits actually cost
 
-Permit fees are usually a small fraction of the total wall budget, but they add up once you stack in plan review, engineering and re-inspections.
+Permit fees are usually a small fraction of the total wall budget, but they add up once you stack in plan review, engineering and re-inspections. These ranges are typical, not quoted; your building department's fee schedule is the number to use.
 
 | Cost item | Typical range |
 |---|---|
@@ -2236,7 +2238,7 @@ Bigger jurisdictions with high property values, like much of coastal California,
 
 ## Skip the permit and this is what happens
 
-Here's a scenario building departments see often. A homeowner builds a 6 ft block wall to level a sloped backyard over a weekend, no permit, no engineer, just a rented mini excavator and some confidence. It holds for a couple of winters. Then a saturated spring loosens the backfill, the wall bulges, and a neighbour reports it after a section slumps into their yard. The building department's response is a stop-work order, a forced geotechnical survey, and a rebuild — this time permitted, engineered and inspected — at roughly double the original cost once demolition and redesign are added in.
+Here's a scenario that illustrates the risk. It's a hypothetical, not a case reported by any department. A homeowner builds a 6 ft block wall to level a sloped backyard over a weekend, no permit, no engineer, just a rented mini excavator and some confidence. It holds for a couple of winters. Then a saturated spring loosens the backfill, the wall bulges, and a neighbour reports it after a section slumps into their yard. The building department's response is a stop-work order, a forced geotechnical survey, and a rebuild — this time permitted, engineered and inspected — at roughly double the original cost once demolition and redesign are added in.
 
 That pattern is common enough to take seriously. Unpermitted work discovered by an inspector or a neighbour complaint typically means:
 
@@ -2253,19 +2255,19 @@ None of that is guaranteed to happen to every unpermitted wall. Plenty of short,
 Say you're levelling a backyard that drops 5 ft over 15 ft, and the top of the wall will sit right behind a new gravel driveway.
 
 - **Height:** 5 ft, measured footing to top — already over the 4 ft threshold on its own.
-- **Surcharge:** the driveway adds a live load behind the wall, so even a 3 ft version of this same wall would likely need engineering.
-- **Likely requirement:** building permit, stamped structural drawings, geogrid reinforcement, and inspections at footing and each backfill lift.
+- **Surcharge:** the driveway adds a live load behind the wall. That removes the model code's permit exemption, which a 3 ft wall with no surcharge would otherwise have.
+- **Likely requirement:** building permit, and in many jurisdictions stamped structural drawings, geogrid reinforcement, and inspections at footing and each backfill lift. Whether engineering is required is a local decision.
 - **Rough cost range:** permit and plan review around $350–$1,000, engineering around $800–$1,800, on top of the wall's construction cost.
 
 Run the numbers through the [retaining wall calculator](/) first. Punch in the height, surcharge and soil type, and it'll flag whether you're likely looking at an engineered design before you call anyone. It won't replace a stamped drawing, but it tells you what conversation you're about to have with your building department.
 
 ## Quick reference by wall height
 
-| Height | Typical requirement |
-|--------|---------------------|
-| < 3 ft | No permit in most areas (check locally) |
-| 3–4 ft | Permit often needed; engineering if surcharge |
-| > 4 ft | Permit + engineer's stamp almost universally |
+| Height and conditions | Typical requirement |
+|-----------------------|---------------------|
+| 4 ft or less, no surcharge | Usually exempt under the model code; some cities start permits at 3 ft or lower (check locally) |
+| Any height with a surcharge | Permit almost always; engineering often required |
+| Over 4 ft | Permit + engineer's stamp in almost all jurisdictions |
 
 Height is the single biggest variable, but it's never the only one. A 2 ft wall holding back a sloped driveway can need more paperwork than a 5 ft wall standing in an open field, because the surcharge, not the number on the tape measure, is what really drives the engineering. Treat the table as a starting point, confirm it against your state and city's actual rules, and loop in your building department before you dig the first footing.
 
@@ -2283,7 +2285,7 @@ You risk a stop-work order, retroactive permitting, fines, and in some cases a f
 
 ### Does a retaining wall permit require a structural engineer?
 
-Only if the wall crosses your jurisdiction's engineering threshold — typically 4 ft of retained height, or any height with a surcharge like a driveway or slope behind it. Below that, many jurisdictions accept a standard prescriptive design without a stamp.
+Only if the wall crosses your jurisdiction's engineering threshold. The model code's line is 4 ft of retained height, and many jurisdictions also ask for engineering when a surcharge like a driveway or slope sits behind the wall. Below that, many jurisdictions accept a standard prescriptive design without a stamp.
 
 ### How much does a retaining wall permit cost?
 
