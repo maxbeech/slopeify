@@ -1,5 +1,9 @@
 import * as Sentry from "@sentry/nextjs";
 import { scrubBreadcrumb, scrubEvent, scrubLog, scrubTransaction } from "@/lib/scrub";
+import { isScannerProbeEvent } from "@/lib/sentry-probe-filter";
+
+/** Drops scanner probes (see sentry-probe-filter.ts), then scrubs. */
+const beforeSendEvent: typeof scrubEvent = (...args: Parameters<typeof scrubEvent>) => (isScannerProbeEvent(args[0]) ? null : scrubEvent(...args));
 
 /**
  * The one place the options shared by every Sentry.init live (browser in
@@ -13,7 +17,7 @@ export function sharedSentryOptions() {
     tracesSampleRate: 0.1,
     // Never send request bodies, headers or user identifiers by default.
     sendDefaultPii: false,
-    beforeSend: scrubEvent,
+    beforeSend: beforeSendEvent,
     beforeBreadcrumb: scrubBreadcrumb,
     beforeSendTransaction: scrubTransaction,
     // Structured logs, plus every console call forwarded as a log line.

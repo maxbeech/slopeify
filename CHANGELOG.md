@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-25: Stop reporting scanner probes as errors
+
+- **Why.** Crawlers and exploit scanners POST to a page with `Accept: text/x-component`, a made-up `Next-Action` id and an `x-middleware-subrequest` header. Next.js refuses the request, then throws `Invariant: Expected RSC response, got text/plain` and Sentry opened an issue for each. Nothing was wrong with the app.
+- **Change.** `lib/sentry-probe-filter.ts` (`isScannerProbeEvent`) drops exactly that error when the request is a POST carrying an RSC or action marker. It runs first in `beforeSend` in `lib/sentry-options.ts`. Any other error, including other invariants, still reports. This app has no proxy file, so it relies on Next 16 ignoring the header from outside.
+- **Tests.** The filter and `sharedSentryOptions().beforeSend` are covered in the probe filter test.
+
 ## 2026-10-21: Refresh permit, methodology and Georgia pages from the content inventory
 
 ### Changed
