@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { POSTS, postBySlug } from "@/lib/posts";
+import { relatedCalculators, relatedPosts } from "@/lib/related";
 import { SITE, breadcrumbLd } from "@/lib/site";
 
 export const revalidate = 604800; // 1 week ISR
@@ -314,6 +315,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   ]);
 
   const { intro, sections } = splitSections(p.body);
+  const moreGuides = relatedPosts(p.slug, `${p.title} ${p.keyword}`);
+  const moreCalcs = relatedCalculators(`${p.title} ${p.keyword}`);
 
   return (
     <article className="mx-auto max-w-2xl">
@@ -348,6 +351,31 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
         );
       })}
+
+      <section className="mt-10">
+        <h2 className="text-lg font-bold text-slate-900">Related guides</h2>
+        <ul className="mt-3 space-y-2 text-sm">
+          {moreGuides.map((g) => (
+            <li key={g.slug}>
+              <Link href={`/blog/${g.slug}`} className="font-medium text-emerald-700 hover:underline">{g.title}</Link>
+              <span className="text-slate-500"> ({g.readMins} min read)</span>
+            </li>
+          ))}
+        </ul>
+        <h2 className="mt-6 text-lg font-bold text-slate-900">Related calculators</h2>
+        <ul className="mt-3 space-y-2 text-sm">
+          {moreCalcs.map((c) => (
+            <li key={c.slug}>
+              <Link href={`/calculators/${c.slug}`} className="font-medium text-emerald-700 hover:underline">{c.h1}</Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm text-slate-500">
+          Browse <Link href="/blog" className="text-emerald-700 hover:underline">all retaining wall guides</Link>,{" "}
+          <Link href="/calculators" className="text-emerald-700 hover:underline">all calculators</Link> or{" "}
+          <Link href="/states" className="text-emerald-700 hover:underline">permit rules by state</Link>.
+        </p>
+      </section>
 
       <div className="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-6 text-center">
         <div className="font-semibold text-slate-900">Design your wall in 30 seconds</div>

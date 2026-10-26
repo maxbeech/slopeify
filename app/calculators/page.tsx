@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CALCULATORS } from "@/lib/calculators";
+import { POSTS } from "@/lib/posts";
 
 export const metadata = {
   title: "Retaining Wall Calculators",
@@ -23,6 +24,15 @@ export default function CalculatorsIndex() {
           </Link>
         ))}
       </div>
+      <section className="mt-12">
+        <h2 className="text-xl font-bold text-slate-900">Guides behind the numbers</h2>
+        <ul className="mt-3 grid gap-2 text-sm sm:grid-cols-2">
+          {POSTS.slice(0, 8).map((p) => (
+            <li key={p.slug}><Link href={`/blog/${p.slug}`} className="text-emerald-700 hover:underline">{p.title}</Link></li>
+          ))}
+        </ul>
+        <p className="mt-3 text-sm text-slate-500"><Link href="/blog" className="text-emerald-700 hover:underline">All retaining wall guides</Link></p>
+      </section>
     </div>
   );
 }

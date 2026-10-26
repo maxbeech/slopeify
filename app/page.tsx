@@ -98,8 +98,12 @@ export default function Home() {
 
       <section className="mt-14">
         <h2 className="text-xl font-bold text-slate-900">Retaining wall guides</h2>
+        <p className="mt-1 text-sm text-slate-500">
+          <Link href="/blog" className="text-emerald-700 hover:underline">See every guide</Link> or{" "}
+          <Link href="/calculators" className="text-emerald-700 hover:underline">browse all calculators</Link>.
+        </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          {POSTS.slice(0, 6).map((p) => (
+          {POSTS.map((p) => (
             <Link key={p.slug} href={`/blog/${p.slug}`}
               className="rounded-xl border border-slate-200 bg-white p-4 transition hover:border-emerald-300 hover:shadow-sm">
               <div className="font-semibold text-slate-900">{p.title}</div>

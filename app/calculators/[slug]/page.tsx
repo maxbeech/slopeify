@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Calculator from "@/components/Calculator";
 import Faq from "@/components/Faq";
 import { CALCULATORS, calcBySlug } from "@/lib/calculators";
+import { relatedPosts } from "@/lib/related";
 import { breadcrumbLd } from "@/lib/site";
 
 export const revalidate = 604800; // 1 week ISR
@@ -28,6 +29,8 @@ export default async function CalcPage({ params }: { params: Promise<{ slug: str
     { name: "Calculators", path: "/calculators" },
     { name: c.h1, path: `/calculators/${c.slug}` },
   ]);
+
+  const guides = relatedPosts("", `${c.h1} ${c.slug.replace(/-/g, " ")}`, 4);
 
   return (
     <div>
@@ -59,6 +62,22 @@ export default async function CalcPage({ params }: { params: Promise<{ slug: str
             </Link>
           ))}
         </div>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-lg font-bold text-slate-900">Guides that go with this calculator</h2>
+        <ul className="mt-3 space-y-2 text-sm">
+          {guides.map((g) => (
+            <li key={g.slug}>
+              <Link href={`/blog/${g.slug}`} className="font-medium text-emerald-700 hover:underline">{g.title}</Link>
+              <span className="text-slate-500"> {g.description}</span>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm text-slate-500">
+          See <Link href="/blog" className="text-emerald-700 hover:underline">all retaining wall guides</Link> or{" "}
+          <Link href="/calculators" className="text-emerald-700 hover:underline">every calculator</Link>.
+        </p>
       </section>
 
       <Faq />
