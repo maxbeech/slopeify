@@ -208,3 +208,5 @@ The $29 report can now be bought and delivered. Checkout stays off until it is f
 - Article schema enriched (dateModified, author URL, mainEntityOfPage) and HowTo
   schema emitted for step-by-step guides.
 - `/find-a-pro` added to the sitemap; "Updated" dates shown on guides.
+
+Generated Node analytics tests assert the empty error count without narrowing the mutable collection to `never[]`; storage-error checks remain unchanged.
