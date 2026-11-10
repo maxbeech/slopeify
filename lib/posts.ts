@@ -2875,6 +2875,125 @@ Piling mulch, soil, or plants right up against the base of the wall, which block
 
 Yes. Timber walls rot and lose fastener strength over time in a way concrete and stone don't, so they need closer inspection of ties, spikes, and the wood itself as they age, typically from year 10 onward. Drainage checks matter for every wall type, but timber walls have a shorter overall service life regardless of how well they're maintained.`,
   },
+  {
+    slug: "types-of-retaining-walls",
+    keyword: "types of retaining walls",
+    title: "Types of Retaining Walls: Five Options Compared",
+    description:
+      "The main types of retaining wall, how each one holds back soil, and the base widths Slopeify's engine gives for block, concrete, boulder and timber at 4 ft and 6 ft.",
+    date: "2026-11-10",
+    readMins: 9,
+    image: "/blog/gravity-vs-cantilever-retaining-walls.jpg",
+    imageCredit: "Photo by Sergei Starostin / Pexels",
+    body: `Ask a builder what kind of retaining wall you need and you will often hear a material answer: block, concrete or timber. That answers a different question. Underneath the material sits a structural type, and each type holds back soil in its own way. Once you know which way a wall is meant to win, the material choice and the base width mostly follow.
+
+This guide sets out the main types of retaining wall, what each one relies on, and where each one usually stops being the sensible choice. It also includes a worked example from the Slopeify engine, which checks base width for four gravity-type materials against the same backfill at 4 ft and 6 ft.
+
+## Key takeaways
+
+- Most homeowner walls are **gravity walls**, which hold soil back by their own weight, or **reinforced walls**, which use geogrid layers in the soil behind a block face.
+- Cantilever walls use a concrete stem and base slab, and the soil resting on the heel adds the weight that keeps them upright.
+- In the engine's model, a 4 ft wall in silty sand needs a base of **2.25-2.5 ft** for block, concrete or boulder, but **3.25 ft** for timber, and timber still fails the sliding check at that width.
+- At 6 ft, the same model says a block gravity wall can stand on its own weight. The code still calls for an engineered design above 4 ft, so treat that result as a check on the wall, not a permission.
+- The 4 ft line is a code trigger, not a structural limit. A surcharge behind the wall can trigger engineering at any height.
+
+## What "type" means in a retaining wall
+
+A retaining wall has to resist one thing: the sideways push of the soil behind it. There are only a few ways to do that, and the type of wall is simply the one you pick.
+
+- **Gravity:** the wall is heavy enough that its own weight wins.
+- **Cantilever:** the wall is a thin reinforced concrete shape that uses leverage, with soil on the heel adding weight.
+- **Counterfort or buttressed:** a cantilever with stiffening ribs so it can go taller.
+- **Reinforced (MSE or geogrid):** the wall face is light, and layers of geogrid tied into the backfill make the whole mass of soil act as the wall.
+
+Material sits on top of that. Concrete, stone, dry-stacked block and timber can all be built as gravity walls. Block can also be built as a reinforced wall. That is why "block wall" on its own does not tell you the type.
+
+## Gravity walls
+
+Gravity walls are the most common homeowner type. Poured concrete gravity walls, dry-stacked segmental block, boulder walls and timber walls all work this way. Each relies on mass, so the base has to be wide enough that the wall does not tip, slide or press too hard on the ground beneath it.
+
+The engine treats each gravity material with a practical maximum base-to-height ratio. For segmental block that ratio is 0.7, for poured concrete 0.6, for boulder 0.75 and for timber 0.85. A wider base is safer but uses more material, so the ratio is a ceiling on what makes sense rather than a target.
+
+Sources disagree on how tall a gravity wall can go, which is why the height limits in this guide come from the engine and the code rather than a rule of thumb. For how gravity and cantilever walls compare on cost and footprint, see [gravity vs cantilever retaining walls](/blog/gravity-vs-cantilever-retaining-walls).
+
+## Cantilever walls
+
+A cantilever wall is a reinforced concrete L or T shape. The vertical stem holds back the soil, and the base slab runs under the backfill. The soil resting on that slab adds weight that keeps the wall stable, so the concrete volume is much smaller than a mass wall of the same height.
+
+A cantilever is usually the answer when a gravity wall would need an impractically wide base, or when the site is tight and the footprint has to stay narrow. Sources do not agree on a single height range for cantilever walls, so judge the choice from the stability check and the code rather than from a height table. The Slopeify engine does not model cantilever walls directly, so the stability numbers in this guide cover gravity-type walls only.
+
+## Counterfort and buttressed walls
+
+Counterfort and buttressed walls are cantilever walls with added stiffeners. A counterfort is a rib on the back of the wall, behind the soil, that ties the stem to the base slab at regular intervals. A buttress does the same job on the front face, in the open. Both are used for tall walls where a plain cantilever stem would need to be impractically thick.
+
+They are rare in domestic garden work. They need structural design, formwork and inspection, and most residential projects that reach this scale involve a stamped drawing from the start.
+
+## Segmental and reinforced walls
+
+Segmental retaining wall (SRW) blocks are dry-stacked concrete units. On their own they behave as a gravity wall and suit low walls. Taller ones add layers of geogrid, a stiff mesh, into the compacted backfill, which reinforces the soil so that the block face does not have to carry the whole load. Once the soil is reinforced in this way, the wall is usually described as a mechanically stabilised earth (MSE) wall.
+
+The engine gives a planning estimate for when a gravity wall fails its checks. It uses a grid length of at least 0.6 times the height, with a minimum of 4 ft, and a layer roughly every 16 inches. That is a starting point for a conversation with an engineer, not a design.
+
+## Timber and sleeper walls
+
+Timber and railroad sleeper walls are the lightest gravity type. Pressure-treated timber weighs far less per cubic foot than concrete or stone, so it has less mass to resist the soil. That is why it is the first type to need help. The engine's blurb for timber notes that it relies on deadman anchors above about 3 ft, and the worked example below shows why.
+
+Timber also has the shortest service life. The cost guide puts timber at the bottom of the per-square-foot range, but a replacement inside a 20-year window should be part of the budget. For a fuller picture of the cost gap, see [retaining wall cost per linear foot](/blog/retaining-wall-cost-per-linear-foot).
+
+## What the engine says at 4 ft and 6 ft
+
+The check below uses the Slopeify engine with the same conditions for every wall: level silty sand backfill, free-draining so no water pressure builds up, no surcharge, and a silty sand foundation with a presumptive bearing of 2,000 psf. The engine requires an overturning factor of safety of at least 2.0, a sliding factor of at least 1.5, the resultant force inside the middle third of the base, and bearing pressure below the allowable.
+
+| Wall material | Unit weight (pcf) | Base at 4 ft | Base at 6 ft | Gravity-only result |
+|---|---|---|---|---|
+| Segmental block (SRW) | 120 | 2.5 ft | 3.75 ft | Passes at both heights |
+| Poured concrete (gravity) | 150 | 2.25 ft | 3.5 ft | Passes at both heights |
+| Boulder / rock | 130 | 2.5 ft | 3.75 ft | Passes at both heights |
+| Timber / sleeper | 45 | 3.25 ft (fails) | 5 ft (fails) | Fails sliding at both heights |
+
+The base widths are the narrowest the engine could find that passes every check, rounded to the nearest 0.25 ft. Timber shows its best attempt, since no width passed on gravity alone.
+
+Here is the arithmetic at 4 ft. The soil pushes with a force of one half times 45 psf per foot times the height squared, which comes to 360 lb per foot of wall. That force acts a third of the way up, giving an overturning moment of 480 ft-lb per foot. A 2.5 ft block base weighs 120 × 2.5 × 4, or 1,200 lb per foot, and resists the overturning with a factor of 3.13. Sliding is held back by that weight multiplied by the base friction, giving a factor of 1.83 against the 1.5 required. The same wall in timber, at 3.25 ft wide, weighs only 585 lb per foot. Its sliding factor falls to 0.73, well short of 1.5, and the resultant moves outside the middle third of the base.
+
+At 6 ft the soil force rises to 810 lb per foot, and the overturning moment to 1,620 ft-lb per foot. That is four times the 4 ft moment, because the height is squared in both the force and its lever arm. A 3.75 ft block base weighs 2,700 lb per foot, and the bearing pressure under the toe reaches about 1,411 psf against the 2,000 psf allowable. Timber at 5 ft still fails sliding, with a factor of 0.75. The engine's reinforcement planning estimate for timber at 6 ft is four layers of geogrid, each at least 4 ft long.
+
+Read the 6 ft row carefully. It says that in this soil, drained and level, weight alone is enough to hold a block wall at 6 ft. It does not say a 6 ft wall is safe to build without an engineer. The engine does not model geogrid, real soil variation, water, slopes or surcharges. The code draws the line at 4 ft for a reason: above that height, and with any load behind the wall, the design has to be checked properly.
+
+## How to choose a type
+
+Start with two numbers: the height from the bottom of the footing to the top of the wall, and whether anything sits above or behind it.
+
+1. **Under 4 ft, no surcharge, good soil:** a gravity block, concrete or boulder wall is the usual answer. Plan the base width from the engine or a similar check, and get the drainage right.
+2. **Any surcharge, such as a driveway, patio, slope or building:** plan for engineering whatever the height. The [surcharge guide](/blog/retaining-wall-surcharge-explained) explains why a modest load can change the design.
+3. **Timber:** plan for anchors above about 3 ft, or switch to a material with more mass.
+4. **Above 4 ft, or on a steep site:** expect a stamped design. A cantilever or a geogrid-reinforced block wall is more likely than a plain gravity wall at this scale.
+
+If you are not sure whether a wall needs grid, [when do you need geogrid reinforcement?](/blog/when-do-you-need-geogrid) walks through the height and surcharge triggers. For the permit side, see [do I need a permit for a retaining wall?](/blog/do-i-need-a-permit-for-a-retaining-wall)
+
+## Sources and what they support
+
+- The [International Residential Code, section R404](https://codes.iccsafe.org/s/IRC2018P5/chapter-4-foundations/IRC2018P5-Ch04-SecR404.4) sets the 4 ft permit exemption, which excludes walls with a surcharge. Check the edition your jurisdiction has adopted.
+- Douglas County, Colorado, [requires a building permit and engineered design](https://douglas.co.us/building-division/permits/retaining-wall) when a wall is over 4 ft or supports a surcharge. Local rules vary, so confirm with your own building department.
+- The [CMHA technical bulletin TEK 15-06](https://www.cmha.org/resource/tek-15-06/) covers unreinforced gravity masonry walls, which is the same family the engine models.
+
+## FAQs
+
+### What is the most common type of retaining wall for a home?
+
+For most homeowners it is a gravity wall built from segmental concrete block. It needs no concrete footing or mortar, and it relies on weight to hold the soil. Taller or heavier-loaded walls usually move to reinforced concrete cantilever or geogrid-reinforced block.
+
+### Which type of retaining wall is the strongest?
+
+There is no single strongest type. Reinforced concrete cantilever walls and geogrid-reinforced block walls carry the most load for their size. A heavy mass wall is not stronger, it is just heavier, and it needs a much wider base to achieve the same result.
+
+### Can a timber retaining wall be built above 3 ft?
+
+Only with support. In the engine's model, a timber wall at 3 ft fails the sliding check with a factor of 0.75 against 1.5 required. Deadman anchors or a reinforced design are the usual fixes, and any wall above 4 ft should be engineered regardless of material.
+
+### Do I need an engineer for a block gravity wall?
+
+Above 4 ft, or with any surcharge behind the wall, the IRC and most local codes call for an engineered design. Below that, the requirement depends on your jurisdiction, so confirm with your local building department before you dig.`,
+  },
 ];
 
 POSTS.push(...WEEK2_POSTS);
