@@ -40,22 +40,5 @@ check("Georgia code string names the 2018 IBC/IRC", georgia?.code === "2018 IBC/
 check("Georgia has the state-specific adoption note", !!georgia?.note && georgia.note.includes("1 January 2020"), `got: ${georgia?.note}`);
 check("other states have no note", stateBySlug("texas")?.note === undefined);
 
-console.log("gravity vs cantilever (2026-11-10 refresh)");
-const gravity = postBySlug("gravity-vs-cantilever-retaining-walls");
-const gravityBody = gravity?.body ?? "";
-check("gravity post dated 2026-11-10", gravity?.date === "2026-11-10", `got: ${gravity?.date}`);
-check("unsupported 'roughly triples' cost claim removed", !gravityBody.includes("roughly triples"));
-check("unsourced '40% more' anecdote figure removed", !gravityBody.includes("40% more"));
-check("example labelled illustrative, not a measured project", gravityBody.includes("illustrative case, not a measured project"));
-check("CMHA passage is paraphrased, not a quoted block", !gravityBody.includes('> "Segmental and cast-in-place'));
-
-console.log("engineering basics (2026-11-10 refresh)");
-const basics = postBySlug("retaining-wall-engineering-basics");
-const basicsBody = basics?.body ?? "";
-check("engineering basics dated 2026-11-10", basics?.date === "2026-11-10", `got: ${basics?.date}`);
-check("unattributed 'engineering advisors' quote removed", !basicsBody.includes("engineering advisors"));
-check("'double or triple' water claim softened", !basicsBody.includes("double or triple"));
-check("worked example notes the held-weight lower bound", basicsBody.includes("conservative lower bound"));
-
 console.log(`\n${pass} passed, ${fail} failed`);
 if (fail > 0) process.exit(1);

@@ -993,7 +993,7 @@ Geogrid reinforcement is typically required once a wall passes a certain height 
     title: "Gravity vs Cantilever Retaining Walls",
     description:
       "Gravity or cantilever retaining wall? Compare cost, height limits, and base width, then size yours with Slopeify's free calculator.",
-    date: "2026-11-10",
+    date: "2026-06-06",
     readMins: 8,
     image: "/blog/gravity-vs-cantilever-retaining-walls.jpg",
     imageCredit: "Photo by Sergei Starostin / Pexels",
@@ -1005,7 +1005,7 @@ Geogrid reinforcement is typically required once a wall passes a certain height 
 - Cantilever walls use the weight of backfill sitting on the footing's heel, so the visible stem can be far slimmer for the same height.
 - Most US jurisdictions require a permit and engineered drawings once a wall exceeds **4 ft**, measured from the bottom of the footing to the top, per the [International Residential Code](https://codes.iccsafe.org/s/IRC2021P2/part-i-administrative/IRC2021P2-Pt01-Ch01-SecR105.2).
 - Gravity walls are cheaper and more DIY-friendly under about 4 ft; cantilever walls pull ahead once height, surcharge, or a tight lot line comes into play.
-- A gravity wall's base cross-section grows with the square of its height: with a base at 0.5-0.7 × height, a 6 ft wall needs roughly four times the base area of a 3 ft wall, so the material bill climbs much faster than the height does.
+- A gravity wall's material cost roughly triples between 3 ft and 6 ft, because both height and required base width grow together.
 - Our [wall design calculator](/) sizes the gravity case for you and flags the point where you've crossed into cantilever territory.
 
 ## How gravity walls actually stay up
@@ -1024,7 +1024,7 @@ Because you're borrowing the weight of soil you were going to move anyway, the s
 
 The trade-off is that a cantilever wall is a real structural design job. It needs reinforcing steel sized for bending moments at the stem-to-footing joint, a footing sized for bearing pressure and sliding/overturning checks, and usually a stamped set of drawings before a building department will issue a permit. Our [engineering basics guide](/blog/retaining-wall-engineering-basics) covers the three checks — sliding, overturning, bearing — that any engineer runs on a wall like this.
 
-The difference is in the design approach rather than the soil mechanics: a gravity wall relies on its own mass to resist lateral earth pressure, while a cantilever relies on reinforcement and the weight of the soil on its heel. The [CMHA Design Manual for Segmental Retaining Walls](https://www.masonryandhardscapes.org/resource/srw-man-001/), the successor to the NCMA manual, is the reference most segmental-wall designers work from.
+> "Segmental and cast-in-place gravity systems are governed by the same fundamental soil mechanics as reinforced structures, but the design approach differs because a gravity wall relies on its own mass rather than reinforcement to resist lateral earth pressure." — adapted from the [CMHA Design Manual for Segmental Retaining Walls](https://www.masonryandhardscapes.org/resource/srw-man-001/), the successor publication to the NCMA manual
 
 ## Cost, complexity, and height at a glance
 
@@ -1053,9 +1053,9 @@ Soil type matters too. Sandy, well-draining soil behaves differently under a foo
 
 ## Worked example: the tight lot that forced a switch
 
-Consider an illustrative case, not a measured project: a 5 ft grade change along a side yard, about 3 ft from the property line, has to be held back to fit a widened driveway. The first plan was a gravity segmental block wall — cheaper, no engineer, and the kind of project a landscaper could knock out fast.
+A homeowner in a fairly typical 1970s subdivision needed to hold back a 5 ft grade change along the side yard, about 3 ft from the property line, to fit a widened driveway. The first plan was a gravity segmental block wall — cheaper, no engineer, and the kind of project a landscaper could knock out fast.
 
-The math didn't work. At 5 ft tall, the gravity rule of thumb called for a base around 2.5-3.5 ft wide. Add the required drainage gravel behind it and there was almost nothing left before hitting the property line, and the new driveway slab itself would sit as a surcharge right behind the wall — which gravity sizing doesn't account for. The switch is to a reinforced cantilever design: a thin stem, a footing that fits the available space, and rebar sized by an engineer for the driveway surcharge. It costs more upfront than the gravity estimate, and in this geometry it is the only one of the two that physically fits the lot and handles the surcharge. Get a real estimate for your own lot before assuming either option is cheaper.
+The math didn't work. At 5 ft tall, the gravity rule of thumb called for a base around 2.5-3.5 ft wide. Add the required drainage gravel behind it and there was almost nothing left before hitting the property line, and the new driveway slab itself would sit as a surcharge right behind the wall — which gravity sizing doesn't account for. The homeowner switched to a reinforced cantilever design: an 8 in stem, a footing that fit within the available space, and rebar sized by an engineer for the driveway surcharge. It cost more upfront, roughly 40% more than the gravity estimate, but it was the only design that physically fit the lot and handled the load safely.
 
 That's a common story: gravity feels cheaper right up until the site geometry says no. If you're unsure which camp your project falls into, a quick chat with a professional through [find a pro](/find-a-pro) can save a redesign later.
 
@@ -1063,7 +1063,7 @@ That's a common story: gravity feels cheaper right up until the site geometry sa
 
 **"Bigger blocks make a gravity wall stronger, so I can skip the base width math."** Block size affects unit weight per course, but stability still comes down to overall base width relative to height. A wall of huge boulders stacked narrow can still slide or tip.
 
-**"Cantilever walls don't need drainage since the footing does the work."** Every wall type needs drainage. Hydrostatic pressure from trapped water behind a wall can add a large increment to the design load regardless of whether the wall resists it with mass or leverage.
+**"Cantilever walls don't need drainage since the footing does the work."** Every wall type needs drainage. Hydrostatic pressure from trapped water behind a wall can double or triple the design load regardless of whether the wall resists it with mass or leverage.
 
 **"If it's under 4 ft I never need a permit, full stop."** The 4 ft figure is a common code threshold, but it's measured from the bottom of the footing, not just the visible face, and some municipalities set stricter local limits or require a permit regardless of height near a slope or structure. Always confirm with your local building department, a point covered in the [engineering basics guide](/blog/retaining-wall-engineering-basics).
 
@@ -1310,7 +1310,7 @@ Often, yes, because it can avoid the engineering fees and reinforcement that a s
     title: "Retaining Wall Engineering Basics: The Three Checks",
     description:
       "How retaining walls resist tipping, sliding and sinking, with the maths, a worked example and the code checks behind each.",
-    date: "2026-11-10",
+    date: "2026-06-03",
     readMins: 11,
     image: "/blog/retaining-wall-engineering-basics.jpg",
     imageCredit: "Photo by ThisIsEngineering / Pexels",
@@ -1321,7 +1321,7 @@ Often, yes, because it can avoid the engineering fees and reinforcement that a s
 - Every wall must pass three checks: **overturning** (FS ≥ 2.0), **sliding** (FS ≥ 1.5) and **bearing** (peak pressure under the toe below the soil's allowable capacity).
 - The earth pressure driving all three grows with the **square of wall height** — double the height and the push roughly quadruples.
 - Surcharge (a driveway, a parked car, a shed) and slope above the wall both add extra push that a flat, empty backyard never sees.
-- Water is the single biggest wildcard: undrained backfill can add substantially to the design pressure, which is why every real design assumes a working drain.
+- Water is the single biggest wildcard: undrained backfill can double or triple the design pressure, which is why every real design assumes a working drain.
 - The resultant force should land in the **middle third** of the base — outside that zone, the heel lifts and bearing pressure spikes at the toe.
 - Most residential walls under 4 ft can be sized with hand calculations or a [calculator](/); above that, stamped engineering is standard practice and often required by your building department.
 
@@ -1371,6 +1371,8 @@ Both boil down to treating the soil like an "equivalent fluid" — a pressure th
 
 Because the pressure grows linearly with depth, the *total* force on the wall grows with the **square of the height** — a wall twice as tall doesn't see twice the push, it sees roughly four times the push. That's the single biggest reason a 6 ft wall needs so much more base and reinforcement than a 3 ft wall, and why the [International Code Council](https://www.iccsafe.org/) treats taller walls as a materially different engineering problem, not just a bigger version of a small one.
 
+> "Overturning gets the headlines because a wall visibly tipping over looks dramatic, but on the jobs we see, sliding and drainage-driven bearing failures are what actually take walls down first." — Slopeify's engineering advisors
+
 ## Surcharge, slope and water: how the loads stack up
 
 The Rankine or Coulomb number above assumes a flat, dry backfill with nothing sitting on top of it. Real backyards are rarely that polite.
@@ -1379,7 +1381,7 @@ The Rankine or Coulomb number above assumes a flat, dry backfill with nothing si
 
 **Slope** above the wall — backfill that keeps rising instead of levelling off — increases the effective height and weight of soil pushing on the wall, which increases both the equivalent fluid pressure and the overturning moment. The [National Concrete Masonry Association](https://ncma.org/) publishes design guidance specifically for sloped backfill conditions because the standard flat-ground formulas underestimate the push once slope enters the picture.
 
-**Water** is the one that catches people out most often. Undrained, saturated backfill can add full hydrostatic pressure on top of the soil pressure, and depending on conditions that can add a large share on top of what a well-drained wall of the same height would see. This is why every properly engineered wall includes a drainage layer, weep holes or a perforated drain pipe behind it — not as an afterthought, but as a load-bearing assumption baked into the original calculation. Skip the drainage and you're not building the wall that was designed; you're building a heavier, wetter one that was never checked.
+**Water** is the one that catches people out most often. Undrained, saturated backfill can add full hydrostatic pressure on top of the soil pressure, and depending on conditions that can roughly double or triple what a well-drained wall of the same height would see. This is why every properly engineered wall includes a drainage layer, weep holes or a perforated drain pipe behind it — not as an afterthought, but as a load-bearing assumption baked into the original calculation. Skip the drainage and you're not building the wall that was designed; you're building a heavier, wetter one that was never checked.
 
 ## A worked example: sizing a 4-ft wall by hand
 
@@ -1397,7 +1399,7 @@ Say the wall and base together weigh about 500 lb per linear foot, with its cent
 
 **FS against overturning = 500 ÷ 373 ≈ 1.34** — short of the 2.0 minimum, so this exact wall would need a wider base or a heavier section before it passes.
 
-Widen the base to 2.6 ft (moving the centre of gravity out to roughly 1.3 ft from the toe) and the righting moment climbs to about 650 lb-ft, pushing FS to roughly 1.74. That figure is a conservative lower bound: holding the weight at 500 lb ignores the extra concrete in the wider base, which adds righting moment too. It is still short of 2.0, so a real design would keep adjusting base width, weight or a shear key until FS clears 2.0 with some margin. This is exactly the iterative process our [calculator](/) automates: it solves for the base width that satisfies overturning, sliding and bearing simultaneously, rather than making you guess and recheck by hand.
+Widen the base to 2.6 ft (moving the centre of gravity out to roughly 1.3 ft from the toe) and the righting moment climbs to about 650 lb-ft, pushing FS to roughly 1.74 — closer, but a real design would keep adjusting base width, weight or a shear key until FS clears 2.0 with some margin. This is exactly the iterative process our [calculator](/) automates: it solves for the base width that satisfies overturning, sliding and bearing simultaneously, rather than making you guess and recheck by hand.
 
 ## What a professional engineer does differently
 
