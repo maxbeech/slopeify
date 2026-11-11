@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-10: Refresh gravity vs cantilever and engineering basics guides
+
+### Changed
+- **Gravity vs cantilever** is refreshed from the content inventory (REFRESH verdict, position 8.7 on 107 impressions). The cost takeaway now derives from the base-area relation (base scales with height, so area scales with height squared) instead of an unsupported "triples" figure. The tight-lot example is labelled as illustrative, with the unsourced "40% more" figure removed. The CMHA passage is paraphrased, not presented as a quotation. Dated 2026-11-10.
+- **Retaining wall engineering basics** is refreshed (REFRESH verdict, position 9.7 on 56 impressions). Removed an unattributed "engineering advisors" quote. Softened the "double or triple" water-pressure claims. The worked example now notes that holding the wall weight fixed makes the 1.74 overturning factor a conservative lower bound. Dated 2026-11-10.
+
+### Added
+- Regression checks for both refreshes in `test/content-refresh.test.mts`.
+
 ## 2026-11-06: active return measurement
 
 - Record first measured visits and intentional returns using the shared three-hour, seven-day browser contract.
