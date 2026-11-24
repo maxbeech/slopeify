@@ -2994,6 +2994,110 @@ Only with support. In the engine's model, a timber wall at 3 ft fails the slidin
 
 Above 4 ft, or with any surcharge behind the wall, the IRC and most local codes call for an engineered design. Below that, the requirement depends on your jurisdiction, so confirm with your local building department before you dig.`,
   },
+  {
+    slug: "retaining-wall-repair",
+    keyword: "retaining wall repair",
+    title: "Retaining Wall Repair: Diagnose the Movement Before You Fix It",
+    description:
+      "How to read a leaning, bulging or cracked retaining wall, what a real repair must change, and the engine numbers that show when a patch will not hold.",
+    date: "2026-11-24",
+    readMins: 9,
+    image: "/blog/retaining-wall-drainage.jpg",
+    imageCredit: "Photo by D Goug / Pexels",
+    body: `A retaining wall rarely fails in one afternoon. It starts as a hairline crack, a face that looks less straight than it did last spring, or a top course that has begun to lean toward the lawn. The trouble is that the same crack can come from water pressure, a settled base, or a single block knocked out of line, and each one needs a different fix. Patching the surface of the wrong problem is how a small repair turns into a rebuild.
+
+This guide covers how to read the movement, what a repair has to change to be more than cosmetic, and how the numbers from Slopeify's design engine show the difference between a wall that holds when its drains work and one that fails the moment they don't.
+
+## Key takeaways
+
+- **Read the movement first.** Lean at the top, lean at the bottom, a bulge at mid-height and stair-step cracks each point to a different cause.
+- **Restore drainage before anything else.** It is the cheapest repair, and in our engine it is the difference between a gravity wall that passes and one that does not.
+- **Drainage alone will not straighten a bulge** or add capacity the wall was never designed for.
+- **In our worked example** a 25-ft, 4-ft-high block wall passes with sand backfill when the drains work, and fails sliding (factor 0.98 against 1.5) once they fail.
+- **Small cracks are usually repairable.** A bulge, a significant lean or wide cracks mean an engineer should look at the wall before anyone digs.
+
+## Read the movement before you touch the wall
+
+Every movement pattern is a clue about the forces acting on the wall. Before you buy a single block, walk the wall with a level and a tape and note where the movement is.
+
+- **Lean concentrated at the top** usually means the wall is rotating forward, often because the backfill is pushing harder than the base can resist, or because the wall was built without the set-back it needed.
+- **Lean at the bottom** points to a base problem: settlement, a footing that was never properly embedded, or a leveling pad that has washed out from under the first course.
+- **A bulge at mid-height** is the classic sign of water. When drainage clogs, water saturates the backfill and the lateral load climbs until the face pushes out.
+- **Stair-step cracks in the mortar joints with the centre of the wall leaning outward** are consistent with horizontal earth pressure acting on a wall with no working drainage behind it. Roots pushing through the face can add to the picture.
+
+Small hairline cracks that have not moved between inspections are usually cosmetic or a sign of minor settlement. Movement that is growing, a bulge you can see from the end of the wall, or any part of the wall that has already come down is a different category, and the repair should wait for an assessment.
+
+Our [why retaining walls fail](/blog/why-retaining-walls-fail) guide goes through the four underlying causes in more depth, and our maintenance checklist shows what to log each spring so you can tell a stable crack from a moving one.
+
+## What the numbers say about a repair
+
+The clearest way to see why drainage matters is to run the same wall twice in the design engine, once with working drainage and once with the backfill treated as saturated. The engine treats a failed drain as the wall retaining water as well as soil, which roughly doubles the lateral load, and that is the case a repair has to plan for. Design references take the same view: where backfill cannot be drained, full hydrostatic pressure has to be added to the earth pressure ([Iowa DOT bridge design manual](https://iowadot.gov/media/4669/download)), and NCMA practice sizes the drainage to carry seepage away so water pressure does not build up ([NCMA segmental retaining wall best practices](https://www.mutualmaterials.com/wp-content/uploads/2021/08/NCMA-SRW-Best-Practices.pdf)).
+
+We ran a 25-ft-long, 4-ft-high segmental block wall with a level backfill and a level foundation, using the default standard block and the California cost index. Results are the engine's own checks:
+
+| Scenario | Gravity base | Overturning factor (need 2.0) | Sliding factor (need 1.5) | Outcome |
+|---|---|---|---|---|
+| Sand backfill, drainage working | 2.0 ft base, passes | 3.0 | 2.2 | Passes as a gravity wall |
+| Sand backfill, drainage failed | 2.75 ft tried, fails | 1.84 | 0.98 | Needs geogrid reinforcement |
+| Silt-clay backfill, drainage working | 2.75 ft tried, fails | 2.84 | 1.51 | Fails the middle-third check, needs geogrid |
+
+Three things stand out. First, the sand wall that passes with working drains has comfortable margins on both overturning and sliding. Second, the same sand wall with failed drainage falls well short on sliding, which is the mode that pushes a wall forward along its base. Third, the silt-clay wall passes its sliding check by a hair even when the drains work, but the resultant force still moves outside the middle third of the base, so the engine rejects it as a gravity wall.
+
+The middle-third rule is worth understanding because it explains a lot of repair failures. At a 2.75-ft base, the resultant load has to stay within about 5.5 inches of the centre line. Once it moves past that, part of the base lifts off the ground, and the wall starts rotating about its toe.
+
+For the saturated sand case the engine assumes geogrid: two layers, 4 ft deep, roughly 16 inches apart vertically, covering about 210 sq ft of a 25-ft wall. Its installed estimate runs from about $4,992 to $9,984 with the California index, compared with $3,840 to $7,680 for the same wall with working drains. Those are planning figures from the calculator, not a quote, but they show the scale of the gap that poor drainage creates.
+
+## The repair order that actually works
+
+Once you know what is moving, the repair has to change the forces on the wall, not just tidy its face. In practice that means working through a short list in order.
+
+**1. Restore the drainage.** Find the outlet, clear it, and check the drain pipe, the drain rock and the filter fabric behind the face. Keeping weep holes and drain pipes clear and directing surface water away from the top of the wall are the cheapest measures available. Regrade the soil at the top of the wall and redirect downspouts and irrigation that feed water into the backfill. Our [drainage guide](/blog/retaining-wall-drainage) covers how the system should be laid out.
+
+**2. Check the base.** If the lean is at the bottom, or the wall has settled, the base is the first thing to fix. A footing or leveling pad that has washed out has to be rebuilt before the wall above it can be trusted again.
+
+**3. Add reinforcement if the checks still fail.** If the wall still fails sliding or overturning once the drains work, the usual next step is geogrid anchored into the soil behind the face, or tiebacks in harder cases. Geogrid spacing and length are not guesswork; they follow design rules. A [California state interpretation of the NCMA-based rules](https://www.dgs.ca.gov/-/media/Divisions/DSA/Publications/interpretations_of_regs/IR_16-3_rev11-07-17.pdf) caps vertical spacing at 32 inches or twice the unit depth, and the saturated example above uses about 16 inches. Our [geogrid guide](/blog/when-do-you-need-geogrid) explains when reinforcement becomes necessary.
+
+**4. Rebuild the affected section when the face is beyond saving.** A bulge that has pushed the blocks out of their courses cannot simply be pushed back. The sensible approach is to take the section down to sound material, restore drainage, and rebuild it in stages, which is what most contractors will recommend once the lean is significant.
+
+Drainage alone will not unbend a bulged wall or add capacity that was never designed into it, so step 1 is necessary but rarely sufficient on its own once a wall has moved.
+
+## When a patch is not enough
+
+Some situations are beyond a homeowner's repair, and no amount of care with mortar or caps will change that. Stop and get an assessment if you see any of the following:
+
+- A bulge or a visible outward lean that is growing between inspections
+- Cracks that are wide enough to see daylight through, or that run the full height of the wall
+- Any part of the wall that has already collapsed or shifted forward as a whole
+- A wall above 4 ft, or one holding back a driveway, slope or structure, where the design basis matters as much as the repair
+
+The [engineering basics](/blog/retaining-wall-engineering-basics) guide sets out the three checks an engineer will run, and [the permit guide](/blog/do-i-need-a-permit-for-a-retaining-wall) covers when structural repair or rebuilding triggers a permit. Because permit rules vary by jurisdiction, check with your local building department before you start.
+
+If the wall is in the middle of its life and the movement is modest, a repair done well can stretch that life by years. If it is failing outward, the repair is usually the first stage of a rebuild, and planning it that way saves money.
+
+## What to measure before you order materials
+
+If you do end up rebuilding a section, the numbers in our how many retaining wall blocks guide give you the block, cap and drain-rock quantities. Measure the affected length and exposed height accurately, count the cap course separately, and remember that a rebuild usually needs a fresh leveling pad and drain zone, not just the wall face.
+
+The [Slopeify calculator](/) runs the same drainage-failed scenario shown above for your own dimensions, so you can see whether a repair is likely to hold as a gravity wall or whether reinforcement needs to go into the budget from the start. For anything structural, a [local pro](/find-a-pro) who has repaired walls in your county will know the local building department's expectations.
+
+## FAQs
+
+### Can I fix a bulging retaining wall myself?
+
+Restoring drainage is a sensible DIY step, and small, stable cracks can often be sealed. A bulge that is growing, or a wall above 4 ft, should be assessed by an engineer before any rebuild work starts, because the cause is usually in the base or the backfill and not visible on the face.
+
+### Does fixing the drainage straighten a leaning wall?
+
+It can stop a minor lean from getting worse, because it removes the water pressure that was pushing the face forward. It will not straighten a wall that has already moved significantly, and it will not help a wall that is failing because its base is inadequate.
+
+### Is a crack in a retaining wall always a sign of failure?
+
+No. Small hairline cracks that have not changed between inspections are common and are often cosmetic. The concern is movement: cracks that widen, stair-step patterns with an outward lean, or any crack that is accompanied by bulging.
+
+### Should I repair or rebuild?
+
+It depends on the cause. A wall with working drainage and a stable base may need only local repairs. A wall with a bulge, a significant lean or a failed base usually needs the affected section rebuilt in stages, and a professional assessment will tell you whether a repair can restore the design margins or whether the wall has to be replaced.`,
+  },
 ];
 
 POSTS.push(...WEEK2_POSTS);
