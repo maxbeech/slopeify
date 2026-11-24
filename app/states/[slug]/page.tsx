@@ -137,7 +137,7 @@ export default async function StatePage({ params }: { params: Promise<{ slug: st
             above. It is free and there is no obligation.
           </p>
         </div>
-        <Link href={`/find-a-pro?state=${s.slug}`}
+        <Link href={`/find-a-pro?state=${s.slug}`} rel="nofollow"
           className="mt-4 inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-clay-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-clay-700 sm:mt-0">
           Find a pro in {s.abbr} <span aria-hidden>→</span>
         </Link>

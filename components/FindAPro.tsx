@@ -27,7 +27,7 @@ function ArrowLink({
       : variant === "pine"
         ? "bg-emerald-700 text-white hover:bg-emerald-800"
         : "border border-slate-300 text-slate-700 hover:border-slate-400 hover:bg-slate-50";
-  const rel = external ? "noopener sponsored" : undefined;
+  const rel = external ? "noopener sponsored" : "nofollow";
   const target = external ? "_blank" : undefined;
   return (
     <Link href={href} target={target} rel={rel} onClick={() => trackJourney("pro_referral_click", { kind })}
