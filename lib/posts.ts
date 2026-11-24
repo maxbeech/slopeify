@@ -502,7 +502,9 @@ Most pressure-treated timber walls last 15-25 years before rot, insect damage or
 
 ### What's the strongest type of retaining wall?
 
-Poured concrete, particularly an engineered cantilever design, offers the highest strength and smallest footprint for a given height. That strength comes with the highest cost and the most involved build process of the four common residential options.`,
+Poured concrete, particularly an engineered cantilever design, offers the highest strength and smallest footprint for a given height. That strength comes with the highest cost and the most involved build process of the four common residential options.
+
+Want the full picture beyond these four materials? Our [types of retaining walls comparison](/blog/types-of-retaining-walls) covers five wall designs side by side.`,
   },
   {
     slug: "how-to-build-a-retaining-wall",
@@ -1909,7 +1911,9 @@ From the toe of the lower wall to the toe (front edge of the footing) of the upp
 
 ### Does soil type change the spacing rule?
 
-Yes. The 2× figure assumes reasonably well-draining, compacted backfill. Looser sandy soils, soft clay, or poor drainage widen the failure wedge behind the wall, which pushes the safe setback past 2× height — sometimes to 2.5× or more on weaker sites.`,
+Yes. The 2× figure assumes reasonably well-draining, compacted backfill. Looser sandy soils, soft clay, or poor drainage widen the failure wedge behind the wall, which pushes the safe setback past 2× height — sometimes to 2.5× or more on weaker sites.
+
+If your slope is too steep for a single wall, see our [guide to terraced retaining walls](/blog/terraced-retaining-walls) for layout, drainage and cost across multiple tiers.`,
   },
   {
     slug: "gravity-retaining-wall-sizing",
